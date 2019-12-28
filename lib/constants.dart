@@ -1,1 +1,1 @@
-final margin = 8.0;
+const margin = 8.0;
