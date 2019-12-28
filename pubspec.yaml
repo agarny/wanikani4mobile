@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^0.1.2
+  flutter_launcher_icons: ^0.7.4
 
 dev_dependencies:
   flutter_test:
@@ -18,3 +19,12 @@ dev_dependencies:
 
 flutter:
   uses-material-design: true
+
+flutter_icons:
+  # Note: run the following command to update the application icon:
+  #       flutter pub run flutter_launcher_icons:main
+  android: true
+  ios: true
+  image_path: "res/logo.png"
+  image_path_android: "res/logo.png"
+  image_path_ios: "res/logo.png"
