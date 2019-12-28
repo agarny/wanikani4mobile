@@ -27,4 +27,5 @@ flutter_icons:
   #       flutter pub run flutter_launcher_icons:main
   android: true
   ios: true
-  image_path: "res/logo.png"
+  image_path_android: "res/logo_android.png"
+  image_path_ios: "res/logo_ios.png"
