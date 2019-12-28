@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:wanikani4mobile/home_page.dart';
+import 'home_page.dart';
 
 void main() => runApp(new MaterialApp(
       title: 'WaniKani for Mobile',

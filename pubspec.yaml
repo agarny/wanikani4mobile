@@ -26,5 +26,3 @@ flutter_icons:
   android: true
   ios: true
   image_path: "res/logo.png"
-  image_path_android: "res/logo.png"
-  image_path_ios: "res/logo.png"
