@@ -2,23 +2,23 @@ import 'package:flutter/material.dart';
 
 import 'constants.dart';
 
-class HomePage extends StatefulWidget {
+class LogInPage extends StatefulWidget {
   @override
-  HomePageState createState() => HomePageState();
+  LogInPageState createState() => LogInPageState();
 }
 
-class HomePageState extends State<HomePage> {
+class LogInPageState extends State<LogInPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('WaniKani for Mobile'),
+        title: Text('Log in to WaniKani'),
       ),
       body: Container(
         margin: EdgeInsets.all(margin),
         child: Column(
           children: <Widget>[
-            Text('Welcome to WaniKani for Mobile!'),
+            Text('To be done...'),
           ],
         ),
       ),
