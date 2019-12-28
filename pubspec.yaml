@@ -20,6 +20,9 @@ dev_dependencies:
     sdk: flutter
 
 flutter:
+  assets:
+    - res/
+
   uses-material-design: true
 
 flutter_icons:

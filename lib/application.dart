@@ -5,6 +5,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'home_page.dart';
 import 'log_in_page.dart';
 import 'settings.dart';
+import 'splash_screen.dart';
 
 class _Application extends StatelessWidget {
   _Application({Key key}) : super(key: key);
@@ -43,10 +44,14 @@ class Application extends StatelessWidget {
       future: SharedPreferences.getInstance(),
       builder:
           (BuildContext context, AsyncSnapshot<SharedPreferences> snapshot) {
-            return ChangeNotifierProvider<Settings>.value(
-              value: Settings(snapshot.data),
-              child: _Application(),
-            );
+        if (snapshot.hasData) {
+          return ChangeNotifierProvider<Settings>.value(
+            value: Settings(snapshot.data),
+            child: _Application(),
+          );
+        }
+
+        return SplashScreen();
       },
     );
   }
