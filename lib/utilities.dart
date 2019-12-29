@@ -30,7 +30,11 @@ class LinkTextSpan extends TextSpan {
             recognizer: TapGestureRecognizer()
               ..onTap = () {
                 if (isURL(urlOrRoute)) {
-                  launch(urlOrRoute);
+                  launch(
+                    urlOrRoute,
+                    forceWebView: true,
+                    enableJavaScript: true,
+                  );
                 } else {
                   NavigatorState navigatorState = Navigator.of(context);
 
