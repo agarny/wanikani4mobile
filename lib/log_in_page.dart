@@ -15,7 +15,7 @@ class LogInPageState extends State<LogInPage> {
         title: Text('Log in to WaniKani'),
       ),
       body: Container(
-        margin: EdgeInsets.all(margin),
+        margin: EdgeInsets.all(space),
         child: Column(
           children: <Widget>[
             Text('To be done...'),
