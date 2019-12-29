@@ -18,31 +18,7 @@ class LogInPageState extends State<LogInPage> {
         margin: EdgeInsets.all(space(context)),
         child: Column(
           children: <Widget>[
-            Align(
-              alignment: Alignment.topLeft,
-              child: Text.rich(
-                TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'WaniKani for Mobile needs your ',
-                      style: bodyStyle(context),
-                    ),
-                    LinkTextSpan(
-                      text: 'API token',
-                      style: linkStyle(context),
-                      urlOrRoute:
-                          'https://www.wanikani.com/settings/personal_access_tokens',
-                    ),
-                    TextSpan(
-                      text: ' to work.',
-                      style: bodyStyle(context),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            SizedBox(height: space(context)),
-            Text(
+            Text('WaniKani for Mobile needs your API token to work.'
                 'This can be retrieved either automatically by logging in to WaniKani or manually by entering it.'),
             SizedBox(height: space(context)),
             Center(
