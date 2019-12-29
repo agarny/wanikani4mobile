@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'api_token_page.dart';
 import 'home_page.dart';
 import 'log_in_page.dart';
 import 'settings.dart';
@@ -31,6 +32,9 @@ class _Application extends StatelessWidget {
       home: Provider.of<Settings>(context).apiToken.isEmpty
           ? LogInPage()
           : HomePage(),
+      routes: <String, WidgetBuilder>{
+        '/api_token': (BuildContext context) => ApiTokenPage(),
+      },
     );
   }
 }

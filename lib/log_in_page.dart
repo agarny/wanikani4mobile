@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'constants.dart';
+import 'utilities.dart';
 
 class LogInPage extends StatefulWidget {
   @override
@@ -18,7 +18,61 @@ class LogInPageState extends State<LogInPage> {
         margin: EdgeInsets.all(space),
         child: Column(
           children: <Widget>[
-            Text('To be done...'),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text.rich(
+                TextSpan(
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'WaniKani for Mobile needs your ',
+                      style: bodyStyle(context),
+                    ),
+                    LinkTextSpan(
+                      text: 'API token',
+                      style: linkStyle(context),
+                      urlOrRoute:
+                          'https://www.wanikani.com/settings/personal_access_tokens',
+                    ),
+                    TextSpan(
+                      text: ' to work.',
+                      style: bodyStyle(context),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: space),
+            Text(
+                'This can be retrieved either automatically by logging in to WaniKani or manually by entering it.'),
+            SizedBox(height: space),
+            Center(
+              child: Text.rich(
+                TextSpan(
+                  children: <TextSpan>[
+                    LinkTextSpan(
+                      text: 'Log in to WaniKani',
+                      style: linkStyle(context),
+                      urlOrRoute: 'https://www.wanikani.com/login',
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            SizedBox(height: space),
+            Center(
+              child: Text.rich(
+                TextSpan(
+                  children: <TextSpan>[
+                    LinkTextSpan(
+                      text: 'Enter my API token',
+                      style: linkStyle(context),
+                      urlOrRoute: '/api_token',
+                      context: context,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ],
         ),
       ),
