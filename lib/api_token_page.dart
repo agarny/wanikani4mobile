@@ -30,27 +30,8 @@ class ApiTokenPageState extends State<ApiTokenPage> {
           children: <Widget>[
             Align(
               alignment: Alignment.topLeft,
-              child: Text.rich(
-                TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                      text: 'Your ',
-                      style: bodyStyle(context),
-                    ),
-                    LinkTextSpan(
-                      text: 'API token',
-                      style: linkStyle(context),
-                      urlOrRoute:
-                          'https://www.wanikani.com/settings/personal_access_tokens',
-                    ),
-                    TextSpan(
-                      text:
-                          ' is needed by WaniKani for Mobile to interact with WaniKani.',
-                      style: bodyStyle(context),
-                    ),
-                  ],
-                ),
-              ),
+              child: Text(
+                  'Your API token is needed by WaniKani for Mobile to interact with WaniKani.'),
             ),
             SizedBox(height: space(context)),
             TextField(
