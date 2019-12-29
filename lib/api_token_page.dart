@@ -25,7 +25,7 @@ class ApiTokenPageState extends State<ApiTokenPage> {
         title: Text('Enter API token'),
       ),
       body: Container(
-        margin: EdgeInsets.all(space),
+        margin: EdgeInsets.all(space(context)),
         child: Column(
           children: <Widget>[
             Align(
@@ -52,7 +52,7 @@ class ApiTokenPageState extends State<ApiTokenPage> {
                 ),
               ),
             ),
-            SizedBox(height: space),
+            SizedBox(height: space(context)),
             TextField(
               decoration: InputDecoration(
                 hintText: mask,

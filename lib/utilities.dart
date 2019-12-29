@@ -3,9 +3,13 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
 
-const space = 8.0;
-
 final appIcon = Image.asset('res/logo.png');
+
+double space(BuildContext context) {
+  return 0.5 *
+      MediaQuery.of(context).textScaleFactor *
+      Theme.of(context).textTheme.caption.fontSize;
+}
 
 TextStyle bodyStyle(BuildContext context) {
   return Theme.of(context).textTheme.body1;

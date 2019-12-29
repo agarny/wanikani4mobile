@@ -15,7 +15,7 @@ class LogInPageState extends State<LogInPage> {
         title: Text('Log in to WaniKani'),
       ),
       body: Container(
-        margin: EdgeInsets.all(space),
+        margin: EdgeInsets.all(space(context)),
         child: Column(
           children: <Widget>[
             Align(
@@ -41,10 +41,10 @@ class LogInPageState extends State<LogInPage> {
                 ),
               ),
             ),
-            SizedBox(height: space),
+            SizedBox(height: space(context)),
             Text(
                 'This can be retrieved either automatically by logging in to WaniKani or manually by entering it.'),
-            SizedBox(height: space),
+            SizedBox(height: space(context)),
             Center(
               child: Text.rich(
                 TextSpan(
@@ -58,7 +58,7 @@ class LogInPageState extends State<LogInPage> {
                 ),
               ),
             ),
-            SizedBox(height: space),
+            SizedBox(height: space(context)),
             Center(
               child: Text.rich(
                 TextSpan(

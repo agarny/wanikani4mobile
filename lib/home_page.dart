@@ -15,7 +15,7 @@ class HomePageState extends State<HomePage> {
         title: Text('WaniKani for Mobile'),
       ),
       body: Container(
-        margin: EdgeInsets.all(space),
+        margin: EdgeInsets.all(space(context)),
         child: Column(
           children: <Widget>[
             Text('Welcome to WaniKani for Mobile!'),
