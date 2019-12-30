@@ -15,7 +15,7 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
       mask: mask,
       filter: {
         "#": RegExp(r'[0-9a-f]'),
-        "-": RegExp(r'[\-]'),
+        "-": RegExp(r'\-'),
       },
     );
 
