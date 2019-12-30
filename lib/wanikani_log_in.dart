@@ -14,29 +14,32 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
 
   @override
   Widget build(BuildContext context) {
+    const ApiTokenUrl = 'https://www.wanikani.com/settings/personal_access_tokens';
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Log in to WaniKani'),
         ),
         body: WebView(
-          initialUrl:
-              'https://www.wanikani.com/settings/personal_access_tokens',
+          initialUrl: ApiTokenUrl,
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController controller) {
             _controller = controller;
 
             _controller.clearCache();
           },
-          onPageFinished: (_) {
-            _controller
-                .evaluateJavascript(
-                    '\$(".personal-access-token-token > code").text().trim();')
-                .then((apiToken) {
-              Provider.of<Settings>(context, listen: false)
-                  .setApiToken(apiToken);
+          onPageFinished: (String url) {
+            if (url == ApiTokenUrl) {
+              _controller
+                  .evaluateJavascript(
+                  '\$(".personal-access-token-token > code").text().trim();')
+                  .then((apiToken) {
+                Provider.of<Settings>(context, listen: false)
+                    .setApiToken(apiToken);
 
-              goToPage(HomeRoute, context);
-            });
+                goToPage(HomeRoute, context);
+              });
+            }
           },
         ));
   }
