@@ -3,6 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
+import 'package:wanikani4mobile/home.dart';
+import 'package:wanikani4mobile/log_in.dart';
+import 'package:wanikani4mobile/settings.dart';
+import 'package:wanikani4mobile/splash_screen.dart';
+import 'package:wanikani4mobile/wanikani_api_token.dart';
+import 'package:wanikani4mobile/wanikani_log_in.dart';
 
 // Constants
 
@@ -25,6 +31,37 @@ class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
       Animation<double> secondaryAnimation, Widget widget) {
     return widget;
   }
+}
+
+Route<dynamic> route(RouteSettings settings) {
+  Widget widget = SplashScreenPage();
+  bool animation = true;
+
+  switch (settings.name) {
+    case HomeRoute:
+      widget = HomePage();
+      animation = false;
+      break;
+    case LogInRoute:
+      widget = LogInPage();
+      animation = false;
+      break;
+    case SettingsRoute:
+      widget = SettingsPage();
+      break;
+    case WaniKaniApiTokenRoute:
+      widget = WaniKaniApiTokenPage();
+      break;
+    case WaniKaniLogInRoute:
+      widget = WaniKaniLogInPage();
+      break;
+  }
+
+  if (animation) {
+    return MaterialPageRoute(builder: (_) => widget);
+  }
+
+  return NoAnimationMaterialPageRoute(builder: (_) => widget);
 }
 
 class NavigationService {

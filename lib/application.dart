@@ -6,8 +6,6 @@ import 'package:wanikani4mobile/log_in.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/splash_screen.dart';
 import 'package:wanikani4mobile/utilities.dart';
-import 'package:wanikani4mobile/wanikani_api_token.dart';
-import 'package:wanikani4mobile/wanikani_log_in.dart';
 
 class _Application extends StatelessWidget {
   _Application({Key key}) : super(key: key);
@@ -35,34 +33,7 @@ class _Application extends StatelessWidget {
           : HomePage(),
       navigatorKey: navigatorKey(),
       onGenerateRoute: (RouteSettings settings) {
-        Widget widget = SplashScreenPage();
-        bool animation = true;
-
-        switch (settings.name) {
-          case HomeRoute:
-            widget = HomePage();
-            animation = false;
-            break;
-          case LogInRoute:
-            widget = LogInPage();
-            animation = false;
-            break;
-          case SettingsRoute:
-            widget = SettingsPage();
-            break;
-          case WaniKaniApiTokenRoute:
-            widget = WaniKaniApiTokenPage();
-            break;
-          case WaniKaniLogInRoute:
-            widget = WaniKaniLogInPage();
-            break;
-        }
-
-        if (animation) {
-          return MaterialPageRoute(builder: (_) => widget);
-        }
-
-        return NoAnimationMaterialPageRoute(builder: (_) => widget);
+        return route(settings);
       },
     );
   }
