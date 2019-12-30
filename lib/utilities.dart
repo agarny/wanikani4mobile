@@ -43,6 +43,18 @@ class NavigationService {
   }
 }
 
+void registerNavigationService() {
+  GetIt.instance.registerLazySingleton(() => NavigationService());
+}
+
+GlobalKey<NavigatorState> navigatorKey() {
+  return GetIt.instance<NavigationService>().navigatorKey;
+}
+
+Future<dynamic> navigateTo(String route) {
+  return GetIt.instance<NavigationService>().navigateTo(route);
+}
+
 // GUI
 
 double space(BuildContext context) {
@@ -76,7 +88,7 @@ class LinkTextSpan extends TextSpan {
                     enableJavaScript: true,
                   );
                 } else {
-                  GetIt.instance<NavigationService>().navigateTo(urlOrRoute);
+                  navigateTo(urlOrRoute);
                 }
               });
 }

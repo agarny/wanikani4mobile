@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:provider/provider.dart';
 import 'package:wanikani4mobile/settings.dart';
@@ -63,7 +62,7 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
                       Provider.of<Settings>(context, listen: false)
                           .setApiToken(_apiKey);
 
-                      GetIt.instance<NavigationService>().navigateTo(HomeRoute);
+                      navigateTo(HomeRoute);
                     }
                   : null,
             ),
