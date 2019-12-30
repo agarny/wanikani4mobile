@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
 
@@ -7,11 +8,11 @@ import 'package:validators/validators.dart';
 
 final appIcon = Image.asset('res/logo.png');
 
-const HomeRoute = '/home';
-const LogInRoute = '/log_in';
-const SettingsRoute = '/settings';
-const WaniKaniApiTokenRoute = '/wanikani_api_token';
-const WaniKaniLogInRoute = '/wanikani_log_in';
+const HomeRoute = 'Home';
+const LogInRoute = 'LogIn';
+const SettingsRoute = 'Settings';
+const WaniKaniApiTokenRoute = 'WaniKaniApiToken';
+const WaniKaniLogInRoute = 'WaniKaniLogIn';
 
 // Navigation
 
@@ -26,17 +27,19 @@ class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
   }
 }
 
-void goToPage(String route, BuildContext context) {
-  NavigatorState navigatorState = Navigator.of(context);
+class NavigationService {
+  final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
-  if ((route == HomeRoute) || (route == LogInRoute)) {
-    while (navigatorState.canPop()) {
-      navigatorState.pop();
+  Future<dynamic> navigateTo(String route) {
+    if ((route == HomeRoute) || (route == LogInRoute)) {
+      while (navigatorKey.currentState.canPop()) {
+        navigatorKey.currentState.pop();
+      }
+
+      return navigatorKey.currentState.pushReplacementNamed(route);
+    } else {
+      return navigatorKey.currentState.pushNamed(route);
     }
-
-    navigatorState.pushReplacementNamed(route);
-  } else {
-    navigatorState.pushNamed(route);
   }
 }
 
@@ -73,7 +76,7 @@ class LinkTextSpan extends TextSpan {
                     enableJavaScript: true,
                   );
                 } else {
-                  goToPage(urlOrRoute, context);
+                  GetIt.instance<NavigationService>().navigateTo(urlOrRoute);
                 }
               });
 }

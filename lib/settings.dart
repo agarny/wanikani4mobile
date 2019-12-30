@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanikani4mobile/utilities.dart';
@@ -42,7 +43,7 @@ class SettingsPageState extends State<SettingsPage> {
             child: Text('Log out'),
             onPressed: () {
               Provider.of<Settings>(context, listen: false).reset().then((_) {
-                goToPage(LogInRoute, context);
+                GetIt.instance<NavigationService>().navigateTo(LogInRoute);
               });
             },
           ),

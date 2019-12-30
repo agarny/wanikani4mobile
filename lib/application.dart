@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanikani4mobile/home.dart';
@@ -33,6 +34,7 @@ class _Application extends StatelessWidget {
       home: Provider.of<Settings>(context).apiToken.isEmpty
           ? LogInPage()
           : HomePage(),
+      navigatorKey: GetIt.instance<NavigationService>().navigatorKey,
       onGenerateRoute: (RouteSettings settings) {
         Widget widget = SplashScreenPage();
         bool animation = true;

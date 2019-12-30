@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get_it/get_it.dart';
 import 'package:provider/provider.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
@@ -37,7 +38,7 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
                 Provider.of<Settings>(context, listen: false)
                     .setApiToken(apiToken);
 
-                goToPage(HomeRoute, context);
+                GetIt.instance<NavigationService>().navigateTo(HomeRoute);
               });
             }
           },
