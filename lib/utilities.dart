@@ -1,5 +1,6 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
 import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
@@ -80,8 +81,10 @@ class NavigationService {
   }
 }
 
-void registerNavigationService() {
+void initializeNavigationService() {
   GetIt.instance.registerLazySingleton(() => NavigationService());
+
+  timeDilation = 2.0;
 }
 
 GlobalKey<NavigatorState> navigatorKey() {
