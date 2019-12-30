@@ -6,7 +6,7 @@ import 'api_token_page.dart';
 import 'home_page.dart';
 import 'log_in_page.dart';
 import 'settings.dart';
-import 'splash_screen.dart';
+import 'splash_screen_page.dart';
 
 class _Application extends StatelessWidget {
   _Application({Key key}) : super(key: key);
@@ -55,7 +55,7 @@ class Application extends StatelessWidget {
           );
         }
 
-        return SplashScreen();
+        return SplashScreenPage();
       },
     );
   }
