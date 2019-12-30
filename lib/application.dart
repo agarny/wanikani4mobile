@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wanikani4mobile/api_token_page.dart';
-import 'package:wanikani4mobile/home_page.dart';
-import 'package:wanikani4mobile/log_in_page.dart';
+import 'package:wanikani4mobile/api_token.dart';
+import 'package:wanikani4mobile/home.dart';
+import 'package:wanikani4mobile/log_in.dart';
 import 'package:wanikani4mobile/settings.dart';
-import 'package:wanikani4mobile/splash_screen_page.dart';
+import 'package:wanikani4mobile/splash_screen.dart';
 import 'package:wanikani4mobile/utilities.dart';
-import 'package:wanikani4mobile/wanikani_log_in_page.dart';
+import 'package:wanikani4mobile/wanikani_log_in.dart';
 
 class _Application extends StatelessWidget {
   _Application({Key key}) : super(key: key);
