@@ -1,15 +1,8 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:get_it/get_it.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
-import 'package:wanikani4mobile/home.dart';
-import 'package:wanikani4mobile/log_in.dart';
-import 'package:wanikani4mobile/settings.dart';
-import 'package:wanikani4mobile/splash_screen.dart';
-import 'package:wanikani4mobile/wanikani_api_token.dart';
-import 'package:wanikani4mobile/wanikani_log_in.dart';
 
 // Constants
 
@@ -22,48 +15,6 @@ const WaniKaniApiTokenRoute = 'WaniKaniApiToken';
 const WaniKaniLogInRoute = 'WaniKaniLogIn';
 
 // Navigation
-
-class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
-  NoAnimationMaterialPageRoute({WidgetBuilder builder})
-      : super(builder: builder);
-
-  @override
-  Widget buildTransitions(BuildContext context, Animation<double> animation,
-      Animation<double> secondaryAnimation, Widget widget) {
-    return widget;
-  }
-}
-
-Route<dynamic> route(RouteSettings settings) {
-  Widget widget = SplashScreenPage();
-  bool animation = true;
-
-  switch (settings.name) {
-    case HomeRoute:
-      widget = HomePage();
-      animation = false;
-      break;
-    case LogInRoute:
-      widget = LogInPage();
-      animation = false;
-      break;
-    case SettingsRoute:
-      widget = SettingsPage();
-      break;
-    case WaniKaniApiTokenRoute:
-      widget = WaniKaniApiTokenPage();
-      break;
-    case WaniKaniLogInRoute:
-      widget = WaniKaniLogInPage();
-      break;
-  }
-
-  if (animation) {
-    return MaterialPageRoute(builder: (_) => widget);
-  }
-
-  return NoAnimationMaterialPageRoute(builder: (_) => widget);
-}
 
 class NavigationService {
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
@@ -79,16 +30,6 @@ class NavigationService {
       return navigatorKey.currentState.pushNamed(route);
     }
   }
-}
-
-void initializeNavigationService() {
-  GetIt.instance.registerLazySingleton(() => NavigationService());
-
-  timeDilation = 2.0;
-}
-
-GlobalKey<NavigatorState> navigatorKey() {
-  return GetIt.instance<NavigationService>().navigatorKey;
 }
 
 Future<dynamic> navigateTo(String route) {

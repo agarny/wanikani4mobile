@@ -1,15 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanikani4mobile/home.dart';
 import 'package:wanikani4mobile/log_in.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/splash_screen.dart';
 import 'package:wanikani4mobile/utilities.dart';
+import 'package:wanikani4mobile/wanikani_api_token.dart';
+import 'package:wanikani4mobile/wanikani_log_in.dart';
+
+class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
+  NoAnimationMaterialPageRoute({WidgetBuilder builder})
+      : super(builder: builder);
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget widget) {
+    return widget;
+  }
+}
 
 class _Application extends StatelessWidget {
-  _Application({Key key}) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -31,16 +44,47 @@ class _Application extends StatelessWidget {
       home: Provider.of<Settings>(context).apiToken.isEmpty
           ? LogInPage()
           : HomePage(),
-      navigatorKey: navigatorKey(),
+      navigatorKey: GetIt.instance<NavigationService>().navigatorKey,
       onGenerateRoute: (RouteSettings settings) {
-        return route(settings);
+        Widget widget = SplashScreenPage();
+        bool animation = true;
+
+        switch (settings.name) {
+          case HomeRoute:
+            widget = HomePage();
+            animation = false;
+            break;
+          case LogInRoute:
+            widget = LogInPage();
+            animation = false;
+            break;
+          case SettingsRoute:
+            widget = SettingsPage();
+            break;
+          case WaniKaniApiTokenRoute:
+            widget = WaniKaniApiTokenPage();
+            break;
+          case WaniKaniLogInRoute:
+            widget = WaniKaniLogInPage();
+            break;
+        }
+
+        if (animation) {
+          return MaterialPageRoute(builder: (_) => widget);
+        }
+
+        return NoAnimationMaterialPageRoute(builder: (_) => widget);
       },
     );
   }
 }
 
 class Application extends StatelessWidget {
-  Application({Key key}) : super(key: key);
+  Application({Key key}) : super(key: key) {
+    GetIt.instance.registerLazySingleton(() => NavigationService());
+
+    timeDilation = 2.0;
+  }
 
   @override
   Widget build(BuildContext context) {
