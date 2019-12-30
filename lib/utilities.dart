@@ -3,7 +3,17 @@ import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:validators/validators.dart';
 
+// Constants
+
 final appIcon = Image.asset('res/logo.png');
+
+const ApiTokenRoute = '/api_token';
+const HomeRoute = '/home';
+const LogInRoute = '/log_in';
+const SettingsRoute = '/settings';
+const WaniKaniLogInRoute = '/wanikani_log_in';
+
+// Navigation
 
 class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
   NoAnimationMaterialPageRoute({WidgetBuilder builder})
@@ -19,7 +29,7 @@ class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
 void goToPage(String route, BuildContext context) {
   NavigatorState navigatorState = Navigator.of(context);
 
-  if ((route == '/home') || (route == '/log_in')) {
+  if ((route == HomeRoute) || (route == LogInRoute)) {
     while (navigatorState.canPop()) {
       navigatorState.pop();
     }
@@ -29,6 +39,8 @@ void goToPage(String route, BuildContext context) {
     navigatorState.pushNamed(route);
   }
 }
+
+// GUI
 
 double space(BuildContext context) {
   return 0.5 *

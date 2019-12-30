@@ -27,7 +27,7 @@ class LogInPageState extends State<LogInPage> {
                     LinkTextSpan(
                       text: 'Log in to WaniKani',
                       style: linkStyle(context),
-                      urlOrRoute: '/wanikani_log_in',
+                      urlOrRoute: WaniKaniLogInRoute,
                       context: context,
                     ),
                   ],
@@ -42,7 +42,7 @@ class LogInPageState extends State<LogInPage> {
                     LinkTextSpan(
                       text: 'Enter my API token',
                       style: linkStyle(context),
-                      urlOrRoute: '/api_token',
+                      urlOrRoute: ApiTokenRoute,
                       context: context,
                     ),
                   ],

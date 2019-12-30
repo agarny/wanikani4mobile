@@ -35,7 +35,7 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
               Provider.of<Settings>(context, listen: false)
                   .setApiToken(apiToken);
 
-              goToPage('/home', context);
+              goToPage(HomeRoute, context);
             });
           },
         ));

@@ -42,7 +42,7 @@ class SettingsPageState extends State<SettingsPage> {
             child: Text('Log out'),
             onPressed: () {
               Provider.of<Settings>(context, listen: false).reset().then((_) {
-                goToPage('/log_in', context);
+                goToPage(LogInRoute, context);
               });
             },
           ),

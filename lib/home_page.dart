@@ -16,7 +16,7 @@ class HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              goToPage('/settings', context);
+              goToPage(SettingsRoute, context);
             },
           ),
         ],

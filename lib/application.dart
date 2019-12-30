@@ -38,21 +38,21 @@ class _Application extends StatelessWidget {
         bool animation = true;
 
         switch (settings.name) {
-          case '/api_token':
+          case ApiTokenRoute:
             widget = ApiTokenPage();
             break;
-          case '/home':
+          case HomeRoute:
             widget = HomePage();
             animation = false;
             break;
-          case '/log_in':
+          case LogInRoute:
             widget = LogInPage();
             animation = false;
             break;
-          case '/settings':
+          case SettingsRoute:
             widget = SettingsPage();
             break;
-          case '/wanikani_log_in':
+          case WaniKaniLogInRoute:
             widget = WaniKaniLogInPage();
             break;
         }
