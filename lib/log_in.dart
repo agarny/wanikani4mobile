@@ -42,7 +42,7 @@ class LogInPageState extends State<LogInPage> {
                     LinkTextSpan(
                       text: 'Enter my API token',
                       style: linkStyle(context),
-                      urlOrRoute: ApiTokenRoute,
+                      urlOrRoute: WaniKaniApiTokenRoute,
                       context: context,
                     ),
                   ],

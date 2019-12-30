@@ -2,12 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
 import 'package:wanikani4mobile/utilities.dart';
 
-class ApiTokenPage extends StatefulWidget {
+class WaniKaniApiTokenPage extends StatefulWidget {
   @override
-  ApiTokenPageState createState() => ApiTokenPageState();
+  WaniKaniApiTokenPageState createState() => WaniKaniApiTokenPageState();
 }
 
-class ApiTokenPageState extends State<ApiTokenPage> {
+class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
   @override
   Widget build(BuildContext context) {
     const mask = '########-####-####-####-############';

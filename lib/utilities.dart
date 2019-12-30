@@ -7,10 +7,10 @@ import 'package:validators/validators.dart';
 
 final appIcon = Image.asset('res/logo.png');
 
-const ApiTokenRoute = '/api_token';
 const HomeRoute = '/home';
 const LogInRoute = '/log_in';
 const SettingsRoute = '/settings';
+const WaniKaniApiTokenRoute = '/wanikani_api_token';
 const WaniKaniLogInRoute = '/wanikani_log_in';
 
 // Navigation

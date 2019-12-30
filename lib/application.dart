@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:wanikani4mobile/api_token.dart';
 import 'package:wanikani4mobile/home.dart';
 import 'package:wanikani4mobile/log_in.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/splash_screen.dart';
 import 'package:wanikani4mobile/utilities.dart';
+import 'package:wanikani4mobile/wanikani_api_token.dart';
 import 'package:wanikani4mobile/wanikani_log_in.dart';
 
 class _Application extends StatelessWidget {
@@ -38,9 +38,6 @@ class _Application extends StatelessWidget {
         bool animation = true;
 
         switch (settings.name) {
-          case ApiTokenRoute:
-            widget = ApiTokenPage();
-            break;
           case HomeRoute:
             widget = HomePage();
             animation = false;
@@ -51,6 +48,9 @@ class _Application extends StatelessWidget {
             break;
           case SettingsRoute:
             widget = SettingsPage();
+            break;
+          case WaniKaniApiTokenRoute:
+            widget = WaniKaniApiTokenPage();
             break;
           case WaniKaniLogInRoute:
             widget = WaniKaniLogInPage();
