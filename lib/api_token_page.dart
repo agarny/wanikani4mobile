@@ -36,6 +36,7 @@ class ApiTokenPageState extends State<ApiTokenPage> {
             SizedBox(height: space(context)),
             TextField(
               decoration: InputDecoration(
+                labelText: "API token",
                 hintText: mask,
               ),
               inputFormatters: [inputFormatter],
