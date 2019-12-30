@@ -5,6 +5,31 @@ import 'package:validators/validators.dart';
 
 final appIcon = Image.asset('res/logo.png');
 
+class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
+  NoAnimationMaterialPageRoute({WidgetBuilder builder})
+      : super(builder: builder);
+
+  @override
+  Widget buildTransitions(BuildContext context, Animation<double> animation,
+      Animation<double> secondaryAnimation, Widget widget) {
+    return widget;
+  }
+}
+
+void goToPage(String route, BuildContext context) {
+  NavigatorState navigatorState = Navigator.of(context);
+
+  if ((route == '/home') || (route == '/log_in')) {
+    while (navigatorState.canPop()) {
+      navigatorState.pop();
+    }
+
+    navigatorState.pushReplacementNamed(route);
+  } else {
+    navigatorState.pushNamed(route);
+  }
+}
+
 double space(BuildContext context) {
   return 0.5 *
       MediaQuery.of(context).textScaleFactor *
@@ -36,9 +61,7 @@ class LinkTextSpan extends TextSpan {
                     enableJavaScript: true,
                   );
                 } else {
-                  NavigatorState navigatorState = Navigator.of(context);
-
-                  navigatorState.pushNamed(urlOrRoute);
+                  goToPage(urlOrRoute, context);
                 }
               });
 }

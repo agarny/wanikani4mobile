@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'utilities.dart';
+import 'package:wanikani4mobile/utilities.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -13,6 +12,14 @@ class HomePageState extends State<HomePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('WaniKani for Mobile'),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.settings),
+            onPressed: () {
+              goToPage('/settings', context);
+            },
+          ),
+        ],
       ),
       body: Container(
         margin: EdgeInsets.all(space(context)),

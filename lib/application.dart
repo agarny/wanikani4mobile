@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-
-import 'api_token_page.dart';
-import 'home_page.dart';
-import 'log_in_page.dart';
-import 'settings.dart';
-import 'splash_screen_page.dart';
+import 'package:wanikani4mobile/api_token_page.dart';
+import 'package:wanikani4mobile/home_page.dart';
+import 'package:wanikani4mobile/log_in_page.dart';
+import 'package:wanikani4mobile/settings.dart';
+import 'package:wanikani4mobile/splash_screen_page.dart';
+import 'package:wanikani4mobile/utilities.dart';
+import 'package:wanikani4mobile/wanikani_log_in_page.dart';
 
 class _Application extends StatelessWidget {
   _Application({Key key}) : super(key: key);
@@ -32,8 +33,35 @@ class _Application extends StatelessWidget {
       home: Provider.of<Settings>(context).apiToken.isEmpty
           ? LogInPage()
           : HomePage(),
-      routes: <String, WidgetBuilder>{
-        '/api_token': (context) => ApiTokenPage(),
+      onGenerateRoute: (RouteSettings settings) {
+        Widget widget = SplashScreenPage();
+        bool animation = true;
+
+        switch (settings.name) {
+          case '/api_token':
+            widget = ApiTokenPage();
+            break;
+          case '/home':
+            widget = HomePage();
+            animation = false;
+            break;
+          case '/log_in':
+            widget = LogInPage();
+            animation = false;
+            break;
+          case '/settings':
+            widget = SettingsPage();
+            break;
+          case '/wanikani_log_in':
+            widget = WaniKaniLogInPage();
+            break;
+        }
+
+        if (animation) {
+          return MaterialPageRoute(builder: (_) => widget);
+        }
+
+        return NoAnimationMaterialPageRoute(builder: (_) => widget);
       },
     );
   }

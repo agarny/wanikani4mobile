@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-
-import 'utilities.dart';
+import 'package:wanikani4mobile/utilities.dart';
 
 class ApiTokenPage extends StatefulWidget {
   @override

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'utilities.dart';
+import 'package:wanikani4mobile/utilities.dart';
 
 class LogInPage extends StatefulWidget {
   @override
@@ -28,7 +27,8 @@ class LogInPageState extends State<LogInPage> {
                     LinkTextSpan(
                       text: 'Log in to WaniKani',
                       style: linkStyle(context),
-                      urlOrRoute: 'https://www.wanikani.com/login',
+                      urlOrRoute: '/wanikani_log_in',
+                      context: context,
                     ),
                   ],
                 ),
