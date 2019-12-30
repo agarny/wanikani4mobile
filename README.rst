@@ -1,1 +1,0 @@
-WaniKani for Mobile is a `Flutter <https://flutter.dev/>`__ application to access `WaniKani <https://wanikani.com/>`__ from both `Android <https://android.com/>`__ and `iOS <https://apple.com/ios>`__.
