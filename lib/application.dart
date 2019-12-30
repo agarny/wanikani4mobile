@@ -33,7 +33,7 @@ class _Application extends StatelessWidget {
           ? LogInPage()
           : HomePage(),
       routes: <String, WidgetBuilder>{
-        '/api_token': (BuildContext context) => ApiTokenPage(),
+        '/api_token': (context) => ApiTokenPage(),
       },
     );
   }
