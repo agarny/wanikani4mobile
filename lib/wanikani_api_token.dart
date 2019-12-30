@@ -21,7 +21,7 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Enter API token'),
+        title: Text('Enter my API token'),
       ),
       body: Container(
         margin: EdgeInsets.all(space(context)),
