@@ -19,35 +19,23 @@ class LogInPageState extends State<LogInPage> {
           children: <Widget>[
             Text('WaniKani for Mobile needs your API token to work.'
                 'This can be retrieved either automatically by logging in to WaniKani or manually by entering it.'),
-            SizedBox(height: space(context)),
-            Center(
-              child: Text.rich(
-                TextSpan(
-                  children: <TextSpan>[
-                    LinkTextSpan(
-                      text: 'Log in to WaniKani',
-                      style: linkStyle(context),
-                      urlOrRoute: WaniKaniLogInRoute,
-                      context: context,
-                    ),
-                  ],
+            Row(
+              mainAxisSize: MainAxisSize.min,
+              children: <Widget>[
+                OutlineButton(
+                  child: Text('Log in to WaniKani'),
+                  onPressed: () {
+                    navigateTo(WaniKaniLogInRoute);
+                  },
                 ),
-              ),
-            ),
-            SizedBox(height: space(context)),
-            Center(
-              child: Text.rich(
-                TextSpan(
-                  children: <TextSpan>[
-                    LinkTextSpan(
-                      text: 'Enter my API token',
-                      style: linkStyle(context),
-                      urlOrRoute: WaniKaniApiTokenRoute,
-                      context: context,
-                    ),
-                  ],
+                SizedBox(width: space(context)),
+                OutlineButton(
+                  child: Text('Enter my API token'),
+                  onPressed: () {
+                    navigateTo(WaniKaniApiTokenRoute);
+                  },
                 ),
-              ),
+              ],
             ),
           ],
         ),

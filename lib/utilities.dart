@@ -43,33 +43,3 @@ double space(BuildContext context) {
       MediaQuery.of(context).textScaleFactor *
       Theme.of(context).textTheme.caption.fontSize;
 }
-
-TextStyle bodyStyle(BuildContext context) {
-  return Theme.of(context).textTheme.body1;
-}
-
-TextStyle linkStyle(BuildContext context) {
-  final ThemeData themeData = Theme.of(context);
-
-  return themeData.textTheme.body1.copyWith(color: themeData.primaryColor);
-}
-
-class LinkTextSpan extends TextSpan {
-  LinkTextSpan(
-      {String text, TextStyle style, String urlOrRoute, BuildContext context})
-      : super(
-            text: text ?? urlOrRoute,
-            style: style,
-            recognizer: TapGestureRecognizer()
-              ..onTap = () {
-                if (isURL(urlOrRoute)) {
-                  launch(
-                    urlOrRoute,
-                    forceWebView: true,
-                    enableJavaScript: true,
-                  );
-                } else {
-                  navigateTo(urlOrRoute);
-                }
-              });
-}
