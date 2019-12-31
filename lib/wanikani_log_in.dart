@@ -19,6 +19,8 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
     const NewApiTokenUrl =
         'https://www.wanikani.com/settings/personal_access_tokens/new';
 
+    const ApiTokenDescription = 'WaniKani for Mobile (read-only)';
+
     return Scaffold(
         appBar: AppBar(
           title: Text('Log in to WaniKani'),
@@ -35,7 +37,8 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
             if (url == ApiTokenUrl) {
               _controller
                   .evaluateJavascript(
-                      '\$(".personal-access-token-token > code").text().trim();')
+                      '\$(".personal-access-token-description:contains(\'${ApiTokenDescription}\') ~ .personal-access-token-token > code:eq(0)").text().trim()'
+                      '|| \$(".personal-access-token-token > code:eq(0)").text().trim();')
                   .then((apiToken) {
                 if (apiToken.isEmpty) {
                   showDialog<String>(
@@ -87,7 +90,7 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
                       ''
                       '\$("input[type=\'hidden\']").each(parseHiddenInputs);'
                       'form.find("input[type=\'checkbox\']").each(parseCheckboxes);'
-                      'data["personal_access_token[description]"] = "WaniKani for Mobile (read-only)";'
+                      'data["personal_access_token[description]"] = "${ApiTokenDescription}";'
                       ''
                       '\$.post(form.attr("action"), data);'
                       ''
