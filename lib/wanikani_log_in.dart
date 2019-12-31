@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
-import 'package:wanikani4mobile/wanikani_api.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WaniKaniLogInPage extends StatefulWidget {
@@ -10,6 +9,11 @@ class WaniKaniLogInPage extends StatefulWidget {
 }
 
 class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
+  static const WaniKaniApiTokenDescription = 'WaniKani for Mobile (read-only)';
+  static const WaniKaniPersonalAccessTokensUrl =
+      'https://www.wanikani.com/settings/personal_access_tokens';
+  static const WaniKaniNewPersonalAccessTokensUrl =
+      WaniKaniPersonalAccessTokensUrl + '/new';
   WebViewController _controller;
 
   @override
