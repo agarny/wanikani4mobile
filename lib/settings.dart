@@ -13,7 +13,7 @@ class SettingsService extends ChangeNotifier {
 
   String get apiToken => _prefs?.getString(_apiTokenPref) ?? '';
 
-  void setApiToken(String value) {
+  void set apiToken(String value) {
     _prefs?.setString(_apiTokenPref, value);
 
     notifyListeners();
@@ -41,7 +41,7 @@ String waniKaniApiToken() {
 }
 
 void setWaniKaniApiToken(String value) {
-  GetIt.instance<SettingsService>().setApiToken(value);
+  GetIt.instance<SettingsService>().apiToken = value;
 }
 
 class SettingsPage extends StatefulWidget {
