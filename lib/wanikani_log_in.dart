@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
+import 'package:wanikani4mobile/wanikani_api.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class WaniKaniLogInPage extends StatefulWidget {
@@ -14,19 +15,12 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
 
   @override
   Widget build(BuildContext context) {
-    const ApiTokenUrl =
-        'https://www.wanikani.com/settings/personal_access_tokens';
-    const NewApiTokenUrl =
-        'https://www.wanikani.com/settings/personal_access_tokens/new';
-
-    const ApiTokenDescription = 'WaniKani for Mobile (read-only)';
-
     return Scaffold(
         appBar: AppBar(
           title: Text('Log in to WaniKani'),
         ),
         body: WebView(
-          initialUrl: ApiTokenUrl,
+          initialUrl: WaniKaniPersonalAccessTokensUrl,
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController controller) {
             _controller = controller;
@@ -34,10 +28,10 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
             _controller.clearCache();
           },
           onPageFinished: (String url) {
-            if (url == ApiTokenUrl) {
+            if (url == WaniKaniPersonalAccessTokensUrl) {
               _controller
                   .evaluateJavascript(
-                      '\$(".personal-access-token-description:contains(\'$ApiTokenDescription\') ~ .personal-access-token-token > code:eq(0)").text().trim()'
+                      '\$(".personal-access-token-description:contains(\'$WaniKaniApiTokenDescription\') ~ .personal-access-token-token > code:eq(0)").text().trim()'
                       '|| \$(".personal-access-token-token > code:eq(0)").text().trim();')
                   .then((apiToken) {
                 if (apiToken.isEmpty) {
@@ -62,7 +56,7 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
                     ),
                   ).then((returnVal) {
                     if (returnVal == 'Yes') {
-                      _controller.loadUrl(NewApiTokenUrl);
+                      _controller.loadUrl(WaniKaniNewPersonalAccessTokensUrl);
                     } else {
                       navigateTo(LogInRoute);
                     }
@@ -74,7 +68,7 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
                   navigateTo(HomeRoute);
                 }
               });
-            } else if (url == NewApiTokenUrl) {
+            } else if (url == WaniKaniNewPersonalAccessTokensUrl) {
               _controller
                   .evaluateJavascript(
                       'function parseHiddenInputs(index, element) {'
@@ -90,13 +84,13 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
                       ''
                       '\$("input[type=\'hidden\']").each(parseHiddenInputs);'
                       'form.find("input[type=\'checkbox\']").each(parseCheckboxes);'
-                      'data["personal_access_token[description]"] = "$ApiTokenDescription";'
+                      'data["personal_access_token[description]"] = "$WaniKaniApiTokenDescription";'
                       ''
                       '\$.post(form.attr("action"), data);'
                       ''
                       '"Return a string to make WebViewController.evaluateJavascript() happy."')
                   .then((_) {
-                _controller.loadUrl(ApiTokenUrl);
+                _controller.loadUrl(WaniKaniPersonalAccessTokensUrl);
               });
             }
           },

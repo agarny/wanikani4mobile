@@ -21,7 +21,7 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
   final _apiTokenRegExpr =
       RegExp('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\$');
 
-  String _apiKey;
+  String _apiToken;
   bool _buttonEnabled = false;
 
   @override
@@ -49,7 +49,7 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
               onChanged: (String value) {
                 if (_apiTokenRegExpr.hasMatch(value) != _buttonEnabled) {
                   setState(() {
-                    _apiKey = value;
+                    _apiToken = value;
                     _buttonEnabled = !_buttonEnabled;
                   });
                 }
@@ -60,7 +60,7 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
               onPressed: _buttonEnabled
                   ? () {
                       Provider.of<Settings>(context, listen: false)
-                          .setApiToken(_apiKey);
+                          .setApiToken(_apiToken);
 
                       navigateTo(HomeRoute);
                     }

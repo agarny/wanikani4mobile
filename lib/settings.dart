@@ -5,8 +5,7 @@ import 'package:wanikani4mobile/utilities.dart';
 
 class Settings extends ChangeNotifier {
   final SharedPreferences _prefs;
-
-  static final String _apiTokenPref = 'API token';
+  static const String _apiTokenPref = 'API token';
 
   Settings(this._prefs);
 
