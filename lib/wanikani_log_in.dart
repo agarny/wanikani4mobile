@@ -14,7 +14,10 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
 
   @override
   Widget build(BuildContext context) {
-    const ApiTokenUrl = 'https://www.wanikani.com/settings/personal_access_tokens';
+    const ApiTokenUrl =
+        'https://www.wanikani.com/settings/personal_access_tokens';
+    const NewApiTokenUrl =
+        'https://www.wanikani.com/settings/personal_access_tokens/new';
 
     return Scaffold(
         appBar: AppBar(
@@ -32,12 +35,65 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
             if (url == ApiTokenUrl) {
               _controller
                   .evaluateJavascript(
-                  '\$(".personal-access-token-token > code").text().trim();')
+                      '\$(".personal-access-token-token > code").text().trim();')
                   .then((apiToken) {
-                Provider.of<Settings>(context, listen: false)
-                    .setApiToken(apiToken);
+                if (apiToken.isEmpty) {
+                  showDialog<String>(
+                    context: context,
+                    builder: (BuildContext context) => AlertDialog(
+                      title: Text('API token'),
+                      content: Text(
+                        'No API token could be found.'
+                        'Would you like to generate one now?',
+                      ),
+                      actions: <Widget>[
+                        FlatButton(
+                          child: Text('Yes'),
+                          onPressed: () => Navigator.pop(context, 'Yes'),
+                        ),
+                        FlatButton(
+                          child: Text('No'),
+                          onPressed: () => Navigator.pop(context, 'No'),
+                        ),
+                      ],
+                    ),
+                  ).then((returnVal) {
+                    if (returnVal == 'Yes') {
+                      _controller.loadUrl(NewApiTokenUrl);
+                    } else {
+                      navigateTo(LogInRoute);
+                    }
+                  });
+                } else {
+                  Provider.of<Settings>(context, listen: false)
+                      .setApiToken(apiToken);
 
-                navigateTo(HomeRoute);
+                  navigateTo(HomeRoute);
+                }
+              });
+            } else if (url == NewApiTokenUrl) {
+              _controller
+                  .evaluateJavascript(
+                      'function parseHiddenInputs(index, element) {'
+                      '  data[element.attributes.name.value] = element.attributes.value.value;'
+                      '}'
+                      ''
+                      'function parseCheckboxes(index, element) {'
+                      '  data[element.attributes.name.value] = "0";'
+                      '}'
+                      ''
+                      'var form = \$("form.new_personal_access_token");'
+                      'var data = {};'
+                      ''
+                      '\$("input[type=\'hidden\']").each(parseHiddenInputs);'
+                      'form.find("input[type=\'checkbox\']").each(parseCheckboxes);'
+                      'data["personal_access_token[description]"] = "WaniKani for Mobile (read-only)";'
+                      ''
+                      '\$.post(form.attr("action"), data);'
+                      ''
+                      '"Return a string to make WebViewController.evaluateJavascript() happy."')
+                  .then((_) {
+                _controller.loadUrl(ApiTokenUrl);
               });
             }
           },
