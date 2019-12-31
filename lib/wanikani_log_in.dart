@@ -37,7 +37,7 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
             if (url == ApiTokenUrl) {
               _controller
                   .evaluateJavascript(
-                      '\$(".personal-access-token-description:contains(\'${ApiTokenDescription}\') ~ .personal-access-token-token > code:eq(0)").text().trim()'
+                      '\$(".personal-access-token-description:contains(\'$ApiTokenDescription\') ~ .personal-access-token-token > code:eq(0)").text().trim()'
                       '|| \$(".personal-access-token-token > code:eq(0)").text().trim();')
                   .then((apiToken) {
                 if (apiToken.isEmpty) {
@@ -90,7 +90,7 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
                       ''
                       '\$("input[type=\'hidden\']").each(parseHiddenInputs);'
                       'form.find("input[type=\'checkbox\']").each(parseCheckboxes);'
-                      'data["personal_access_token[description]"] = "${ApiTokenDescription}";'
+                      'data["personal_access_token[description]"] = "$ApiTokenDescription";'
                       ''
                       '\$.post(form.attr("action"), data);'
                       ''
