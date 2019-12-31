@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
 
 class HomePage extends StatefulWidget {
@@ -25,7 +26,9 @@ class HomePageState extends State<HomePage> {
         margin: EdgeInsets.all(space(context)),
         child: Column(
           children: <Widget>[
-            Text('Welcome to WaniKani for Mobile!'),
+            Text('Welcome to WaniKani for Mobile!\n\nAPI token: ' +
+                waniKaniApiToken() +
+                '.'),
           ],
         ),
       ),

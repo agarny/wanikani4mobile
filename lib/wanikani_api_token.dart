@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mask_text_input_formatter/mask_text_input_formatter.dart';
-import 'package:provider/provider.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
 
@@ -59,8 +58,7 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
               child: Text('Log in'),
               onPressed: _buttonEnabled
                   ? () {
-                      Provider.of<Settings>(context, listen: false)
-                          .setApiToken(_apiToken);
+                      setWaniKaniApiToken(_apiToken);
 
                       navigateTo(HomeRoute);
                     }

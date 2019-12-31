@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanikani4mobile/utilities.dart';
 
-class Settings extends ChangeNotifier {
-  final SharedPreferences _prefs;
+class SettingsService extends ChangeNotifier {
+  SharedPreferences _prefs;
   static const String _apiTokenPref = 'API token';
 
-  Settings(this._prefs);
+  init(SharedPreferences prefs) {
+    _prefs = prefs;
+  }
 
   String get apiToken => _prefs?.getString(_apiTokenPref) ?? '';
 
@@ -20,6 +22,26 @@ class Settings extends ChangeNotifier {
   Future<bool> reset() {
     return _prefs.clear();
   }
+}
+
+SettingsService initSettings(SharedPreferences prefs) {
+  SettingsService res = GetIt.instance<SettingsService>();
+
+  res.init(prefs);
+
+  return res;
+}
+
+Future<bool> resetSettings() {
+  return GetIt.instance<SettingsService>().reset();
+}
+
+String waniKaniApiToken() {
+  return GetIt.instance<SettingsService>().apiToken;
+}
+
+void setWaniKaniApiToken(String value) {
+  GetIt.instance<SettingsService>().setApiToken(value);
 }
 
 class SettingsPage extends StatefulWidget {
@@ -40,7 +62,7 @@ class SettingsPageState extends State<SettingsPage> {
           OutlineButton(
             child: Text('Log out'),
             onPressed: () {
-              Provider.of<Settings>(context, listen: false).reset().then((_) {
+              resetSettings().then((_) {
                 navigateTo(LogInRoute);
               });
             },

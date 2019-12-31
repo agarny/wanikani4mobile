@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani_api.dart';
@@ -62,8 +61,7 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
                     }
                   });
                 } else {
-                  Provider.of<Settings>(context, listen: false)
-                      .setApiToken(apiToken);
+                  setWaniKaniApiToken(apiToken);
 
                   navigateTo(HomeRoute);
                 }
