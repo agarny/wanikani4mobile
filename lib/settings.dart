@@ -13,7 +13,7 @@ class SettingsService extends ChangeNotifier {
 
   String get apiToken => _prefs?.getString(_apiTokenPref) ?? '';
 
-  void set apiToken(String value) {
+  set apiToken(String value) {
     _prefs?.setString(_apiTokenPref, value);
 
     notifyListeners();
