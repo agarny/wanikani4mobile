@@ -14,12 +14,12 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
   final inputFormatter = MaskTextInputFormatter(
     mask: mask,
     filter: {
-      "#": RegExp(r'[0-9a-f]'),
-      "-": RegExp(r'\-'),
+      "#": RegExp('[0-9a-f]'),
+      "-": RegExp('\\-'),
     },
   );
   final _apiTokenRegExpr =
-      RegExp(r'^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$');
+      RegExp('^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}\$');
 
   String _apiKey;
   bool _buttonEnabled = false;
