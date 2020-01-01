@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 // Constants
 
-final appIcon = Image.asset('res/logo.png');
+const Logo = 'res/logo.png';
 
 const HomeRoute = 'Home';
 const LogInRoute = 'LogIn';

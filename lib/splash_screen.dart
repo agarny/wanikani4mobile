@@ -7,7 +7,7 @@ class SplashScreenPage extends StatelessWidget {
     return Container(
       color: Colors.white,
       child: Center(
-        child: appIcon,
+        child: Image.asset(Logo),
       ),
     );
   }
