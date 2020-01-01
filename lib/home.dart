@@ -27,13 +27,18 @@ class HomePageState extends State<HomePage> {
         child: Column(
           children: <Widget>[
             FutureBuilder<WaniKani>(
-                future: WaniKani().fetch(),
+                future: WaniKani().fetchAll(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
+                    if (snapshot.data.hasError) {
+                      return Text(
+                          'Something went wrong while fetching the data.');
+                    }
+
                     return Text(
                         'Welcome to WaniKani for Mobile ${snapshot.data.user.data.username}!');
                   } else {
-                    return Text('Fetching data...');
+                    return Text('Please wait while we are fetching the data.');
                   }
                 }),
           ],
