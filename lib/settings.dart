@@ -3,7 +3,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanikani4mobile/utilities.dart';
 
 class Settings extends ChangeNotifier {
-  static final Settings _instance = Settings._internal();
+  static final Settings _instance = Settings._();
 
   SharedPreferences _prefs;
   static const String _apiTokenPref = 'API token';
@@ -12,7 +12,7 @@ class Settings extends ChangeNotifier {
     return _instance;
   }
 
-  Settings._internal();
+  Settings._();
 
   Settings.init(SharedPreferences prefs) {
     _instance._prefs = prefs;

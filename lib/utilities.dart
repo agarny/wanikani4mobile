@@ -13,14 +13,14 @@ const WaniKaniLogInRoute = 'WaniKaniLogIn';
 // Navigation
 
 class Navigation {
-  static final Navigation _instance = Navigation._internal();
+  static final Navigation _instance = Navigation._();
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 
   factory Navigation() {
     return _instance;
   }
 
-  Navigation._internal();
+  Navigation._();
 
   Future<dynamic> navigateTo(String route) {
     if ((route == HomeRoute) || (route == LogInRoute)) {

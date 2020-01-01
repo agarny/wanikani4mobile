@@ -24,7 +24,7 @@ Future<dynamic> _waniKaniJson(String endpoint) async {
 }
 
 class WaniKani {
-  static final WaniKani _instance = WaniKani._internal();
+  static final WaniKani _instance = WaniKani._();
 
   WaniKaniUser user;
 
@@ -32,7 +32,7 @@ class WaniKani {
     return _instance;
   }
 
-  WaniKani._internal();
+  WaniKani._();
 
   Future<WaniKani> fetch() async {
     _instance.user = WaniKaniUser.fromJson(await _waniKaniJson('user'));
