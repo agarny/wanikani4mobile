@@ -16,6 +16,7 @@ class WaniKani extends BaseCacheManager {
 
   WaniKaniUser user;
   bool hasError;
+  String errorMessage;
 
   factory WaniKani() {
     return _instance;
@@ -46,7 +47,8 @@ class WaniKani extends BaseCacheManager {
     return (force ?? false
             ? (await downloadFile(endpoint)).file
             : await getSingleFile(endpoint))
-        .readAsString();
+        .readAsString()
+        .catchError((e) => throw e);
   }
 
   Future<WaniKani> fetchAll() async {
@@ -57,6 +59,16 @@ class WaniKani extends BaseCacheManager {
       _instance.hasError = false;
     } catch (e) {
       _instance.hasError = true;
+      _instance.errorMessage = e.toString();
+
+      if (_instance.errorMessage ==
+          'HttpException: No valid statuscode. Statuscode was 401') {
+        _instance.errorMessage = 'The API token is invalid.';
+      } else if (_instance.errorMessage ==
+          'HttpException: No valid statuscode. Statuscode was 429') {
+        _instance.errorMessage =
+            'Too many requests have been made to the WaniKani API. Please try again again later.';
+      }
     }
 
     return _instance;

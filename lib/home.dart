@@ -32,8 +32,7 @@ class HomePageState extends State<HomePage> {
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     if (snapshot.data.hasError) {
-                      return Text(
-                          'Something went wrong while fetching the data.');
+                      return Text(snapshot.data.errorMessage);
                     }
 
                     return Text(
