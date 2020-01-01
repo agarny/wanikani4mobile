@@ -22,6 +22,7 @@ class HomePageState extends State<HomePage> {
           ),
         ],
       ),
+      drawer: drawer(context),
       body: Container(
         margin: EdgeInsets.all(space(context)),
         child: Column(
