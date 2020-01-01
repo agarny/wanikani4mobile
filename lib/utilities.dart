@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get_it/get_it.dart';
 
 // Constants
 
@@ -13,8 +12,15 @@ const WaniKaniLogInRoute = 'WaniKaniLogIn';
 
 // Navigation
 
-class NavigationService {
+class Navigation {
+  static final Navigation _instance = Navigation._internal();
   final GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
+
+  factory Navigation() {
+    return _instance;
+  }
+
+  Navigation._internal();
 
   Future<dynamic> navigateTo(String route) {
     if ((route == HomeRoute) || (route == LogInRoute)) {
@@ -27,10 +33,6 @@ class NavigationService {
       return navigatorKey.currentState.pushNamed(route);
     }
   }
-}
-
-Future<dynamic> navigateTo(String route) {
-  return GetIt.instance<NavigationService>().navigateTo(route);
 }
 
 // GUI

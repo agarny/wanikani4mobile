@@ -25,14 +25,14 @@ class LogInPageState extends State<LogInPage> {
                 OutlineButton(
                   child: Text('Log in to WaniKani'),
                   onPressed: () {
-                    navigateTo(WaniKaniLogInRoute);
+                    Navigation().navigateTo(WaniKaniLogInRoute);
                   },
                 ),
                 SizedBox(width: space(context)),
                 OutlineButton(
                   child: Text('Enter my API token'),
                   onPressed: () {
-                    navigateTo(WaniKaniApiTokenRoute);
+                    Navigation().navigateTo(WaniKaniApiTokenRoute);
                   },
                 ),
               ],

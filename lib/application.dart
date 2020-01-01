@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
-import 'package:get_it/get_it.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanikani4mobile/home.dart';
 import 'package:wanikani4mobile/log_in.dart';
@@ -41,7 +40,7 @@ class _Application extends StatelessWidget {
       ),
       title: 'WaniKani for Mobile',
       home: Settings().apiToken.isEmpty ? LogInPage() : HomePage(),
-      navigatorKey: GetIt.instance<NavigationService>().navigatorKey,
+      navigatorKey: Navigation().navigatorKey,
       onGenerateRoute: (RouteSettings settings) {
         Widget widget = SplashScreenPage();
         bool animation = true;
@@ -78,8 +77,6 @@ class _Application extends StatelessWidget {
 
 class Application extends StatelessWidget {
   Application({Key key}) : super(key: key) {
-    GetIt.instance.registerLazySingleton(() => NavigationService());
-
     timeDilation = 2.0;
   }
 

@@ -18,7 +18,7 @@ class HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.settings),
             onPressed: () {
-              navigateTo(SettingsRoute);
+              Navigation().navigateTo(SettingsRoute);
             },
           ),
         ],

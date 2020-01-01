@@ -50,7 +50,7 @@ class SettingsPageState extends State<SettingsPage> {
             child: Text('Log out'),
             onPressed: () {
               Settings().reset().then((_) {
-                navigateTo(LogInRoute);
+                Navigation().navigateTo(LogInRoute);
               });
             },
           ),

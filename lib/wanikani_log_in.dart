@@ -61,13 +61,13 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
                     if (returnVal == 'Yes') {
                       _controller.loadUrl(WaniKaniNewPersonalAccessTokensUrl);
                     } else {
-                      navigateTo(LogInRoute);
+                      Navigation().navigateTo(LogInRoute);
                     }
                   });
                 } else {
                   Settings().apiToken = apiToken;
 
-                  navigateTo(HomeRoute);
+                  Navigation().navigateTo(HomeRoute);
                 }
               });
             } else if (url == WaniKaniNewPersonalAccessTokensUrl) {

@@ -60,7 +60,7 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
                   ? () {
                       Settings().apiToken = _apiToken;
 
-                      navigateTo(HomeRoute);
+                      Navigation().navigateTo(HomeRoute);
                     }
                   : null,
             ),
