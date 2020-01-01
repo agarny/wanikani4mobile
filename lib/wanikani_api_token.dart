@@ -9,9 +9,9 @@ class WaniKaniApiTokenPage extends StatefulWidget {
 }
 
 class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
-  static const mask = '########-####-####-####-############';
-  final inputFormatter = MaskTextInputFormatter(
-    mask: mask,
+  static const _mask = '########-####-####-####-############';
+  final _inputFormatter = MaskTextInputFormatter(
+    mask: _mask,
     filter: {
       "#": RegExp('[0-9a-f]'),
       "-": RegExp('\\-'),
@@ -42,9 +42,9 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
             TextField(
               decoration: InputDecoration(
                 labelText: "API token",
-                hintText: mask,
+                hintText: _mask,
               ),
-              inputFormatters: [inputFormatter],
+              inputFormatters: [_inputFormatter],
               onChanged: (String value) {
                 if (_apiTokenRegExpr.hasMatch(value) != _buttonEnabled) {
                   setState(() {

@@ -12,7 +12,7 @@ import 'package:wanikani4mobile/wanikani_user.dart';
 
 class WaniKani extends BaseCacheManager {
   static final WaniKani _instance = WaniKani._();
-  static const key = "WaniKaniCache";
+  static const _key = "WaniKaniCache";
 
   WaniKaniUser user;
   bool hasError;
@@ -21,12 +21,12 @@ class WaniKani extends BaseCacheManager {
     return _instance;
   }
 
-  WaniKani._() : super(key, fileFetcher: _fileFetcher);
+  WaniKani._() : super(_key, fileFetcher: _fileFetcher);
 
   Future<String> getFilePath() async {
     var directory = await getTemporaryDirectory();
 
-    return path.join(directory.path, key);
+    return path.join(directory.path, _key);
   }
 
   static Future<FileFetcherResponse> _fileFetcher(String url,
