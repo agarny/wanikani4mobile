@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wanikani4mobile/utilities.dart';
-import 'package:wanikani4mobile/wanikani_api.dart';
-import 'package:wanikani4mobile/wanikani_user.dart';
+import 'package:wanikani4mobile/wanikani.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -27,12 +26,12 @@ class HomePageState extends State<HomePage> {
         margin: EdgeInsets.all(space(context)),
         child: Column(
           children: <Widget>[
-            FutureBuilder<WaniKaniUser>(
-                future: waniKaniUser(),
+            FutureBuilder<WaniKani>(
+                future: WaniKani().fetch(),
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
                     return Text(
-                        'Welcome to WaniKani for Mobile ${snapshot.data.data.username}!');
+                        'Welcome to WaniKani for Mobile ${snapshot.data.user.data.username}!');
                   } else {
                     return Text('Fetching data...');
                   }
