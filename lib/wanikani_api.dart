@@ -19,7 +19,7 @@ Future<dynamic> _waniKaniJson(String endpoint) async {
       'Authorization': 'Bearer ' + waniKaniApiToken(),
     },
   );
-  
+
   return jsonDecode(response.body);
 }
 
