@@ -16,7 +16,7 @@ Future<dynamic> _waniKaniJson(String endpoint) async {
     'https://api.wanikani.com/v2/$endpoint',
     headers: {
       'Wanikani-Revision': '20170710',
-      'Authorization': 'Bearer ' + waniKaniApiToken(),
+      'Authorization': 'Bearer ' + Settings().apiToken,
     },
   );
 

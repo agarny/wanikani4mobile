@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:get_it/get_it.dart';
-import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanikani4mobile/home.dart';
 import 'package:wanikani4mobile/log_in.dart';
@@ -41,7 +40,7 @@ class _Application extends StatelessWidget {
         }),
       ),
       title: 'WaniKani for Mobile',
-      home: waniKaniApiToken().isEmpty ? LogInPage() : HomePage(),
+      home: Settings().apiToken.isEmpty ? LogInPage() : HomePage(),
       navigatorKey: GetIt.instance<NavigationService>().navigatorKey,
       onGenerateRoute: (RouteSettings settings) {
         Widget widget = SplashScreenPage();
@@ -80,7 +79,6 @@ class _Application extends StatelessWidget {
 class Application extends StatelessWidget {
   Application({Key key}) : super(key: key) {
     GetIt.instance.registerLazySingleton(() => NavigationService());
-    GetIt.instance.registerLazySingleton(() => SettingsService());
 
     timeDilation = 2.0;
   }
@@ -92,10 +90,9 @@ class Application extends StatelessWidget {
       builder:
           (BuildContext context, AsyncSnapshot<SharedPreferences> snapshot) {
         if (snapshot.hasData) {
-          return ChangeNotifierProvider<SettingsService>.value(
-            value: initSettings(snapshot.data),
-            child: _Application(),
-          );
+          Settings.init(snapshot.data);
+
+          return _Application();
         }
 
         return SplashScreenPage();

@@ -58,7 +58,7 @@ class WaniKaniApiTokenPageState extends State<WaniKaniApiTokenPage> {
               child: Text('Log in'),
               onPressed: _buttonEnabled
                   ? () {
-                      setWaniKaniApiToken(_apiToken);
+                      Settings().apiToken = _apiToken;
 
                       navigateTo(HomeRoute);
                     }

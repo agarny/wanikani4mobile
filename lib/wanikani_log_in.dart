@@ -65,7 +65,7 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
                     }
                   });
                 } else {
-                  setWaniKaniApiToken(apiToken);
+                  Settings().apiToken = apiToken;
 
                   navigateTo(HomeRoute);
                 }
