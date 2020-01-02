@@ -110,22 +110,22 @@ class WaniKani extends BaseCacheManager {
 
   Future<WaniKani> fetchAll() async {
     try {
-      _instance.assignments =
-          WaniKaniAssignments.fromJson(jsonDecode(await _fetchEndpoint('assignments')));
-      _instance.levelProgressions =
-          WaniKaniLevelProgressions.fromJson(jsonDecode(await _fetchEndpoint('level_progressions')));
+      _instance.assignments = WaniKaniAssignments.fromJson(
+          jsonDecode(await _fetchEndpoint('assignments')));
+      _instance.levelProgressions = WaniKaniLevelProgressions.fromJson(
+          jsonDecode(await _fetchEndpoint('level_progressions')));
       _instance.resets =
           WaniKaniResets.fromJson(jsonDecode(await _fetchEndpoint('resets')));
-      _instance.reviewStatistics =
-          WaniKaniReviewStatistics.fromJson(jsonDecode(await _fetchEndpoint('review_statistics')));
+      _instance.reviewStatistics = WaniKaniReviewStatistics.fromJson(
+          jsonDecode(await _fetchEndpoint('review_statistics')));
       _instance.reviews =
           WaniKaniReviews.fromJson(jsonDecode(await _fetchEndpoint('reviews')));
-      _instance.srsStages =
-          WaniKaniSrsStages.fromJson(jsonDecode(await _fetchEndpoint('srs_stages')));
-      _instance.studyMaterials =
-          WaniKaniStudyMaterials.fromJson(jsonDecode(await _fetchEndpoint('study_materials')));
-      _instance.subjects =
-          WaniKaniSubjects.fromJson(jsonDecode(await _fetchEndpoint('subjects')));
+      _instance.srsStages = WaniKaniSrsStages.fromJson(
+          jsonDecode(await _fetchEndpoint('srs_stages')));
+      _instance.studyMaterials = WaniKaniStudyMaterials.fromJson(
+          jsonDecode(await _fetchEndpoint('study_materials')));
+      _instance.subjects = WaniKaniSubjects.fromJson(
+          jsonDecode(await _fetchEndpoint('subjects')));
       _instance.summary =
           WaniKaniSummary.fromJson(jsonDecode(await _fetchEndpoint('summary')));
       _instance.user =

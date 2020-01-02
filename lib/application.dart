@@ -77,6 +77,8 @@ class _Application extends StatelessWidget {
 
 class Application extends StatelessWidget {
   Application({Key key}) : super(key: key) {
+    // Page transitions are a bit fast, so slow them down a bit.
+
     timeDilation = 2.0;
   }
 
