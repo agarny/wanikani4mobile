@@ -1,3 +1,5 @@
+import 'package:wanikani4mobile/wanikani.dart';
+
 class WaniKaniReviewStatistics {
   String object;
   String url;
@@ -135,7 +137,7 @@ enum IngSrsStageName {
   BURNED
 }
 
-final ingSrsStageNameValues = EnumValues({
+final ingSrsStageNameValues = WaniKaniEnumValues({
   "Apprentice I": IngSrsStageName.APPRENTICE_I,
   "Apprentice II": IngSrsStageName.APPRENTICE_II,
   "Apprentice III": IngSrsStageName.APPRENTICE_III,
@@ -149,7 +151,7 @@ final ingSrsStageNameValues = EnumValues({
 
 enum Object { REVIEW }
 
-final objectValues = EnumValues({"review": Object.REVIEW});
+final objectValues = WaniKaniEnumValues({"review": Object.REVIEW});
 
 class WaniKaniReviewStatisticsPages {
   int perPage;
@@ -174,18 +176,4 @@ class WaniKaniReviewStatisticsPages {
         "next_url": nextUrl,
         "previous_url": previousUrl,
       };
-}
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

@@ -1,3 +1,5 @@
+import 'package:wanikani4mobile/wanikani.dart';
+
 class WaniKaniSubjects {
   String object;
   String url;
@@ -207,7 +209,7 @@ class WaniKaniSubjectsDataDataAuxiliaryMeaning {
 
 enum AuxiliaryMeaningType { WHITELIST, BLACKLIST }
 
-final auxiliaryMeaningTypeValues = EnumValues({
+final auxiliaryMeaningTypeValues = WaniKaniEnumValues({
   "blacklist": AuxiliaryMeaningType.BLACKLIST,
   "whitelist": AuxiliaryMeaningType.WHITELIST
 });
@@ -241,7 +243,7 @@ class WaniKaniSubjectsDataDataCharacterImage {
 
 enum ContentType { IMAGE_SVG_XML, IMAGE_PNG }
 
-final contentTypeValues = EnumValues({
+final contentTypeValues = WaniKaniEnumValues({
   "image/png": ContentType.IMAGE_PNG,
   "image/svg+xml": ContentType.IMAGE_SVG_XML
 });
@@ -285,7 +287,7 @@ class WaniKaniSubjectsDataDataCharacterImageMetadata {
 
 enum Color { THE_000000 }
 
-final colorValues = EnumValues({"#000000": Color.THE_000000});
+final colorValues = WaniKaniEnumValues({"#000000": Color.THE_000000});
 
 enum Dimensions {
   THE_1024_X1024,
@@ -296,7 +298,7 @@ enum Dimensions {
   THE_32_X32
 }
 
-final dimensionsValues = EnumValues({
+final dimensionsValues = WaniKaniEnumValues({
   "1024x1024": Dimensions.THE_1024_X1024,
   "128x128": Dimensions.THE_128_X128,
   "256x256": Dimensions.THE_256_X256,
@@ -315,7 +317,7 @@ enum StyleName {
   THE_32_PX
 }
 
-final styleNameValues = EnumValues({
+final styleNameValues = WaniKaniEnumValues({
   "original": StyleName.ORIGINAL,
   "1024px": StyleName.THE_1024_PX,
   "128px": StyleName.THE_128_PX,
@@ -381,7 +383,7 @@ class WaniKaniSubjectsDataDataReading {
 
 enum ReadingType { ONYOMI, KUNYOMI, NANORI }
 
-final readingTypeValues = EnumValues({
+final readingTypeValues = WaniKaniEnumValues({
   "kunyomi": ReadingType.KUNYOMI,
   "nanori": ReadingType.NANORI,
   "onyomi": ReadingType.ONYOMI
@@ -390,7 +392,7 @@ final readingTypeValues = EnumValues({
 enum Object { RADICAL, KANJI }
 
 final objectValues =
-    EnumValues({"kanji": Object.KANJI, "radical": Object.RADICAL});
+    WaniKaniEnumValues({"kanji": Object.KANJI, "radical": Object.RADICAL});
 
 class WaniKaniSubjectsPages {
   int perPage;
@@ -415,18 +417,4 @@ class WaniKaniSubjectsPages {
         "next_url": nextUrl,
         "previous_url": previousUrl,
       };
-}
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

@@ -1,3 +1,5 @@
+import 'package:wanikani4mobile/wanikani.dart';
+
 class WaniKaniLevelProgressions {
   String object;
   String url;
@@ -121,7 +123,7 @@ class WaniKaniLevelProgressionsDataData {
 enum Object { LEVEL_PROGRESSION }
 
 final objectValues =
-    EnumValues({"level_progression": Object.LEVEL_PROGRESSION});
+    WaniKaniEnumValues({"level_progression": Object.LEVEL_PROGRESSION});
 
 class WaniKaniLevelProgressionsPages {
   int perPage;
@@ -146,18 +148,4 @@ class WaniKaniLevelProgressionsPages {
         "next_url": nextUrl,
         "previous_url": previousUrl,
       };
-}
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }

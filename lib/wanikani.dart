@@ -10,6 +10,20 @@ import 'package:path_provider/path_provider.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/wanikani_user.dart';
 
+class WaniKaniEnumValues<T> {
+  Map<String, T> map;
+  Map<T, String> reverseMap;
+
+  WaniKaniEnumValues(this.map);
+
+  Map<T, String> get reverse {
+    if (reverseMap == null) {
+      reverseMap = map.map((k, v) => new MapEntry(v, k));
+    }
+    return reverseMap;
+  }
+}
+
 class WaniKani extends BaseCacheManager {
   static final WaniKani _instance = WaniKani._();
   static const _key = "WaniKaniCache";

@@ -1,3 +1,5 @@
+import 'package:wanikani4mobile/wanikani.dart';
+
 class WaniKaniAssignments {
   String object;
   String url;
@@ -155,7 +157,7 @@ enum SrsStageName {
   BURNED
 }
 
-final srsStageNameValues = EnumValues({
+final srsStageNameValues = WaniKaniEnumValues({
   "Apprentice IV": SrsStageName.APPRENTICE_IV,
   "Burned": SrsStageName.BURNED,
   "Enlightened": SrsStageName.ENLIGHTENED,
@@ -167,7 +169,7 @@ final srsStageNameValues = EnumValues({
 
 enum SubjectType { VOCABULARY, KANJI, RADICAL }
 
-final subjectTypeValues = EnumValues({
+final subjectTypeValues = WaniKaniEnumValues({
   "kanji": SubjectType.KANJI,
   "radical": SubjectType.RADICAL,
   "vocabulary": SubjectType.VOCABULARY
@@ -175,7 +177,7 @@ final subjectTypeValues = EnumValues({
 
 enum Object { ASSIGNMENT }
 
-final objectValues = EnumValues({"assignment": Object.ASSIGNMENT});
+final objectValues = WaniKaniEnumValues({"assignment": Object.ASSIGNMENT});
 
 class WaniKaniAssignmentsPages {
   int perPage;
@@ -200,18 +202,4 @@ class WaniKaniAssignmentsPages {
         "next_url": nextUrl,
         "previous_url": previousUrl,
       };
-}
-
-class EnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  EnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
 }
