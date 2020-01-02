@@ -24,6 +24,30 @@ class WaniKaniEnumValues<T> {
   }
 }
 
+class WaniKaniPages {
+  int perPage;
+  String nextUrl;
+  String previousUrl;
+
+  WaniKaniPages({
+    this.perPage,
+    this.nextUrl,
+    this.previousUrl,
+  });
+
+  factory WaniKaniPages.fromJson(Map<String, dynamic> json) => WaniKaniPages(
+        perPage: json["per_page"],
+        nextUrl: json["next_url"],
+        previousUrl: json["previous_url"],
+      );
+
+  Map<String, dynamic> toJson() => {
+        "per_page": perPage,
+        "next_url": nextUrl,
+        "previous_url": previousUrl,
+      };
+}
+
 class WaniKani extends BaseCacheManager {
   static final WaniKani _instance = WaniKani._();
   static const _key = "WaniKaniCache";

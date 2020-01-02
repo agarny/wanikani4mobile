@@ -1,7 +1,9 @@
+import 'package:wanikani4mobile/wanikani.dart';
+
 class WaniKaniResets {
   String object;
   String url;
-  WaniKaniResetsPages pages;
+  WaniKaniPages pages;
   int totalCount;
   DateTime dataUpdatedAt;
   List<WaniKaniResetsData> data;
@@ -18,7 +20,7 @@ class WaniKaniResets {
   factory WaniKaniResets.fromJson(Map<String, dynamic> json) => WaniKaniResets(
         object: json["object"],
         url: json["url"],
-        pages: WaniKaniResetsPages.fromJson(json["pages"]),
+        pages: WaniKaniPages.fromJson(json["pages"]),
         totalCount: json["total_count"],
         dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
         data: List<WaniKaniResetsData>.from(
@@ -94,30 +96,5 @@ class WaniKaniResetsDataData {
         "original_level": originalLevel,
         "target_level": targetLevel,
         "confirmed_at": confirmedAt.toIso8601String(),
-      };
-}
-
-class WaniKaniResetsPages {
-  int perPage;
-  dynamic nextUrl;
-  dynamic previousUrl;
-
-  WaniKaniResetsPages({
-    this.perPage,
-    this.nextUrl,
-    this.previousUrl,
-  });
-
-  factory WaniKaniResetsPages.fromJson(Map<String, dynamic> json) =>
-      WaniKaniResetsPages(
-        perPage: json["per_page"],
-        nextUrl: json["next_url"],
-        previousUrl: json["previous_url"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "per_page": perPage,
-        "next_url": nextUrl,
-        "previous_url": previousUrl,
       };
 }

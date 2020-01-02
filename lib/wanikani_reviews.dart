@@ -3,7 +3,7 @@ import 'package:wanikani4mobile/wanikani.dart';
 class WaniKaniReviews {
   String object;
   String url;
-  WaniKaniReviewsPages pages;
+  WaniKaniPages pages;
   int totalCount;
   DateTime dataUpdatedAt;
   List<WaniKaniReviewsData> data;
@@ -21,7 +21,7 @@ class WaniKaniReviews {
       WaniKaniReviews(
         object: json["object"],
         url: json["url"],
-        pages: WaniKaniReviewsPages.fromJson(json["pages"]),
+        pages: WaniKaniPages.fromJson(json["pages"]),
         totalCount: json["total_count"],
         dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
         data: List<WaniKaniReviewsData>.from(
@@ -151,28 +151,3 @@ final ingSrsStageNameValues = WaniKaniEnumValues({
 enum Object { REVIEW }
 
 final objectValues = WaniKaniEnumValues({"review": Object.REVIEW});
-
-class WaniKaniReviewsPages {
-  int perPage;
-  String nextUrl;
-  dynamic previousUrl;
-
-  WaniKaniReviewsPages({
-    this.perPage,
-    this.nextUrl,
-    this.previousUrl,
-  });
-
-  factory WaniKaniReviewsPages.fromJson(Map<String, dynamic> json) =>
-      WaniKaniReviewsPages(
-        perPage: json["per_page"],
-        nextUrl: json["next_url"],
-        previousUrl: json["previous_url"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "per_page": perPage,
-        "next_url": nextUrl,
-        "previous_url": previousUrl,
-      };
-}

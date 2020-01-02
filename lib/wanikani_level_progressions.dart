@@ -3,7 +3,7 @@ import 'package:wanikani4mobile/wanikani.dart';
 class WaniKaniLevelProgressions {
   String object;
   String url;
-  WaniKaniLevelProgressionsPages pages;
+  WaniKaniPages pages;
   int totalCount;
   DateTime dataUpdatedAt;
   List<WaniKaniLevelProgressionsData> data;
@@ -21,7 +21,7 @@ class WaniKaniLevelProgressions {
       WaniKaniLevelProgressions(
         object: json["object"],
         url: json["url"],
-        pages: WaniKaniLevelProgressionsPages.fromJson(json["pages"]),
+        pages: WaniKaniPages.fromJson(json["pages"]),
         totalCount: json["total_count"],
         dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
         data: List<WaniKaniLevelProgressionsData>.from(
@@ -124,28 +124,3 @@ enum Object { LEVEL_PROGRESSION }
 
 final objectValues =
     WaniKaniEnumValues({"level_progression": Object.LEVEL_PROGRESSION});
-
-class WaniKaniLevelProgressionsPages {
-  int perPage;
-  dynamic nextUrl;
-  dynamic previousUrl;
-
-  WaniKaniLevelProgressionsPages({
-    this.perPage,
-    this.nextUrl,
-    this.previousUrl,
-  });
-
-  factory WaniKaniLevelProgressionsPages.fromJson(Map<String, dynamic> json) =>
-      WaniKaniLevelProgressionsPages(
-        perPage: json["per_page"],
-        nextUrl: json["next_url"],
-        previousUrl: json["previous_url"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "per_page": perPage,
-        "next_url": nextUrl,
-        "previous_url": previousUrl,
-      };
-}

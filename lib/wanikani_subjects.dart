@@ -3,7 +3,7 @@ import 'package:wanikani4mobile/wanikani.dart';
 class WaniKaniSubjects {
   String object;
   String url;
-  WaniKaniSubjectsPages pages;
+  WaniKaniPages pages;
   int totalCount;
   DateTime dataUpdatedAt;
   List<WaniKaniSubjectsData> data;
@@ -21,7 +21,7 @@ class WaniKaniSubjects {
       WaniKaniSubjects(
         object: json["object"],
         url: json["url"],
-        pages: WaniKaniSubjectsPages.fromJson(json["pages"]),
+        pages: WaniKaniPages.fromJson(json["pages"]),
         totalCount: json["total_count"],
         dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
         data: List<WaniKaniSubjectsData>.from(
@@ -393,28 +393,3 @@ enum Object { RADICAL, KANJI }
 
 final objectValues =
     WaniKaniEnumValues({"kanji": Object.KANJI, "radical": Object.RADICAL});
-
-class WaniKaniSubjectsPages {
-  int perPage;
-  String nextUrl;
-  dynamic previousUrl;
-
-  WaniKaniSubjectsPages({
-    this.perPage,
-    this.nextUrl,
-    this.previousUrl,
-  });
-
-  factory WaniKaniSubjectsPages.fromJson(Map<String, dynamic> json) =>
-      WaniKaniSubjectsPages(
-        perPage: json["per_page"],
-        nextUrl: json["next_url"],
-        previousUrl: json["previous_url"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "per_page": perPage,
-        "next_url": nextUrl,
-        "previous_url": previousUrl,
-      };
-}
