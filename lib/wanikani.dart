@@ -2,6 +2,7 @@
 //       https://app.quicktype.io/.
 
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:http/http.dart' as http;
@@ -70,7 +71,7 @@ class WaniKani extends BaseCacheManager {
 
   static Future<FileFetcherResponse> _fileFetcher(String url,
       {Map<String, String> headers}) async {
-    print('Retrieving data for \'$url\'...');
+    log('Retrieving data for \'$url\'...');
 
     return HttpFileFetcherResponse(await http.get(
       'https://api.wanikani.com/v2/$url',
