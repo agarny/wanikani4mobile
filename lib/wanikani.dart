@@ -9,6 +9,15 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:wanikani4mobile/settings.dart';
+import 'package:wanikani4mobile/wanikani_assignments.dart';
+import 'package:wanikani4mobile/wanikani_level_progressions.dart';
+import 'package:wanikani4mobile/wanikani_resets.dart';
+import 'package:wanikani4mobile/wanikani_review_statistics.dart';
+import 'package:wanikani4mobile/wanikani_reviews.dart';
+import 'package:wanikani4mobile/wanikani_srs_stages.dart';
+import 'package:wanikani4mobile/wanikani_study_materials.dart';
+import 'package:wanikani4mobile/wanikani_subjects.dart';
+import 'package:wanikani4mobile/wanikani_summary.dart';
 import 'package:wanikani4mobile/wanikani_user.dart';
 
 class WaniKaniEnumValues<T> {
@@ -53,6 +62,15 @@ class WaniKani extends BaseCacheManager {
   static final WaniKani _instance = WaniKani._();
   static const _key = "WaniKaniCache";
 
+  WaniKaniAssignments assignments;
+  WaniKaniLevelProgressions levelProgressions;
+  WaniKaniResets resets;
+  WaniKaniReviewStatistics reviewStatistics;
+  WaniKaniReviews reviews;
+  WaniKaniSrsStages srsStages;
+  WaniKaniStudyMaterials studyMaterials;
+  WaniKaniSubjects subjects;
+  WaniKaniSummary summary;
   WaniKaniUser user;
   bool hasError;
   String errorMessage;
@@ -92,6 +110,24 @@ class WaniKani extends BaseCacheManager {
 
   Future<WaniKani> fetchAll() async {
     try {
+      _instance.assignments =
+          WaniKaniAssignments.fromJson(jsonDecode(await _fetchEndpoint('assignments')));
+      _instance.levelProgressions =
+          WaniKaniLevelProgressions.fromJson(jsonDecode(await _fetchEndpoint('level_progressions')));
+      _instance.resets =
+          WaniKaniResets.fromJson(jsonDecode(await _fetchEndpoint('resets')));
+      _instance.reviewStatistics =
+          WaniKaniReviewStatistics.fromJson(jsonDecode(await _fetchEndpoint('review_statistics')));
+      _instance.reviews =
+          WaniKaniReviews.fromJson(jsonDecode(await _fetchEndpoint('reviews')));
+      _instance.srsStages =
+          WaniKaniSrsStages.fromJson(jsonDecode(await _fetchEndpoint('srs_stages')));
+      _instance.studyMaterials =
+          WaniKaniStudyMaterials.fromJson(jsonDecode(await _fetchEndpoint('study_materials')));
+      _instance.subjects =
+          WaniKaniSubjects.fromJson(jsonDecode(await _fetchEndpoint('subjects')));
+      _instance.summary =
+          WaniKaniSummary.fromJson(jsonDecode(await _fetchEndpoint('summary')));
       _instance.user =
           WaniKaniUser.fromJson(jsonDecode(await _fetchEndpoint('user')));
 
