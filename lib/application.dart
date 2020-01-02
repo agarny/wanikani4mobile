@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanikani4mobile/home.dart';
 import 'package:wanikani4mobile/log_in.dart';
@@ -75,11 +76,24 @@ class _Application extends StatelessWidget {
   }
 }
 
-class Application extends StatelessWidget {
-  Application({Key key}) : super(key: key) {
+class Application extends StatefulWidget {
+  @override
+  ApplicationState createState() => ApplicationState();
+}
+
+class ApplicationState extends State<Application> {
+  @override
+  initState() {
+    super.initState();
+
     // Page transitions are a bit fast, so slow them down a bit.
 
     timeDilation = 2.0;
+
+    // Getting ready to receive notifications.
+
+    FlutterLocalNotificationsPlugin().initialize(InitializationSettings(
+        AndroidInitializationSettings(Logo), IOSInitializationSettings()));
   }
 
   @override
