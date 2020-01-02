@@ -104,7 +104,8 @@ Widget drawer(BuildContext context) {
           icon: Icons.mail,
           text: 'Contact the author',
           onTap: () {
-            launch('mailto:agarny@hellix.com?subject=About%20WaniKani%20for%20Mobile');
+            launch(
+                'mailto:agarny@hellix.com?subject=About%20WaniKani%20for%20Mobile');
           },
         ),
         Divider(),
