@@ -9,16 +9,16 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:wanikani4mobile/settings.dart';
-import 'package:wanikani4mobile/wanikani_assignments.dart';
-import 'package:wanikani4mobile/wanikani_level_progressions.dart';
-import 'package:wanikani4mobile/wanikani_resets.dart';
-import 'package:wanikani4mobile/wanikani_review_statistics.dart';
-import 'package:wanikani4mobile/wanikani_reviews.dart';
-import 'package:wanikani4mobile/wanikani_srs_stages.dart';
-import 'package:wanikani4mobile/wanikani_study_materials.dart';
-import 'package:wanikani4mobile/wanikani_subjects.dart';
-import 'package:wanikani4mobile/wanikani_summary.dart';
-import 'package:wanikani4mobile/wanikani_user.dart';
+import 'package:wanikani4mobile/wanikani/assignments.dart';
+import 'package:wanikani4mobile/wanikani/level_progressions.dart';
+import 'package:wanikani4mobile/wanikani/resets.dart';
+import 'package:wanikani4mobile/wanikani/review_statistics.dart';
+import 'package:wanikani4mobile/wanikani/reviews.dart';
+import 'package:wanikani4mobile/wanikani/srs_stages.dart';
+import 'package:wanikani4mobile/wanikani/study_materials.dart';
+import 'package:wanikani4mobile/wanikani/subjects.dart';
+import 'package:wanikani4mobile/wanikani/summary.dart';
+import 'package:wanikani4mobile/wanikani/user.dart';
 
 class WaniKaniEnumValues<T> {
   Map<String, T> map;

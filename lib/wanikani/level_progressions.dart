@@ -1,4 +1,4 @@
-import 'package:wanikani4mobile/wanikani.dart';
+import 'package:wanikani4mobile/wanikani/api.dart';
 
 class WaniKaniLevelProgressions {
   String object;
