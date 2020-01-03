@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wanikani4mobile/application.dart';
 import 'package:wanikani4mobile/utilities.dart';
 
 class Settings extends ChangeNotifier {
@@ -27,6 +28,8 @@ class Settings extends ChangeNotifier {
   }
 
   Future<bool> reset() {
+    Application.notifyReviews(0);
+
     return _prefs.clear();
   }
 }

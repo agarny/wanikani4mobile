@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app_badger/flutter_app_badger.dart';
-import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:wanikani4mobile/application.dart';
 import 'package:wanikani4mobile/utilities.dart';
 
 class LogInPage extends StatefulWidget {
@@ -43,21 +42,8 @@ class LogInPageState extends State<LogInPage> {
             //---GRY--- THE BELOW IS JUST FOR TESTING NOTIFICATIONS!
             OutlineButton(
               child: Text('Notify me!'),
-              onPressed: () async {
-                FlutterAppBadger.updateBadgeCount(123);
-
-                await FlutterLocalNotificationsPlugin().show(
-                  0,
-                  'There are 123 reviews waiting to be done.',
-                  null,
-                  NotificationDetails(
-                      AndroidNotificationDetails(
-                        'Channel id',
-                        'Channel name',
-                        'Channel description',
-                      ),
-                      IOSNotificationDetails()),
-                );
+              onPressed: () {
+                Application.notifyReviews(123);
               },
             ),
           ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:wanikani4mobile/home.dart';
@@ -80,6 +81,29 @@ class _Application extends StatelessWidget {
 class Application extends StatefulWidget {
   @override
   ApplicationState createState() => ApplicationState();
+
+  static void notifyReviews(int nbOfReviews) {
+    FlutterAppBadger.updateBadgeCount(nbOfReviews);
+
+    if (nbOfReviews == 0) {
+      FlutterLocalNotificationsPlugin().cancelAll();
+    } else {
+      FlutterLocalNotificationsPlugin().show(
+        0,
+        (nbOfReviews == 1)
+            ? 'There is 1 review waiting to be done.'
+            : 'There are 123 reviews waiting to be done.',
+        null,
+        NotificationDetails(
+            AndroidNotificationDetails(
+              'Channel id',
+              'Channel name',
+              'Channel description',
+            ),
+            IOSNotificationDetails()),
+      );
+    }
+  }
 }
 
 class ApplicationState extends State<Application> {
