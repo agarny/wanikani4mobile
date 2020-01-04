@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:wanikani4mobile/application.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
 
@@ -9,6 +8,29 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  Widget containerChild() {
+    return (WaniKani().hasError)
+        ? Text(WaniKani().errorMessage)
+        : RefreshIndicator(
+            child: ListView(
+              children: <Widget>[
+                Text(
+                    'Welcome to WaniKani for Mobile ${WaniKani().user.data.username}!\n'
+                    '\n'
+                    'Number of lessons available: ${WaniKani().summary.data.lessons[0].subjectIds.length}.\n'
+                    'Number of reviews available: ${WaniKani().summary.data.reviews[0].subjectIds.length}.'),
+              ],
+            ),
+            onRefresh: () async {
+              await WaniKani().fetch();
+
+              setState(() {});
+
+              return;
+            },
+          );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,37 +48,17 @@ class HomePageState extends State<HomePage> {
       drawer: drawer(context),
       body: Container(
         margin: EdgeInsets.all(space(context)),
-        child: FutureBuilder<WaniKani>(
-            future: WaniKani().fetch(),
-            builder: (context, snapshot) {
-              if (snapshot.hasData) {
-                if (snapshot.data.hasError) {
-                  return Text(snapshot.data.errorMessage);
-                }
+        child: WaniKani().initialized
+            ? containerChild()
+            : FutureBuilder<WaniKani>(
+                future: WaniKani().fetch(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasData) {
+                    return containerChild();
+                  }
 
-                Application.updateBadge(
-                    WaniKani().summary.data.reviews[0].subjectIds.length);
-
-                return RefreshIndicator(
-                  child: ListView(
-                    children: <Widget>[
-                      Text(
-                          'Welcome to WaniKani for Mobile ${WaniKani().user.data.username}!\n'
-                          '\n'
-                          'Number of lessons available: ${WaniKani().summary.data.lessons[0].subjectIds.length}.\n'
-                          'Number of reviews available: ${WaniKani().summary.data.reviews[0].subjectIds.length}.'),
-                    ],
-                  ),
-                  onRefresh: () async {
-                    setState(() {});
-
-                    return;
-                  },
-                );
-              }
-
-              return Text('Please wait while we are fetching the data...');
-            }),
+                  return Text('Please wait while we are fetching the data...');
+                }),
       ),
     );
   }

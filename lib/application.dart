@@ -9,6 +9,7 @@ import 'package:wanikani4mobile/log_in.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/splash_screen.dart';
 import 'package:wanikani4mobile/utilities.dart';
+import 'package:wanikani4mobile/wanikani.dart';
 import 'package:wanikani4mobile/wanikani_api_token.dart';
 import 'package:wanikani4mobile/wanikani_log_in.dart';
 
@@ -106,6 +107,8 @@ class Application extends StatefulWidget {
   }
 
   static void reset() {
+    WaniKani().reset();
+
     FlutterAppBadger.removeBadge();
 
     FlutterLocalNotificationsPlugin().cancelAll();

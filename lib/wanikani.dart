@@ -5,6 +5,7 @@ import 'package:flutter_cache_manager/flutter_cache_manager.dart';
 import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
+import 'package:wanikani4mobile/application.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/wanikani/assignments.dart';
 import 'package:wanikani4mobile/wanikani/level_progressions.dart';
@@ -42,11 +43,30 @@ class WaniKani extends BaseCacheManager {
 
   WaniKani._() : super(_key, fileFetcher: _fileFetcher);
 
+  void reset() {
+    _initialized = false;
+
+    assignments = WaniKaniAssignments();
+    levelProgressions = WaniKaniLevelProgressions();
+    resets = WaniKaniResets();
+    reviewStatistics = WaniKaniReviewStatistics();
+    reviews = WaniKaniReviews();
+    srsStages = WaniKaniSrsStages();
+    studyMaterials = WaniKaniStudyMaterials();
+    subjects = WaniKaniSubjects();
+    summary = WaniKaniSummary();
+    user = WaniKaniUser();
+    hasError = false;
+    errorMessage = '';
+  }
+
   Future<String> getFilePath() async {
     var directory = await getTemporaryDirectory();
 
     return path.join(directory.path, _key);
   }
+
+  bool get initialized => _initialized;
 
   static Future<FileFetcherResponse> _fileFetcher(String url,
       {Map<String, String> headers}) async {
@@ -134,10 +154,26 @@ class WaniKani extends BaseCacheManager {
   }
 
   Future<WaniKani> fetch() async {
-    if (_initialized) {
-      return _fetchSummary();
+    if (_initialized && !hasError) {
+      log('Retrieving only the summary data.');
+
+      await _fetchSummary();
+    } else {
+      log('Retrieving all the data.');
+
+      await _fetchAll();
+
+      _initialized = !hasError;
     }
 
-    return _fetchAll();
+    log('The data has been retrieved.');
+
+    if (hasError) {
+      Application.reset();
+    } else {
+      Application.updateBadge(summary.data.reviews[0].subjectIds.length);
+    }
+
+    return _instance;
   }
 }
