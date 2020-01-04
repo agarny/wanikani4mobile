@@ -10,8 +10,10 @@ class WaniKaniLogInPage extends StatefulWidget {
 
 class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
   static const _waniKaniApiTokenDescription = 'WaniKani for Mobile (read-only)';
+  static const _waniKaniSettingsUrl = 'https://www.wanikani.com/settings';
+  static const _waniKaniAccountUrl = _waniKaniSettingsUrl + '/account';
   static const _waniKaniPersonalAccessTokensUrl =
-      'https://www.wanikani.com/settings/personal_access_tokens';
+      _waniKaniSettingsUrl + '/personal_access_tokens';
   static const _waniKaniNewPersonalAccessTokensUrl =
       _waniKaniPersonalAccessTokensUrl + '/new';
   WebViewController _controller;
@@ -23,7 +25,7 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
           title: Text('Log in to WaniKani'),
         ),
         body: WebView(
-          initialUrl: _waniKaniPersonalAccessTokensUrl,
+          initialUrl: _waniKaniAccountUrl,
           javascriptMode: JavascriptMode.unrestricted,
           onWebViewCreated: (WebViewController controller) {
             _controller = controller;
@@ -31,7 +33,16 @@ class WaniKaniLogInPageState extends State<WaniKaniLogInPage> {
             _controller.clearCache();
           },
           onPageFinished: (String url) {
-            if (url == _waniKaniPersonalAccessTokensUrl) {
+            if (url == _waniKaniAccountUrl) {
+              _controller
+                  .evaluateJavascript(
+                      'document.getElementById("user_email").value;')
+                  .then((emailAddress) {
+                Settings().emailAddress = emailAddress;
+
+                _controller.loadUrl(_waniKaniPersonalAccessTokensUrl);
+              });
+            } else if (url == _waniKaniPersonalAccessTokensUrl) {
               _controller
                   .evaluateJavascript(
                       '\$(".personal-access-token-description:contains(\'$_waniKaniApiTokenDescription\') ~ .personal-access-token-token > code:eq(0)").text().trim()'

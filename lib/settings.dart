@@ -7,6 +7,7 @@ class Settings extends ChangeNotifier {
   static final Settings _instance = Settings._();
 
   SharedPreferences _prefs;
+  static const String _emailAddressPref = 'E-mail address';
   static const String _apiTokenPref = 'API token';
 
   factory Settings() {
@@ -17,6 +18,14 @@ class Settings extends ChangeNotifier {
 
   Settings.init(SharedPreferences prefs) {
     _instance._prefs = prefs;
+  }
+
+  String get emailAddress => _prefs?.getString(_emailAddressPref) ?? '';
+
+  set emailAddress(String value) {
+    _prefs?.setString(_emailAddressPref, value);
+
+    notifyListeners();
   }
 
   String get apiToken => _prefs?.getString(_apiTokenPref) ?? '';
