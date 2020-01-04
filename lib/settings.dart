@@ -28,7 +28,7 @@ class Settings extends ChangeNotifier {
   }
 
   Future<bool> reset() {
-    Application.notifyReviews(0);
+    Application.reset();
 
     return _prefs.clear();
   }

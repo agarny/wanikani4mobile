@@ -82,12 +82,12 @@ class Application extends StatefulWidget {
   @override
   ApplicationState createState() => ApplicationState();
 
-  static void notifyReviews(int nbOfReviews) {
+  static void updateBadge(int nbOfReviews) {
     FlutterAppBadger.updateBadgeCount(nbOfReviews);
+  }
 
-    if (nbOfReviews == 0) {
-      FlutterLocalNotificationsPlugin().cancelAll();
-    } else {
+  static void notifyReviews(int nbOfReviews) {
+    if (nbOfReviews != 0) {
       FlutterLocalNotificationsPlugin().show(
         0,
         '',
@@ -103,6 +103,12 @@ class Application extends StatefulWidget {
             IOSNotificationDetails()),
       );
     }
+  }
+
+  static void reset() {
+    FlutterAppBadger.removeBadge();
+
+    FlutterLocalNotificationsPlugin().cancelAll();
   }
 }
 

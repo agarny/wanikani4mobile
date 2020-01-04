@@ -9,8 +9,6 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
-  int _nbOfReviews;
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,36 +26,37 @@ class HomePageState extends State<HomePage> {
       drawer: drawer(context),
       body: Container(
         margin: EdgeInsets.all(space(context)),
-        child: Column(
-          children: <Widget>[
-            FutureBuilder<WaniKani>(
-                future: WaniKani().fetchAll(),
-                builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    if (snapshot.data.hasError) {
-                      return Text(snapshot.data.errorMessage);
-                    }
+        child: FutureBuilder<WaniKani>(
+            future: WaniKani().fetch(),
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                if (snapshot.data.hasError) {
+                  return Text(snapshot.data.errorMessage);
+                }
 
-                    if (snapshot
-                            .data.summary.data.reviews[0].subjectIds.length !=
-                        _nbOfReviews) {
-                      _nbOfReviews = snapshot
-                          .data.summary.data.reviews[0].subjectIds.length;
+                Application.updateBadge(
+                    WaniKani().summary.data.reviews[0].subjectIds.length);
 
-                      Application.notifyReviews(_nbOfReviews);
-                    }
+                return RefreshIndicator(
+                  child: ListView(
+                    children: <Widget>[
+                      Text(
+                          'Welcome to WaniKani for Mobile ${WaniKani().user.data.username}!\n'
+                          '\n'
+                          'Number of lessons available: ${WaniKani().summary.data.lessons[0].subjectIds.length}.\n'
+                          'Number of reviews available: ${WaniKani().summary.data.reviews[0].subjectIds.length}.'),
+                    ],
+                  ),
+                  onRefresh: () async {
+                    setState(() {});
 
-                    return Text(
-                        'Welcome to WaniKani for Mobile ${snapshot.data.user.data.username}!\n'
-                        '\n'
-                        'Number of lessons available: ${snapshot.data.summary.data.lessons[0].subjectIds.length}.\n'
-                        'Number of reviews available: ${snapshot.data.summary.data.reviews[0].subjectIds.length}.');
-                  }
+                    return;
+                  },
+                );
+              }
 
-                  return Text('Please wait while we are fetching the data...');
-                }),
-          ],
-        ),
+              return Text('Please wait while we are fetching the data...');
+            }),
       ),
     );
   }

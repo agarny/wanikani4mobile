@@ -21,6 +21,8 @@ class WaniKani extends BaseCacheManager {
   static final WaniKani _instance = WaniKani._();
   static const _key = "WaniKaniCache";
 
+  bool _initialized = false;
+
   WaniKaniAssignments assignments;
   WaniKaniLevelProgressions levelProgressions;
   WaniKaniResets resets;
@@ -61,13 +63,27 @@ class WaniKani extends BaseCacheManager {
 
   Future<String> _fetchEndpoint(String endpoint, {bool force}) async {
     return (force ?? false
-        ? (await downloadFile(endpoint)).file
-        : await getSingleFile(endpoint))
+            ? (await downloadFile(endpoint)).file
+            : await getSingleFile(endpoint))
         .readAsString()
         .catchError((e) => throw e);
   }
 
-  Future<WaniKani> fetchAll() async {
+  void _handleError(Exception e) {
+    _instance.hasError = true;
+    _instance.errorMessage = e.toString();
+
+    if (_instance.errorMessage ==
+        'HttpException: No valid statuscode. Statuscode was 401') {
+      _instance.errorMessage = 'The API token is invalid.';
+    } else if (_instance.errorMessage ==
+        'HttpException: No valid statuscode. Statuscode was 429') {
+      _instance.errorMessage =
+          'Too many requests have been made to the WaniKani API. Please try again again later.';
+    }
+  }
+
+  Future<WaniKani> _fetchAll() async {
     try {
       _instance.assignments = WaniKaniAssignments.fromJson(
           jsonDecode(await _fetchEndpoint('assignments')));
@@ -86,25 +102,44 @@ class WaniKani extends BaseCacheManager {
       _instance.subjects = WaniKaniSubjects.fromJson(
           jsonDecode(await _fetchEndpoint('subjects')));
       _instance.summary =
-          WaniKaniSummary.fromJson(jsonDecode(await _fetchEndpoint('summary')));
+          WaniKaniSummary.fromJson(jsonDecode(await _fetchEndpoint(
+        'summary',
+        force: true,
+      )));
       _instance.user =
           WaniKaniUser.fromJson(jsonDecode(await _fetchEndpoint('user')));
 
       _instance.hasError = false;
     } catch (e) {
-      _instance.hasError = true;
-      _instance.errorMessage = e.toString();
-
-      if (_instance.errorMessage ==
-          'HttpException: No valid statuscode. Statuscode was 401') {
-        _instance.errorMessage = 'The API token is invalid.';
-      } else if (_instance.errorMessage ==
-          'HttpException: No valid statuscode. Statuscode was 429') {
-        _instance.errorMessage =
-        'Too many requests have been made to the WaniKani API. Please try again again later.';
-      }
+      _handleError(e);
     }
 
     return _instance;
+  }
+
+  Future<WaniKani> _fetchSummary() async {
+    try {
+      _instance.summary =
+          WaniKaniSummary.fromJson(jsonDecode(await _fetchEndpoint(
+        'summary',
+        force: true,
+      )));
+      print('>>> Nb of reviews: ' +
+          _instance.summary.data.reviews[0].subjectIds.length.toString());
+
+      _instance.hasError = false;
+    } catch (e) {
+      _handleError(e);
+    }
+
+    return _instance;
+  }
+
+  Future<WaniKani> fetch() async {
+    if (_initialized) {
+      return _fetchSummary();
+    }
+
+    return _fetchAll();
   }
 }

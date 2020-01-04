@@ -39,13 +39,6 @@ class LogInPageState extends State<LogInPage> {
                 ),
               ],
             ),
-            //---GRY--- THE BELOW IS JUST FOR TESTING NOTIFICATIONS!
-            OutlineButton(
-              child: Text('Notify me!'),
-              onPressed: () {
-                Application.notifyReviews(123);
-              },
-            ),
           ],
         ),
       ),
