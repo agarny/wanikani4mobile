@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -10,6 +12,18 @@ const LogInRoute = 'LogIn';
 const SettingsRoute = 'Settings';
 const WaniKaniApiTokenRoute = 'WaniKaniApiToken';
 const WaniKaniLogInRoute = 'WaniKaniLogIn';
+
+// Debug
+
+final JsonDecoder _jsonDecoder = JsonDecoder();
+final JsonEncoder _jsonEncoder = JsonEncoder.withIndent('  ');
+
+void prettyPrintJson(String json) {
+  _jsonEncoder
+      .convert(_jsonDecoder.convert(json))
+      .split('\n')
+      .forEach((element) => print(element));
+}
 
 // Navigation
 
