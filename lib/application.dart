@@ -10,7 +10,6 @@ import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/splash_screen.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
-import 'package:wanikani4mobile/wanikani_api_token.dart';
 import 'package:wanikani4mobile/wanikani_log_in.dart';
 
 class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
@@ -61,9 +60,6 @@ class _Application extends StatelessWidget {
             break;
           case SettingsRoute:
             widget = SettingsPage();
-            break;
-          case WaniKaniApiTokenRoute:
-            widget = WaniKaniApiTokenPage();
             break;
           case WaniKaniLogInRoute:
             widget = WaniKaniLogInPage();
