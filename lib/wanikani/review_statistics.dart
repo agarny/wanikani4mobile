@@ -1,4 +1,4 @@
-import 'package:wanikani4mobile/wanikani/api.dart';
+import 'package:wanikani4mobile/wanikani/common.dart';
 
 class WaniKaniReviewStatistics {
   String object;

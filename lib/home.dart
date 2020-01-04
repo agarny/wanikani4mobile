@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wanikani4mobile/utilities.dart';
-import 'package:wanikani4mobile/wanikani/api.dart';
+import 'package:wanikani4mobile/wanikani.dart';
 
 class HomePage extends StatefulWidget {
   @override

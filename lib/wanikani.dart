@@ -1,6 +1,3 @@
-// Note: most of the code found in wanikani_*.dart was generated using
-//       https://app.quicktype.io/.
-
 import 'dart:convert';
 import 'dart:developer';
 
@@ -19,44 +16,6 @@ import 'package:wanikani4mobile/wanikani/study_materials.dart';
 import 'package:wanikani4mobile/wanikani/subjects.dart';
 import 'package:wanikani4mobile/wanikani/summary.dart';
 import 'package:wanikani4mobile/wanikani/user.dart';
-
-class WaniKaniEnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  WaniKaniEnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
-}
-
-class WaniKaniPages {
-  int perPage;
-  String nextUrl;
-  String previousUrl;
-
-  WaniKaniPages({
-    this.perPage,
-    this.nextUrl,
-    this.previousUrl,
-  });
-
-  factory WaniKaniPages.fromJson(Map<String, dynamic> json) => WaniKaniPages(
-        perPage: json["per_page"],
-        nextUrl: json["next_url"],
-        previousUrl: json["previous_url"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "per_page": perPage,
-        "next_url": nextUrl,
-        "previous_url": previousUrl,
-      };
-}
 
 class WaniKani extends BaseCacheManager {
   static final WaniKani _instance = WaniKani._();
@@ -102,8 +61,8 @@ class WaniKani extends BaseCacheManager {
 
   Future<String> _fetchEndpoint(String endpoint, {bool force}) async {
     return (force ?? false
-            ? (await downloadFile(endpoint)).file
-            : await getSingleFile(endpoint))
+        ? (await downloadFile(endpoint)).file
+        : await getSingleFile(endpoint))
         .readAsString()
         .catchError((e) => throw e);
   }
@@ -142,7 +101,7 @@ class WaniKani extends BaseCacheManager {
       } else if (_instance.errorMessage ==
           'HttpException: No valid statuscode. Statuscode was 429') {
         _instance.errorMessage =
-            'Too many requests have been made to the WaniKani API. Please try again again later.';
+        'Too many requests have been made to the WaniKani API. Please try again again later.';
       }
     }
 
