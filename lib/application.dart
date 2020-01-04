@@ -90,10 +90,10 @@ class Application extends StatefulWidget {
     } else {
       FlutterLocalNotificationsPlugin().show(
         0,
+        '',
         (nbOfReviews == 1)
             ? 'There is 1 review waiting to be done.'
             : 'There are 123 reviews waiting to be done.',
-        null,
         NotificationDetails(
             AndroidNotificationDetails(
               'Channel id',
