@@ -50,7 +50,7 @@ class WaniKani extends BaseCacheManager {
 
   static Future<FileFetcherResponse> _fileFetcher(String url,
       {Map<String, String> headers}) async {
-    log('Retrieving data for \'$url\'...');
+    log('Retrieving data for \'$url\'.');
 
     return HttpFileFetcherResponse(await http.get(
       'https://api.wanikani.com/v2/$url',
@@ -124,8 +124,6 @@ class WaniKani extends BaseCacheManager {
         'summary',
         force: true,
       )));
-      print('>>> Nb of reviews: ' +
-          _instance.summary.data.reviews[0].subjectIds.length.toString());
 
       _instance.hasError = false;
     } catch (e) {

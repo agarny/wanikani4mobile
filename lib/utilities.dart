@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -22,7 +23,7 @@ void prettyPrintJson(String json) {
   _jsonEncoder
       .convert(_jsonDecoder.convert(json))
       .split('\n')
-      .forEach((element) => print(element));
+      .forEach((element) => log(element));
 }
 
 // Navigation
