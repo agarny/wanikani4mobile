@@ -41,6 +41,7 @@ class _Application extends StatelessWidget {
           800: Color.fromRGBO(41, 77, 220, 0.9),
           900: Color.fromRGBO(41, 77, 220, 1.0),
         }),
+        iconTheme: IconThemeData(color: Colors.white),
       ),
       title: 'WaniKani for Mobile',
       home: Settings().apiToken.isEmpty ? LogInPage() : HomePage(),
