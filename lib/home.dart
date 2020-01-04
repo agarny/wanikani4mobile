@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:wanikani4mobile/application.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
 
@@ -8,6 +9,8 @@ class HomePage extends StatefulWidget {
 }
 
 class HomePageState extends State<HomePage> {
+  int _nbOfReviews;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,8 +38,20 @@ class HomePageState extends State<HomePage> {
                       return Text(snapshot.data.errorMessage);
                     }
 
+                    if (snapshot
+                            .data.summary.data.reviews[0].subjectIds.length !=
+                        _nbOfReviews) {
+                      _nbOfReviews = snapshot
+                          .data.summary.data.reviews[0].subjectIds.length;
+
+                      Application.notifyReviews(_nbOfReviews);
+                    }
+
                     return Text(
-                        'Welcome to WaniKani for Mobile ${snapshot.data.user.data.username}!');
+                        'Welcome to WaniKani for Mobile ${snapshot.data.user.data.username}!\n'
+                        '\n'
+                        'Number of lessons available: ${snapshot.data.summary.data.lessons[0].subjectIds.length}.\n'
+                        'Number of reviews available: ${snapshot.data.summary.data.reviews[0].subjectIds.length}.');
                   }
 
                   return Text('Please wait while we are fetching the data...');
