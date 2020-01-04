@@ -37,9 +37,9 @@ class HomePageState extends State<HomePage> {
 
                     return Text(
                         'Welcome to WaniKani for Mobile ${snapshot.data.user.data.username}!');
-                  } else {
-                    return Text('Please wait while we are fetching the data.');
                   }
+
+                  return Text('Please wait while we are fetching the data...');
                 }),
           ],
         ),
