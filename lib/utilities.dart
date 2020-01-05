@@ -11,7 +11,6 @@ const Logo = 'res/logo.png';
 const HomeRoute = 'Home';
 const LogInRoute = 'LogIn';
 const SettingsRoute = 'Settings';
-const WaniKaniLogInRoute = 'WaniKaniLogIn';
 
 // Debug
 
