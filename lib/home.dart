@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:math';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
@@ -21,8 +20,6 @@ class HomePageState extends State<HomePage> {
     return FutureBuilder<WaniKani>(
         future: WaniKani().fetch(),
         builder: (context, snapshot) {
-          var gravatarSize = 0.75 *
-              min(AppBar().preferredSize.width, AppBar().preferredSize.height);
           var hash =
               md5.convert(utf8.encode(Settings().emailAddress)).toString();
 
@@ -32,24 +29,16 @@ class HomePageState extends State<HomePage> {
                   ? Text('WaniKani for Mobile')
                   : Row(
                       children: <Widget>[
-                        Container(
-                          width: gravatarSize,
-                          height: gravatarSize,
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            image: DecorationImage(
-                              fit: BoxFit.fill,
-                              image: NetworkImage(
-                                  'https://www.gravatar.com/avatar/$hash.jpg?d=$_defaultGravatar'),
-                            ),
-                          ),
+                        CircleAvatar(
+                          backgroundImage: NetworkImage(
+                              'https://www.gravatar.com/avatar/$hash.jpg?d=$_defaultGravatar'),
                         ),
                         SizedBox(width: space(context)),
                         Column(
                           children: <Widget>[
                             Text(
                               WaniKani().user.data.username,
-                              textScaleFactor: 1.5,
+                              textScaleFactor: 1.25,
                             ),
                             Text('Level ${WaniKani().user.data.level}',
                                 textScaleFactor: 0.75),
