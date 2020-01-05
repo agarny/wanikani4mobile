@@ -35,13 +35,20 @@ class HomePageState extends State<HomePage> {
                         ),
                         SizedBox(width: space(context)),
                         Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
                               WaniKani().user.data.username,
                               textScaleFactor: 1.25,
                             ),
-                            Text('Level ${WaniKani().user.data.level}',
-                                textScaleFactor: 0.75),
+                            Text(
+                              'Level ${WaniKani().user.data.level}',
+                              style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: Colors.white30,
+                              ),
+                              textScaleFactor: 0.75,
+                            ),
                           ],
                         ),
                       ],
