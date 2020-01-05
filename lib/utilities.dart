@@ -62,7 +62,10 @@ Widget drawer(BuildContext context) {
     return ListTile(
       title: Row(
         children: <Widget>[
-          Icon(icon),
+          Icon(
+            icon,
+            color: Theme.of(context).primaryColor,
+          ),
           Padding(
             padding: EdgeInsets.only(left: space(context)),
             child: Text(text),
