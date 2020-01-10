@@ -118,11 +118,6 @@ class ApplicationState extends State<Application> {
     // Page transitions are a bit fast, so slow them down a bit.
 
     timeDilation = 2.0;
-
-    // Get ready to receive notifications.
-
-    FlutterLocalNotificationsPlugin().initialize(InitializationSettings(
-        AndroidInitializationSettings(Logo), IOSInitializationSettings()));
   }
 
   @override
