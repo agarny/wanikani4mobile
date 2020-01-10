@@ -25,6 +25,8 @@ class HomePageState extends State<HomePage> {
 
           return Scaffold(
             appBar: AppBar(
+              automaticallyImplyLeading: false,
+              titleSpacing: space(context),
               title: (!WaniKani().initialized || WaniKani().hasError)
                   ? Text('WaniKani for Mobile')
                   : Row(
