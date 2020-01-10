@@ -66,7 +66,7 @@ class HomePageState extends State<HomePage> {
             body: Container(
                 margin: EdgeInsets.all(space(context)),
                 child: (!WaniKani().initialized)
-                    ? Text('Please wait while we are reetrieving your data...')
+                    ? Text('Please wait while we are retrieving your data...')
                     : (WaniKani().hasError)
                         ? Text(WaniKani().errorMessage)
                         : RefreshIndicator(

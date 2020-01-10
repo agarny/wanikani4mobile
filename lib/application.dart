@@ -119,7 +119,7 @@ class ApplicationState extends State<Application> {
 
     timeDilation = 2.0;
 
-    // Getting ready to receive notifications.
+    // Get ready to receive notifications.
 
     FlutterLocalNotificationsPlugin().initialize(InitializationSettings(
         AndroidInitializationSettings(Logo), IOSInitializationSettings()));
