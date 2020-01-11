@@ -1,5 +1,3 @@
-import 'package:wanikani4mobile/wanikani/common.dart';
-
 class WaniKaniReviewStatistics {
   String object;
   String url;

@@ -25,8 +25,8 @@ class LogInPageState extends State<LogInPage> {
         title: Text('Log in to WaniKani'),
       ),
       drawer: drawer(context),
-      body: Container(
-        margin: EdgeInsets.all(space(context)),
+      body: Padding(
+        padding: EdgeInsets.all(space(context)),
         child: Column(
           children: <Widget>[
             Text('Thank you for using WaniKani for Mobile. '
