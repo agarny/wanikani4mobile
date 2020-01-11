@@ -25,6 +25,17 @@ void prettyPrintJson(String json) {
       .forEach((element) => log(element));
 }
 
+// Miscellaneous
+
+Future<bool> open(String url) {
+  return launch(
+    url,
+    forceWebView: true,
+    enableJavaScript: true,
+    enableDomStorage: true,
+  );
+}
+
 // Navigation
 
 class Navigation {
@@ -167,7 +178,7 @@ InkWell currentlyAvailable(
       ),
     ),
     onTap: () {
-      launch((currentlyAvailable == CurrentlyAvailable.Lessons)
+      open((currentlyAvailable == CurrentlyAvailable.Lessons)
           ? 'https://wanikani.com/lesson/session'
           : 'https://wanikani.com/review/session');
     },
@@ -239,7 +250,7 @@ Widget drawer(BuildContext context) {
           icon: Icons.star,
           text: 'WaniKani',
           onTap: () {
-            launch('https://wanikani.com/');
+            open('https://wanikani.com/');
           },
         ),
         Divider(),
@@ -247,14 +258,14 @@ Widget drawer(BuildContext context) {
           icon: Icons.code,
           text: 'Source code',
           onTap: () {
-            launch('https://github.com/agarny/wanikani4mobile');
+            open('https://github.com/agarny/wanikani4mobile');
           },
         ),
         drawerItem(
           icon: Icons.bug_report,
           text: 'Report an issue',
           onTap: () {
-            launch('https://github.com/agarny/wanikani4mobile/issues/new');
+            open('https://github.com/agarny/wanikani4mobile/issues/new');
           },
         ),
         Divider(),
