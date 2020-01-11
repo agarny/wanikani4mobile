@@ -58,8 +58,12 @@ class SettingsPageState extends State<SettingsPage> {
       body: ButtonBar(
         alignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
-          OutlineButton(
-            child: Text('Log out'),
+          RaisedButton.icon(
+            icon: Icon(
+              Icons.eject,
+              size: Theme.of(context).textTheme.subhead.fontSize,
+            ),
+            label: Text('Log out'),
             onPressed: () {
               Settings().reset().then((_) {
                 Navigation().navigateTo(LogInRoute);
