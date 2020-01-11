@@ -18,22 +18,31 @@ class WaniKaniResets {
   });
 
   factory WaniKaniResets.fromJson(Map<String, dynamic> json) => WaniKaniResets(
-        object: json["object"],
-        url: json["url"],
-        pages: WaniKaniPages.fromJson(json["pages"]),
-        totalCount: json["total_count"],
-        dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
-        data: List<WaniKaniResetsData>.from(
-            json["data"].map((x) => WaniKaniResetsData.fromJson(x))),
+        object: json["object"] == null ? null : json["object"],
+        url: json["url"] == null ? null : json["url"],
+        pages: json["pages"] == null
+            ? null
+            : WaniKaniPages.fromJson(json["pages"]),
+        totalCount: json["total_count"] == null ? null : json["total_count"],
+        dataUpdatedAt: json["data_updated_at"] == null
+            ? null
+            : DateTime.parse(json["data_updated_at"]),
+        data: json["data"] == null
+            ? null
+            : List<WaniKaniResetsData>.from(
+                json["data"].map((x) => WaniKaniResetsData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "object": object,
-        "url": url,
-        "pages": pages.toJson(),
-        "total_count": totalCount,
-        "data_updated_at": dataUpdatedAt.toIso8601String(),
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "object": object == null ? null : object,
+        "url": url == null ? null : url,
+        "pages": pages == null ? null : pages.toJson(),
+        "total_count": totalCount == null ? null : totalCount,
+        "data_updated_at":
+            dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
+        "data": data == null
+            ? null
+            : List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
 
@@ -54,19 +63,24 @@ class WaniKaniResetsData {
 
   factory WaniKaniResetsData.fromJson(Map<String, dynamic> json) =>
       WaniKaniResetsData(
-        id: json["id"],
-        object: json["object"],
-        url: json["url"],
-        dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
-        data: WaniKaniResetsDataData.fromJson(json["data"]),
+        id: json["id"] == null ? null : json["id"],
+        object: json["object"] == null ? null : json["object"],
+        url: json["url"] == null ? null : json["url"],
+        dataUpdatedAt: json["data_updated_at"] == null
+            ? null
+            : DateTime.parse(json["data_updated_at"]),
+        data: json["data"] == null
+            ? null
+            : WaniKaniResetsDataData.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "object": object,
-        "url": url,
-        "data_updated_at": dataUpdatedAt.toIso8601String(),
-        "data": data.toJson(),
+        "id": id == null ? null : id,
+        "object": object == null ? null : object,
+        "url": url == null ? null : url,
+        "data_updated_at":
+            dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
+        "data": data == null ? null : data.toJson(),
       };
 }
 
@@ -85,16 +99,22 @@ class WaniKaniResetsDataData {
 
   factory WaniKaniResetsDataData.fromJson(Map<String, dynamic> json) =>
       WaniKaniResetsDataData(
-        createdAt: DateTime.parse(json["created_at"]),
-        originalLevel: json["original_level"],
-        targetLevel: json["target_level"],
-        confirmedAt: DateTime.parse(json["confirmed_at"]),
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        originalLevel:
+            json["original_level"] == null ? null : json["original_level"],
+        targetLevel: json["target_level"] == null ? null : json["target_level"],
+        confirmedAt: json["confirmed_at"] == null
+            ? null
+            : DateTime.parse(json["confirmed_at"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "created_at": createdAt.toIso8601String(),
-        "original_level": originalLevel,
-        "target_level": targetLevel,
-        "confirmed_at": confirmedAt.toIso8601String(),
+        "created_at": createdAt == null ? null : createdAt.toIso8601String(),
+        "original_level": originalLevel == null ? null : originalLevel,
+        "target_level": targetLevel == null ? null : targetLevel,
+        "confirmed_at":
+            confirmedAt == null ? null : confirmedAt.toIso8601String(),
       };
 }
