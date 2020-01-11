@@ -47,7 +47,7 @@ class HomePageState extends State<HomePage> {
                               'Level ${WaniKani().user.data.level}',
                               style: TextStyle(
                                 fontStyle: FontStyle.italic,
-                                color: Colors.white30,
+                                color: Colors.white38,
                               ),
                               textScaleFactor: 0.75,
                             ),

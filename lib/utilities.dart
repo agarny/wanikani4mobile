@@ -89,7 +89,7 @@ Widget drawer(BuildContext context) {
             style: TextStyle(
               fontSize: 12,
               fontStyle: FontStyle.italic,
-              color: Colors.white30,
+              color: Colors.white38,
             ),
           ),
         ),
