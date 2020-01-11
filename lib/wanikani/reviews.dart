@@ -19,22 +19,31 @@ class WaniKaniReviews {
 
   factory WaniKaniReviews.fromJson(Map<String, dynamic> json) =>
       WaniKaniReviews(
-        object: json["object"],
-        url: json["url"],
-        pages: WaniKaniPages.fromJson(json["pages"]),
-        totalCount: json["total_count"],
-        dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
-        data: List<WaniKaniReviewsData>.from(
-            json["data"].map((x) => WaniKaniReviewsData.fromJson(x))),
+        object: json["object"] == null ? null : json["object"],
+        url: json["url"] == null ? null : json["url"],
+        pages: json["pages"] == null
+            ? null
+            : WaniKaniPages.fromJson(json["pages"]),
+        totalCount: json["total_count"] == null ? null : json["total_count"],
+        dataUpdatedAt: json["data_updated_at"] == null
+            ? null
+            : DateTime.parse(json["data_updated_at"]),
+        data: json["data"] == null
+            ? null
+            : List<WaniKaniReviewsData>.from(
+                json["data"].map((x) => WaniKaniReviewsData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "object": object,
-        "url": url,
-        "pages": pages.toJson(),
-        "total_count": totalCount,
-        "data_updated_at": dataUpdatedAt.toIso8601String(),
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "object": object == null ? null : object,
+        "url": url == null ? null : url,
+        "pages": pages == null ? null : pages.toJson(),
+        "total_count": totalCount == null ? null : totalCount,
+        "data_updated_at":
+            dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
+        "data": data == null
+            ? null
+            : List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
 
@@ -55,19 +64,25 @@ class WaniKaniReviewsData {
 
   factory WaniKaniReviewsData.fromJson(Map<String, dynamic> json) =>
       WaniKaniReviewsData(
-        id: json["id"],
-        object: objectValues.map[json["object"]],
-        url: json["url"],
-        dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
-        data: WaniKaniReviewsDataData.fromJson(json["data"]),
+        id: json["id"] == null ? null : json["id"],
+        object:
+            json["object"] == null ? null : objectValues.map[json["object"]],
+        url: json["url"] == null ? null : json["url"],
+        dataUpdatedAt: json["data_updated_at"] == null
+            ? null
+            : DateTime.parse(json["data_updated_at"]),
+        data: json["data"] == null
+            ? null
+            : WaniKaniReviewsDataData.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "object": objectValues.reverse[object],
-        "url": url,
-        "data_updated_at": dataUpdatedAt.toIso8601String(),
-        "data": data.toJson(),
+        "id": id == null ? null : id,
+        "object": object == null ? null : objectValues.reverse[object],
+        "url": url == null ? null : url,
+        "data_updated_at":
+            dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
+        "data": data == null ? null : data.toJson(),
       };
 }
 
@@ -76,9 +91,9 @@ class WaniKaniReviewsDataData {
   int assignmentId;
   int subjectId;
   int startingSrsStage;
-  IngSrsStageName startingSrsStageName;
+  WaniKaniSrsStageName startingSrsStageName;
   int endingSrsStage;
-  IngSrsStageName endingSrsStageName;
+  WaniKaniSrsStageName endingSrsStageName;
   int incorrectMeaningAnswers;
   int incorrectReadingAnswers;
 
@@ -96,57 +111,50 @@ class WaniKaniReviewsDataData {
 
   factory WaniKaniReviewsDataData.fromJson(Map<String, dynamic> json) =>
       WaniKaniReviewsDataData(
-        createdAt: DateTime.parse(json["created_at"]),
-        assignmentId: json["assignment_id"],
-        subjectId: json["subject_id"],
-        startingSrsStage: json["starting_srs_stage"],
-        startingSrsStageName:
-            ingSrsStageNameValues.map[json["starting_srs_stage_name"]],
-        endingSrsStage: json["ending_srs_stage"],
-        endingSrsStageName:
-            ingSrsStageNameValues.map[json["ending_srs_stage_name"]],
-        incorrectMeaningAnswers: json["incorrect_meaning_answers"],
-        incorrectReadingAnswers: json["incorrect_reading_answers"],
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        assignmentId:
+            json["assignment_id"] == null ? null : json["assignment_id"],
+        subjectId: json["subject_id"] == null ? null : json["subject_id"],
+        startingSrsStage: json["starting_srs_stage"] == null
+            ? null
+            : json["starting_srs_stage"],
+        startingSrsStageName: json["starting_srs_stage_name"] == null
+            ? null
+            : waniKaniSrsStageNameValues.map[json["starting_srs_stage_name"]],
+        endingSrsStage:
+            json["ending_srs_stage"] == null ? null : json["ending_srs_stage"],
+        endingSrsStageName: json["ending_srs_stage_name"] == null
+            ? null
+            : waniKaniSrsStageNameValues.map[json["ending_srs_stage_name"]],
+        incorrectMeaningAnswers: json["incorrect_meaning_answers"] == null
+            ? null
+            : json["incorrect_meaning_answers"],
+        incorrectReadingAnswers: json["incorrect_reading_answers"] == null
+            ? null
+            : json["incorrect_reading_answers"],
       );
 
   Map<String, dynamic> toJson() => {
-        "created_at": createdAt.toIso8601String(),
-        "assignment_id": assignmentId,
-        "subject_id": subjectId,
-        "starting_srs_stage": startingSrsStage,
-        "starting_srs_stage_name":
-            ingSrsStageNameValues.reverse[startingSrsStageName],
-        "ending_srs_stage": endingSrsStage,
-        "ending_srs_stage_name":
-            ingSrsStageNameValues.reverse[endingSrsStageName],
-        "incorrect_meaning_answers": incorrectMeaningAnswers,
-        "incorrect_reading_answers": incorrectReadingAnswers,
+        "created_at": createdAt == null ? null : createdAt.toIso8601String(),
+        "assignment_id": assignmentId == null ? null : assignmentId,
+        "subject_id": subjectId == null ? null : subjectId,
+        "starting_srs_stage":
+            startingSrsStage == null ? null : startingSrsStage,
+        "starting_srs_stage_name": startingSrsStageName == null
+            ? null
+            : waniKaniSrsStageNameValues.reverse[startingSrsStageName],
+        "ending_srs_stage": endingSrsStage == null ? null : endingSrsStage,
+        "ending_srs_stage_name": endingSrsStageName == null
+            ? null
+            : waniKaniSrsStageNameValues.reverse[endingSrsStageName],
+        "incorrect_meaning_answers":
+            incorrectMeaningAnswers == null ? null : incorrectMeaningAnswers,
+        "incorrect_reading_answers":
+            incorrectReadingAnswers == null ? null : incorrectReadingAnswers,
       };
 }
-
-enum IngSrsStageName {
-  ENLIGHTENED,
-  APPRENTICE_II,
-  APPRENTICE_IV,
-  MASTER,
-  GURU_II,
-  GURU_I,
-  APPRENTICE_III,
-  APPRENTICE_I,
-  BURNED
-}
-
-final ingSrsStageNameValues = WaniKaniEnumValues({
-  "Apprentice I": IngSrsStageName.APPRENTICE_I,
-  "Apprentice II": IngSrsStageName.APPRENTICE_II,
-  "Apprentice III": IngSrsStageName.APPRENTICE_III,
-  "Apprentice IV": IngSrsStageName.APPRENTICE_IV,
-  "Burned": IngSrsStageName.BURNED,
-  "Enlightened": IngSrsStageName.ENLIGHTENED,
-  "Guru I": IngSrsStageName.GURU_I,
-  "Guru II": IngSrsStageName.GURU_II,
-  "Master": IngSrsStageName.MASTER
-});
 
 enum Object { REVIEW }
 

@@ -91,7 +91,7 @@ class WaniKaniAssignmentsDataData {
   int subjectId;
   SubjectType subjectType;
   int srsStage;
-  SrsStageName srsStageName;
+  WaniKaniSrsStageName srsStageName;
   DateTime unlockedAt;
   DateTime startedAt;
   DateTime passedAt;
@@ -129,7 +129,7 @@ class WaniKaniAssignmentsDataData {
         srsStage: json["srs_stage"] == null ? null : json["srs_stage"],
         srsStageName: json["srs_stage_name"] == null
             ? null
-            : srsStageNameValues.map[json["srs_stage_name"]],
+            : waniKaniSrsStageNameValues.map[json["srs_stage_name"]],
         unlockedAt: json["unlocked_at"] == null
             ? null
             : DateTime.parse(json["unlocked_at"]),
@@ -158,7 +158,7 @@ class WaniKaniAssignmentsDataData {
         "srs_stage": srsStage == null ? null : srsStage,
         "srs_stage_name": srsStageName == null
             ? null
-            : srsStageNameValues.reverse[srsStageName],
+            : waniKaniSrsStageNameValues.reverse[srsStageName],
         "unlocked_at": unlockedAt == null ? null : unlockedAt.toIso8601String(),
         "started_at": startedAt == null ? null : startedAt.toIso8601String(),
         "passed_at": passedAt == null ? null : passedAt.toIso8601String(),
@@ -170,32 +170,6 @@ class WaniKaniAssignmentsDataData {
         "hidden": hidden == null ? null : hidden,
       };
 }
-
-enum SrsStageName {
-  INITIATE,
-  APPRENTICE_I,
-  APPRENTICE_II,
-  APPRENTICE_III,
-  APPRENTICE_IV,
-  GURU_I,
-  GURU_II,
-  MASTER,
-  ENLIGHTENED,
-  BURNED,
-}
-
-final srsStageNameValues = WaniKaniEnumValues({
-  "Initiate": SrsStageName.INITIATE,
-  "Apprentice I": SrsStageName.APPRENTICE_I,
-  "Apprentice II": SrsStageName.APPRENTICE_II,
-  "Apprentice III": SrsStageName.APPRENTICE_III,
-  "Apprentice IV": SrsStageName.APPRENTICE_IV,
-  "Guru I": SrsStageName.GURU_I,
-  "Guru II": SrsStageName.GURU_II,
-  "Master": SrsStageName.MASTER,
-  "Enlightened": SrsStageName.ENLIGHTENED,
-  "Burned": SrsStageName.BURNED,
-});
 
 enum SubjectType { VOCABULARY, KANJI, RADICAL }
 

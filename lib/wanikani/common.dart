@@ -38,3 +38,29 @@ class WaniKaniPages {
         "previous_url": previousUrl,
       };
 }
+
+enum WaniKaniSrsStageName {
+  INITIATE,
+  APPRENTICE_I,
+  APPRENTICE_II,
+  APPRENTICE_III,
+  APPRENTICE_IV,
+  GURU_I,
+  GURU_II,
+  MASTER,
+  ENLIGHTENED,
+  BURNED,
+}
+
+final waniKaniSrsStageNameValues = WaniKaniEnumValues({
+  "Initiate": WaniKaniSrsStageName.INITIATE,
+  "Apprentice I": WaniKaniSrsStageName.APPRENTICE_I,
+  "Apprentice II": WaniKaniSrsStageName.APPRENTICE_II,
+  "Apprentice III": WaniKaniSrsStageName.APPRENTICE_III,
+  "Apprentice IV": WaniKaniSrsStageName.APPRENTICE_IV,
+  "Guru I": WaniKaniSrsStageName.GURU_I,
+  "Guru II": WaniKaniSrsStageName.GURU_II,
+  "Master": WaniKaniSrsStageName.MASTER,
+  "Enlightened": WaniKaniSrsStageName.ENLIGHTENED,
+  "Burned": WaniKaniSrsStageName.BURNED,
+});
