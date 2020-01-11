@@ -19,22 +19,31 @@ class WaniKaniSubjects {
 
   factory WaniKaniSubjects.fromJson(Map<String, dynamic> json) =>
       WaniKaniSubjects(
-        object: json["object"],
-        url: json["url"],
-        pages: WaniKaniPages.fromJson(json["pages"]),
-        totalCount: json["total_count"],
-        dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
-        data: List<WaniKaniSubjectsData>.from(
-            json["data"].map((x) => WaniKaniSubjectsData.fromJson(x))),
+        object: json["object"] == null ? null : json["object"],
+        url: json["url"] == null ? null : json["url"],
+        pages: json["pages"] == null
+            ? null
+            : WaniKaniPages.fromJson(json["pages"]),
+        totalCount: json["total_count"] == null ? null : json["total_count"],
+        dataUpdatedAt: json["data_updated_at"] == null
+            ? null
+            : DateTime.parse(json["data_updated_at"]),
+        data: json["data"] == null
+            ? null
+            : List<WaniKaniSubjectsData>.from(
+                json["data"].map((x) => WaniKaniSubjectsData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
-        "object": object,
-        "url": url,
-        "pages": pages.toJson(),
-        "total_count": totalCount,
-        "data_updated_at": dataUpdatedAt.toIso8601String(),
-        "data": List<dynamic>.from(data.map((x) => x.toJson())),
+        "object": object == null ? null : object,
+        "url": url == null ? null : url,
+        "pages": pages == null ? null : pages.toJson(),
+        "total_count": totalCount == null ? null : totalCount,
+        "data_updated_at":
+            dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
+        "data": data == null
+            ? null
+            : List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
 
@@ -55,19 +64,25 @@ class WaniKaniSubjectsData {
 
   factory WaniKaniSubjectsData.fromJson(Map<String, dynamic> json) =>
       WaniKaniSubjectsData(
-        id: json["id"],
-        object: objectValues.map[json["object"]],
-        url: json["url"],
-        dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
-        data: WaniKaniSubjectsDataData.fromJson(json["data"]),
+        id: json["id"] == null ? null : json["id"],
+        object:
+            json["object"] == null ? null : objectValues.map[json["object"]],
+        url: json["url"] == null ? null : json["url"],
+        dataUpdatedAt: json["data_updated_at"] == null
+            ? null
+            : DateTime.parse(json["data_updated_at"]),
+        data: json["data"] == null
+            ? null
+            : WaniKaniSubjectsDataData.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "object": objectValues.reverse[object],
-        "url": url,
-        "data_updated_at": dataUpdatedAt.toIso8601String(),
-        "data": data.toJson(),
+        "id": id == null ? null : id,
+        "object": object == null ? null : objectValues.reverse[object],
+        "url": url == null ? null : url,
+        "data_updated_at":
+            dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
+        "data": data == null ? null : data.toJson(),
       };
 }
 
@@ -114,28 +129,37 @@ class WaniKaniSubjectsDataData {
 
   factory WaniKaniSubjectsDataData.fromJson(Map<String, dynamic> json) =>
       WaniKaniSubjectsDataData(
-        createdAt: DateTime.parse(json["created_at"]),
-        level: json["level"],
-        slug: json["slug"],
+        createdAt: json["created_at"] == null
+            ? null
+            : DateTime.parse(json["created_at"]),
+        level: json["level"] == null ? null : json["level"],
+        slug: json["slug"] == null ? null : json["slug"],
         hiddenAt: json["hidden_at"] == null
             ? null
             : DateTime.parse(json["hidden_at"]),
-        documentUrl: json["document_url"],
-        characters: json["characters"],
+        documentUrl: json["document_url"] == null ? null : json["document_url"],
+        characters: json["characters"] == null ? null : json["characters"],
         characterImages: json["character_images"] == null
             ? null
             : List<WaniKaniSubjectsDataDataCharacterImage>.from(
                 json["character_images"].map(
                     (x) => WaniKaniSubjectsDataDataCharacterImage.fromJson(x))),
-        meanings: List<WaniKaniSubjectsDataDataMeaning>.from(json["meanings"]
-            .map((x) => WaniKaniSubjectsDataDataMeaning.fromJson(x))),
-        auxiliaryMeanings: List<WaniKaniSubjectsDataDataAuxiliaryMeaning>.from(
-            json["auxiliary_meanings"].map(
-                (x) => WaniKaniSubjectsDataDataAuxiliaryMeaning.fromJson(x))),
-        amalgamationSubjectIds:
-            List<int>.from(json["amalgamation_subject_ids"].map((x) => x)),
-        meaningMnemonic: json["meaning_mnemonic"],
-        lessonPosition: json["lesson_position"],
+        meanings: json["meanings"] == null
+            ? null
+            : List<WaniKaniSubjectsDataDataMeaning>.from(json["meanings"]
+                .map((x) => WaniKaniSubjectsDataDataMeaning.fromJson(x))),
+        auxiliaryMeanings: json["auxiliary_meanings"] == null
+            ? null
+            : List<WaniKaniSubjectsDataDataAuxiliaryMeaning>.from(
+                json["auxiliary_meanings"].map((x) =>
+                    WaniKaniSubjectsDataDataAuxiliaryMeaning.fromJson(x))),
+        amalgamationSubjectIds: json["amalgamation_subject_ids"] == null
+            ? null
+            : List<int>.from(json["amalgamation_subject_ids"].map((x) => x)),
+        meaningMnemonic:
+            json["meaning_mnemonic"] == null ? null : json["meaning_mnemonic"],
+        lessonPosition:
+            json["lesson_position"] == null ? null : json["lesson_position"],
         readings: json["readings"] == null
             ? null
             : List<WaniKaniSubjectsDataDataReading>.from(json["readings"]
@@ -154,22 +178,26 @@ class WaniKaniSubjectsDataData {
       );
 
   Map<String, dynamic> toJson() => {
-        "created_at": createdAt.toIso8601String(),
-        "level": level,
-        "slug": slug,
+        "created_at": createdAt == null ? null : createdAt.toIso8601String(),
+        "level": level == null ? null : level,
+        "slug": slug == null ? null : slug,
         "hidden_at": hiddenAt == null ? null : hiddenAt.toIso8601String(),
-        "document_url": documentUrl,
-        "characters": characters,
+        "document_url": documentUrl == null ? null : documentUrl,
+        "characters": characters == null ? null : characters,
         "character_images": characterImages == null
             ? null
             : List<dynamic>.from(characterImages.map((x) => x.toJson())),
-        "meanings": List<dynamic>.from(meanings.map((x) => x.toJson())),
-        "auxiliary_meanings":
-            List<dynamic>.from(auxiliaryMeanings.map((x) => x.toJson())),
-        "amalgamation_subject_ids":
-            List<dynamic>.from(amalgamationSubjectIds.map((x) => x)),
-        "meaning_mnemonic": meaningMnemonic,
-        "lesson_position": lessonPosition,
+        "meanings": meanings == null
+            ? null
+            : List<dynamic>.from(meanings.map((x) => x.toJson())),
+        "auxiliary_meanings": auxiliaryMeanings == null
+            ? null
+            : List<dynamic>.from(auxiliaryMeanings.map((x) => x.toJson())),
+        "amalgamation_subject_ids": amalgamationSubjectIds == null
+            ? null
+            : List<dynamic>.from(amalgamationSubjectIds.map((x) => x)),
+        "meaning_mnemonic": meaningMnemonic == null ? null : meaningMnemonic,
+        "lesson_position": lessonPosition == null ? null : lessonPosition,
         "readings": readings == null
             ? null
             : List<dynamic>.from(readings.map((x) => x.toJson())),
@@ -197,13 +225,15 @@ class WaniKaniSubjectsDataDataAuxiliaryMeaning {
   factory WaniKaniSubjectsDataDataAuxiliaryMeaning.fromJson(
           Map<String, dynamic> json) =>
       WaniKaniSubjectsDataDataAuxiliaryMeaning(
-        type: auxiliaryMeaningTypeValues.map[json["type"]],
-        meaning: json["meaning"],
+        type: json["type"] == null
+            ? null
+            : auxiliaryMeaningTypeValues.map[json["type"]],
+        meaning: json["meaning"] == null ? null : json["meaning"],
       );
 
   Map<String, dynamic> toJson() => {
-        "type": auxiliaryMeaningTypeValues.reverse[type],
-        "meaning": meaning,
+        "type": type == null ? null : auxiliaryMeaningTypeValues.reverse[type],
+        "meaning": meaning == null ? null : meaning,
       };
 }
 
@@ -228,16 +258,21 @@ class WaniKaniSubjectsDataDataCharacterImage {
   factory WaniKaniSubjectsDataDataCharacterImage.fromJson(
           Map<String, dynamic> json) =>
       WaniKaniSubjectsDataDataCharacterImage(
-        url: json["url"],
-        metadata: WaniKaniSubjectsDataDataCharacterImageMetadata.fromJson(
-            json["metadata"]),
-        contentType: contentTypeValues.map[json["content_type"]],
+        url: json["url"] == null ? null : json["url"],
+        metadata: json["metadata"] == null
+            ? null
+            : WaniKaniSubjectsDataDataCharacterImageMetadata.fromJson(
+                json["metadata"]),
+        contentType: json["content_type"] == null
+            ? null
+            : contentTypeValues.map[json["content_type"]],
       );
 
   Map<String, dynamic> toJson() => {
-        "url": url,
-        "metadata": metadata.toJson(),
-        "content_type": contentTypeValues.reverse[contentType],
+        "url": url == null ? null : url,
+        "metadata": metadata == null ? null : metadata.toJson(),
+        "content_type":
+            contentType == null ? null : contentTypeValues.reverse[contentType],
       };
 }
 
@@ -340,15 +375,16 @@ class WaniKaniSubjectsDataDataMeaning {
 
   factory WaniKaniSubjectsDataDataMeaning.fromJson(Map<String, dynamic> json) =>
       WaniKaniSubjectsDataDataMeaning(
-        meaning: json["meaning"],
-        primary: json["primary"],
-        acceptedAnswer: json["accepted_answer"],
+        meaning: json["meaning"] == null ? null : json["meaning"],
+        primary: json["primary"] == null ? null : json["primary"],
+        acceptedAnswer:
+            json["accepted_answer"] == null ? null : json["accepted_answer"],
       );
 
   Map<String, dynamic> toJson() => {
-        "meaning": meaning,
-        "primary": primary,
-        "accepted_answer": acceptedAnswer,
+        "meaning": meaning == null ? null : meaning,
+        "primary": primary == null ? null : primary,
+        "accepted_answer": acceptedAnswer == null ? null : acceptedAnswer,
       };
 }
 
@@ -367,17 +403,18 @@ class WaniKaniSubjectsDataDataReading {
 
   factory WaniKaniSubjectsDataDataReading.fromJson(Map<String, dynamic> json) =>
       WaniKaniSubjectsDataDataReading(
-        type: readingTypeValues.map[json["type"]],
-        primary: json["primary"],
-        reading: json["reading"],
-        acceptedAnswer: json["accepted_answer"],
+        type: json["type"] == null ? null : readingTypeValues.map[json["type"]],
+        primary: json["primary"] == null ? null : json["primary"],
+        reading: json["reading"] == null ? null : json["reading"],
+        acceptedAnswer:
+            json["accepted_answer"] == null ? null : json["accepted_answer"],
       );
 
   Map<String, dynamic> toJson() => {
-        "type": readingTypeValues.reverse[type],
-        "primary": primary,
-        "reading": reading,
-        "accepted_answer": acceptedAnswer,
+        "type": type == null ? null : readingTypeValues.reverse[type],
+        "primary": primary == null ? null : primary,
+        "reading": reading == null ? null : reading,
+        "accepted_answer": acceptedAnswer == null ? null : acceptedAnswer,
       };
 }
 
