@@ -1,5 +1,5 @@
 // Note: most of the code found in this directory was automatically generated
-//       using https://app.quicktype.io/.
+//       using https://app.quicktype.io/, making all properties optional.
 
 class WaniKaniEnumValues<T> {
   Map<String, T> map;
