@@ -12,17 +12,22 @@ class WaniKaniUser {
   });
 
   factory WaniKaniUser.fromJson(Map<String, dynamic> json) => WaniKaniUser(
-        object: json["object"],
-        url: json["url"],
-        dataUpdatedAt: DateTime.parse(json["data_updated_at"]),
-        data: WaniKaniUserData.fromJson(json["data"]),
+        object: json["object"] == null ? null : json["object"],
+        url: json["url"] == null ? null : json["url"],
+        dataUpdatedAt: json["data_updated_at"] == null
+            ? null
+            : DateTime.parse(json["data_updated_at"]),
+        data: json["data"] == null
+            ? null
+            : WaniKaniUserData.fromJson(json["data"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "object": object,
-        "url": url,
-        "data_updated_at": dataUpdatedAt.toIso8601String(),
-        "data": data.toJson(),
+        "object": object == null ? null : object,
+        "url": url == null ? null : url,
+        "data_updated_at":
+            dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
+        "data": data == null ? null : data.toJson(),
       };
 }
 
@@ -35,7 +40,7 @@ class WaniKaniUserData {
   WaniKaniUserDataSubscription subscription;
   bool subscribed;
   int maxLevelGrantedBySubscription;
-  dynamic currentVacationStartedAt;
+  DateTime currentVacationStartedAt;
   WaniKaniUserDataPreferences preferences;
 
   WaniKaniUserData({
@@ -53,31 +58,45 @@ class WaniKaniUserData {
 
   factory WaniKaniUserData.fromJson(Map<String, dynamic> json) =>
       WaniKaniUserData(
-        id: json["id"],
-        username: json["username"],
-        level: json["level"],
-        profileUrl: json["profile_url"],
-        startedAt: DateTime.parse(json["started_at"]),
-        subscription:
-            WaniKaniUserDataSubscription.fromJson(json["subscription"]),
-        subscribed: json["subscribed"],
+        id: json["id"] == null ? null : json["id"],
+        username: json["username"] == null ? null : json["username"],
+        level: json["level"] == null ? null : json["level"],
+        profileUrl: json["profile_url"] == null ? null : json["profile_url"],
+        startedAt: json["started_at"] == null
+            ? null
+            : DateTime.parse(json["started_at"]),
+        subscription: json["subscription"] == null
+            ? null
+            : WaniKaniUserDataSubscription.fromJson(json["subscription"]),
+        subscribed: json["subscribed"] == null ? null : json["subscribed"],
         maxLevelGrantedBySubscription:
-            json["max_level_granted_by_subscription"],
-        currentVacationStartedAt: json["current_vacation_started_at"],
-        preferences: WaniKaniUserDataPreferences.fromJson(json["preferences"]),
+            json["max_level_granted_by_subscription"] == null
+                ? null
+                : json["max_level_granted_by_subscription"],
+        currentVacationStartedAt: json["current_vacation_started_at"] == null
+            ? null
+            : DateTime.parse(json["current_vacation_started_at"]),
+        preferences: json["preferences"] == null
+            ? null
+            : WaniKaniUserDataPreferences.fromJson(json["preferences"]),
       );
 
   Map<String, dynamic> toJson() => {
-        "id": id,
-        "username": username,
-        "level": level,
-        "profile_url": profileUrl,
-        "started_at": startedAt.toIso8601String(),
-        "subscription": subscription.toJson(),
-        "subscribed": subscribed,
-        "max_level_granted_by_subscription": maxLevelGrantedBySubscription,
-        "current_vacation_started_at": currentVacationStartedAt,
-        "preferences": preferences.toJson(),
+        "id": id == null ? null : id,
+        "username": username == null ? null : username,
+        "level": level == null ? null : level,
+        "profile_url": profileUrl == null ? null : profileUrl,
+        "started_at": startedAt == null ? null : startedAt.toIso8601String(),
+        "subscription": subscription == null ? null : subscription.toJson(),
+        "subscribed": subscribed == null ? null : subscribed,
+        "max_level_granted_by_subscription":
+            maxLevelGrantedBySubscription == null
+                ? null
+                : maxLevelGrantedBySubscription,
+        "current_vacation_started_at": currentVacationStartedAt == null
+            ? null
+            : currentVacationStartedAt.toIso8601String(),
+        "preferences": preferences == null ? null : preferences.toJson(),
       };
 }
 
@@ -98,19 +117,36 @@ class WaniKaniUserDataPreferences {
 
   factory WaniKaniUserDataPreferences.fromJson(Map<String, dynamic> json) =>
       WaniKaniUserDataPreferences(
-        lessonsBatchSize: json["lessons_batch_size"],
-        lessonsAutoplayAudio: json["lessons_autoplay_audio"],
-        reviewsAutoplayAudio: json["reviews_autoplay_audio"],
-        lessonsPresentationOrder: json["lessons_presentation_order"],
-        reviewsDisplaySrsIndicator: json["reviews_display_srs_indicator"],
+        lessonsBatchSize: json["lessons_batch_size"] == null
+            ? null
+            : json["lessons_batch_size"],
+        lessonsAutoplayAudio: json["lessons_autoplay_audio"] == null
+            ? null
+            : json["lessons_autoplay_audio"],
+        reviewsAutoplayAudio: json["reviews_autoplay_audio"] == null
+            ? null
+            : json["reviews_autoplay_audio"],
+        lessonsPresentationOrder: json["lessons_presentation_order"] == null
+            ? null
+            : json["lessons_presentation_order"],
+        reviewsDisplaySrsIndicator:
+            json["reviews_display_srs_indicator"] == null
+                ? null
+                : json["reviews_display_srs_indicator"],
       );
 
   Map<String, dynamic> toJson() => {
-        "lessons_batch_size": lessonsBatchSize,
-        "lessons_autoplay_audio": lessonsAutoplayAudio,
-        "reviews_autoplay_audio": reviewsAutoplayAudio,
-        "lessons_presentation_order": lessonsPresentationOrder,
-        "reviews_display_srs_indicator": reviewsDisplaySrsIndicator,
+        "lessons_batch_size":
+            lessonsBatchSize == null ? null : lessonsBatchSize,
+        "lessons_autoplay_audio":
+            lessonsAutoplayAudio == null ? null : lessonsAutoplayAudio,
+        "reviews_autoplay_audio":
+            reviewsAutoplayAudio == null ? null : reviewsAutoplayAudio,
+        "lessons_presentation_order":
+            lessonsPresentationOrder == null ? null : lessonsPresentationOrder,
+        "reviews_display_srs_indicator": reviewsDisplaySrsIndicator == null
+            ? null
+            : reviewsDisplaySrsIndicator,
       };
 }
 
@@ -129,16 +165,18 @@ class WaniKaniUserDataSubscription {
 
   factory WaniKaniUserDataSubscription.fromJson(Map<String, dynamic> json) =>
       WaniKaniUserDataSubscription(
-        active: json["active"],
-        type: json["type"],
-        maxLevelGranted: json["max_level_granted"],
+        active: json["active"] == null ? null : json["active"],
+        type: json["type"] == null ? null : json["type"],
+        maxLevelGranted: json["max_level_granted"] == null
+            ? null
+            : json["max_level_granted"],
         periodEndsAt: json["period_ends_at"],
       );
 
   Map<String, dynamic> toJson() => {
-        "active": active,
-        "type": type,
-        "max_level_granted": maxLevelGranted,
+        "active": active == null ? null : active,
+        "type": type == null ? null : type,
+        "max_level_granted": maxLevelGranted == null ? null : maxLevelGranted,
         "period_ends_at": periodEndsAt,
       };
 }
