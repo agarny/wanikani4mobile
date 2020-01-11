@@ -159,6 +159,7 @@ InkWell currentlyAvailable(
           scaledText(
             '➤',
             style: TextStyle(
+              fontSize: Theme.of(context).textTheme.subhead.fontSize,
               color: Theme.of(context).accentColor,
             ),
           ),
