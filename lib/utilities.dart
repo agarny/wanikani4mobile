@@ -167,12 +167,9 @@ InkWell currentlyAvailable(
           SizedBox(
             width: space(context),
           ),
-          scaledText(
-            '➤',
-            style: TextStyle(
-              fontSize: Theme.of(context).textTheme.subhead.fontSize,
-              color: Theme.of(context).accentColor,
-            ),
+          Icon(
+            Icons.arrow_forward_ios,
+            color: Theme.of(context).accentColor,
           ),
         ],
       ),
