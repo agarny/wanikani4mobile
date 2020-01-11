@@ -58,11 +58,43 @@ double space(BuildContext context) {
 }
 
 double space2x(BuildContext context) {
-  return 2.0*space(context);
+  return 2.0 * space(context);
 }
 
 double space3x(BuildContext context) {
-  return 3.0*space(context);
+  return 3.0 * space(context);
+}
+
+Text scaledText(
+  String data, {
+  Key key,
+  TextStyle style,
+  StrutStyle strutStyle,
+  TextAlign textAlign,
+  TextDirection textDirection,
+  Locale locale,
+  bool softWrap,
+  TextOverflow overflow,
+  double textScaleFactor,
+  int maxLines,
+  String semanticsLabel,
+  TextWidthBasis textWidthBasis,
+}) {
+  return Text(
+    data,
+    key: key,
+    style: style,
+    strutStyle: strutStyle,
+    textAlign: textAlign,
+    textDirection: textDirection,
+    locale: locale,
+    softWrap: softWrap,
+    overflow: overflow,
+    textScaleFactor: 1.5 * (textScaleFactor ?? 1.0),
+    maxLines: maxLines,
+    semanticsLabel: semanticsLabel,
+    textWidthBasis: textWidthBasis,
+  );
 }
 
 Widget drawer(BuildContext context) {
@@ -91,7 +123,8 @@ Widget drawer(BuildContext context) {
           currentAccountPicture: CircleAvatar(
             backgroundImage: AssetImage(Logo),
           ),
-          accountName: Text('WaniKani for Mobile',
+          accountName: Text(
+            'WaniKani for Mobile',
             style: Theme.of(context).accentTextTheme.title,
           ),
           accountEmail: Text(

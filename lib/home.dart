@@ -76,7 +76,7 @@ class HomePageState extends State<HomePage> {
                               children: <Widget>[
                                 Container(
                                   padding: EdgeInsets.all(space(context)),
-                                  child: Text(
+                                  child: scaledText(
                                     'Currently Available',
                                     style: Theme.of(context).textTheme.title,
                                   ),
@@ -89,14 +89,14 @@ class HomePageState extends State<HomePage> {
                                     ),
                                     child: Row(
                                       children: <Widget>[
-                                        Text(
+                                        scaledText(
                                           'Lessons',
                                           style: Theme.of(context)
                                               .textTheme
                                               .subhead,
                                         ),
                                         Spacer(),
-                                        Text(
+                                        scaledText(
                                           WaniKani()
                                               .summary
                                               .data
@@ -113,7 +113,8 @@ class HomePageState extends State<HomePage> {
                                     ),
                                   ),
                                   onTap: () {
-                                    launch('https://wanikani.com/lesson/session');
+                                    launch(
+                                        'https://wanikani.com/lesson/session');
                                   },
                                 ),
                                 Divider(
@@ -127,13 +128,14 @@ class HomePageState extends State<HomePage> {
                                     ),
                                     child: Row(
                                       children: <Widget>[
-                                        Text(
+                                        scaledText(
                                           'Reviews',
-                                          style:
-                                              Theme.of(context).textTheme.subhead,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subhead,
                                         ),
                                         Spacer(),
-                                        Text(
+                                        scaledText(
                                           WaniKani()
                                               .summary
                                               .data
@@ -141,15 +143,17 @@ class HomePageState extends State<HomePage> {
                                               .subjectIds
                                               .length
                                               .toString(),
-                                          style:
-                                              Theme.of(context).textTheme.subhead,
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subhead,
                                           textAlign: TextAlign.right,
                                         ),
                                       ],
                                     ),
                                   ),
                                   onTap: () {
-                                    launch('https://wanikani.com/review/session');
+                                    launch(
+                                        'https://wanikani.com/review/session');
                                   },
                                 ),
                                 Divider(
