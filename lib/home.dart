@@ -76,89 +76,16 @@ class HomePageState extends State<HomePage> {
                               children: <Widget>[
                                 Container(
                                   padding: EdgeInsets.all(space(context)),
+                                  color: Theme.of(context).accentColor,
                                   child: scaledText(
                                     'Currently Available',
-                                    style: Theme.of(context).textTheme.title,
+                                    style: Theme.of(context).accentTextTheme.headline,
                                   ),
                                 ),
-                                InkWell(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                      left: space2x(context),
-                                      right: space2x(context),
-                                    ),
-                                    child: Row(
-                                      children: <Widget>[
-                                        scaledText(
-                                          'Lessons',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subhead,
-                                        ),
-                                        Spacer(),
-                                        scaledText(
-                                          WaniKani()
-                                              .summary
-                                              .data
-                                              .lessons[0]
-                                              .subjectIds
-                                              .length
-                                              .toString(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subhead,
-                                          textAlign: TextAlign.right,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  onTap: () {
-                                    launch(
-                                        'https://wanikani.com/lesson/session');
-                                  },
-                                ),
-                                Divider(
-                                  height: space(context),
-                                ),
-                                InkWell(
-                                  child: Padding(
-                                    padding: EdgeInsets.only(
-                                      left: space2x(context),
-                                      right: space2x(context),
-                                    ),
-                                    child: Row(
-                                      children: <Widget>[
-                                        scaledText(
-                                          'Reviews',
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subhead,
-                                        ),
-                                        Spacer(),
-                                        scaledText(
-                                          WaniKani()
-                                              .summary
-                                              .data
-                                              .reviews[0]
-                                              .subjectIds
-                                              .length
-                                              .toString(),
-                                          style: Theme.of(context)
-                                              .textTheme
-                                              .subhead,
-                                          textAlign: TextAlign.right,
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                  onTap: () {
-                                    launch(
-                                        'https://wanikani.com/review/session');
-                                  },
-                                ),
-                                Divider(
-                                  height: space(context),
-                                ),
+                                lessonsReviews(context, true),
+                                thinDivider(),
+                                lessonsReviews(context, false),
+                                thinDivider(),
                               ],
                             ),
                             onRefresh: () async {

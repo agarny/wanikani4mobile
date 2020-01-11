@@ -3,6 +3,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:wanikani4mobile/wanikani.dart';
 
 // Constants
 
@@ -90,10 +91,66 @@ Text scaledText(
     locale: locale,
     softWrap: softWrap,
     overflow: overflow,
-    textScaleFactor: 1.5 * (textScaleFactor ?? 1.0),
+    textScaleFactor: 1.25 * (textScaleFactor ?? 1.0),
     maxLines: maxLines,
     semanticsLabel: semanticsLabel,
     textWidthBasis: textWidthBasis,
+  );
+}
+
+Divider thinDivider() {
+  return Divider(
+    height: 1.0,
+  );
+}
+
+InkWell lessonsReviews(BuildContext context, bool lessons) {
+  return InkWell(
+    child: Padding(
+      padding: EdgeInsets.all(space2x(context)),
+      child: Row(
+        children: <Widget>[
+          scaledText(
+            lessons ? 'Lessons' : 'Reviews',
+            style: Theme.of(context).textTheme.subhead,
+          ),
+          Spacer(),
+          scaledText(
+            lessons
+                ? WaniKani()
+                    .summary
+                    .data
+                    .lessons[0]
+                    .subjectIds
+                    .length
+                    .toString()
+                : WaniKani()
+                    .summary
+                    .data
+                    .reviews[0]
+                    .subjectIds
+                    .length
+                    .toString(),
+            style: Theme.of(context).textTheme.subhead,
+            textAlign: TextAlign.right,
+          ),
+          SizedBox(
+            width: space(context),
+          ),
+          scaledText(
+            '➤',
+            style: TextStyle(
+              color: Theme.of(context).accentColor,
+            ),
+          ),
+        ],
+      ),
+    ),
+    onTap: () {
+      launch(lessons
+          ? 'https://wanikani.com/lesson/session'
+          : 'https://wanikani.com/review/session');
+    },
   );
 }
 
