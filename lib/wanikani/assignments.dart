@@ -43,7 +43,7 @@ class WaniKaniAssignments {
             dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
         "data": data == null
             ? null
-            : List<dynamic>.from(data.map((x) => x.toJson())),
+            : List<WaniKaniAssignmentsData>.from(data.map((x) => x.toJson())),
       };
 }
 
