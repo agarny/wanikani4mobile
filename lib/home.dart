@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
@@ -35,21 +36,17 @@ class HomePageState extends State<HomePage> {
                           backgroundImage: NetworkImage(
                               'https://www.gravatar.com/avatar/$hash.jpg?d=$_defaultGravatar'),
                         ),
-                        SizedBox(width: space(context)),
+                        SizedBox(width: space3x(context)),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
                               WaniKani().user.data.username,
-                              textScaleFactor: 1.25,
+                              style: Theme.of(context).accentTextTheme.headline,
                             ),
                             Text(
                               'Level ${WaniKani().user.data.level}',
-                              style: TextStyle(
-                                fontStyle: FontStyle.italic,
-                                color: Colors.white38,
-                              ),
-                              textScaleFactor: 0.75,
+                              style: Theme.of(context).accentTextTheme.caption,
                             ),
                           ],
                         ),
@@ -66,17 +63,98 @@ class HomePageState extends State<HomePage> {
             ),
             drawer: drawer(context),
             body: Container(
-                margin: EdgeInsets.all(space(context)),
                 child: (!WaniKani().initialized)
-                    ? Text('Please wait while we are retrieving your data...')
+                    ? Padding(
+                        padding: EdgeInsets.all(space(context)),
+                        child: Text(
+                            'Please wait while we are retrieving your data...'),
+                      )
                     : (WaniKani().hasError)
                         ? Text(WaniKani().errorMessage)
                         : RefreshIndicator(
                             child: ListView(
                               children: <Widget>[
-                                Text(
-                                    'Number of lessons available: ${WaniKani().summary.data.lessons[0].subjectIds.length}.\n'
-                                    'Number of reviews available: ${WaniKani().summary.data.reviews[0].subjectIds.length}.'),
+                                Container(
+                                  padding: EdgeInsets.all(space(context)),
+                                  child: Text(
+                                    'Currently Available',
+                                    style: Theme.of(context).textTheme.title,
+                                  ),
+                                ),
+                                InkWell(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      left: space2x(context),
+                                      right: space2x(context),
+                                    ),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text(
+                                          'Lessons',
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subhead,
+                                        ),
+                                        Spacer(),
+                                        Text(
+                                          WaniKani()
+                                              .summary
+                                              .data
+                                              .lessons[0]
+                                              .subjectIds
+                                              .length
+                                              .toString(),
+                                          style: Theme.of(context)
+                                              .textTheme
+                                              .subhead,
+                                          textAlign: TextAlign.right,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    launch('https://wanikani.com/lesson/session');
+                                  },
+                                ),
+                                Divider(
+                                  height: space(context),
+                                ),
+                                InkWell(
+                                  child: Padding(
+                                    padding: EdgeInsets.only(
+                                      left: space2x(context),
+                                      right: space2x(context),
+                                    ),
+                                    child: Row(
+                                      children: <Widget>[
+                                        Text(
+                                          'Reviews',
+                                          style:
+                                              Theme.of(context).textTheme.subhead,
+                                        ),
+                                        Spacer(),
+                                        Text(
+                                          WaniKani()
+                                              .summary
+                                              .data
+                                              .reviews[0]
+                                              .subjectIds
+                                              .length
+                                              .toString(),
+                                          style:
+                                              Theme.of(context).textTheme.subhead,
+                                          textAlign: TextAlign.right,
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                  onTap: () {
+                                    launch('https://wanikani.com/review/session');
+                                  },
+                                ),
+                                Divider(
+                                  height: space(context),
+                                ),
                               ],
                             ),
                             onRefresh: () async {

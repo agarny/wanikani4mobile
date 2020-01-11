@@ -57,6 +57,14 @@ double space(BuildContext context) {
       Theme.of(context).textTheme.caption.fontSize;
 }
 
+double space2x(BuildContext context) {
+  return 2.0*space(context);
+}
+
+double space3x(BuildContext context) {
+  return 3.0*space(context);
+}
+
 Widget drawer(BuildContext context) {
   Widget drawerItem({IconData icon, String text, GestureTapCallback onTap}) {
     return ListTile(
@@ -83,14 +91,12 @@ Widget drawer(BuildContext context) {
           currentAccountPicture: CircleAvatar(
             backgroundImage: AssetImage(Logo),
           ),
-          accountName: Text('WaniKani for Mobile'),
+          accountName: Text('WaniKani for Mobile',
+            style: Theme.of(context).accentTextTheme.title,
+          ),
           accountEmail: Text(
             'by Alan Garny',
-            style: TextStyle(
-              fontSize: 12,
-              fontStyle: FontStyle.italic,
-              color: Colors.white38,
-            ),
+            style: Theme.of(context).accentTextTheme.caption,
           ),
         ),
         drawerItem(
