@@ -5,10 +5,10 @@ import 'package:webview_flutter/webview_flutter.dart';
 
 class LogInPage extends StatefulWidget {
   @override
-  LogInPageState createState() => LogInPageState();
+  _LogInPageState createState() => _LogInPageState();
 }
 
-class LogInPageState extends State<LogInPage> {
+class _LogInPageState extends State<LogInPage> {
   static const _waniKaniApiTokenDescription = 'WaniKani for Mobile (read-only)';
   static const _waniKaniSettingsUrl = 'https://www.wanikani.com/settings';
   static const _waniKaniAccountUrl = _waniKaniSettingsUrl + '/account';

@@ -45,10 +45,10 @@ class Settings extends ChangeNotifier {
 
 class SettingsPage extends StatefulWidget {
   @override
-  SettingsPageState createState() => SettingsPageState();
+  _SettingsPageState createState() => _SettingsPageState();
 }
 
-class SettingsPageState extends State<SettingsPage> {
+class _SettingsPageState extends State<SettingsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(

@@ -11,8 +11,8 @@ import 'package:wanikani4mobile/splash_screen.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
 
-class NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
-  NoAnimationMaterialPageRoute({WidgetBuilder builder})
+class _NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
+  _NoAnimationMaterialPageRoute({WidgetBuilder builder})
       : super(builder: builder);
 
   @override
@@ -68,7 +68,7 @@ class _Application extends StatelessWidget {
           return MaterialPageRoute(builder: (_) => widget);
         }
 
-        return NoAnimationMaterialPageRoute(builder: (_) => widget);
+        return _NoAnimationMaterialPageRoute(builder: (_) => widget);
       },
     );
   }
@@ -76,7 +76,7 @@ class _Application extends StatelessWidget {
 
 class Application extends StatefulWidget {
   @override
-  ApplicationState createState() => ApplicationState();
+  _ApplicationState createState() => _ApplicationState();
 
   static void updateBadge(int nbOfReviews) {
     FlutterAppBadger.updateBadgeCount(nbOfReviews);
@@ -110,7 +110,7 @@ class Application extends StatefulWidget {
   }
 }
 
-class ApplicationState extends State<Application> {
+class _ApplicationState extends State<Application> {
   @override
   initState() {
     super.initState();
