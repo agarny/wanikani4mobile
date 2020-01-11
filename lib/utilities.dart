@@ -104,19 +104,38 @@ Divider thinDivider() {
   );
 }
 
-InkWell lessonsReviews(BuildContext context, bool lessons) {
+Container header(BuildContext context, String title) {
+  return Container(
+    padding: EdgeInsets.all(space(context)),
+    color: Theme.of(context).accentColor,
+    child: scaledText(
+      title,
+      style: Theme.of(context).accentTextTheme.headline,
+    ),
+  );
+}
+
+enum CurrentlyAvailable {
+  Lessons,
+  Reviews,
+}
+
+InkWell currentlyAvailable(
+    BuildContext context, CurrentlyAvailable currentlyAvailable) {
   return InkWell(
     child: Padding(
       padding: EdgeInsets.all(space2x(context)),
       child: Row(
         children: <Widget>[
           scaledText(
-            lessons ? 'Lessons' : 'Reviews',
+            (currentlyAvailable == CurrentlyAvailable.Lessons)
+                ? 'Lessons'
+                : 'Reviews',
             style: Theme.of(context).textTheme.subhead,
           ),
           Spacer(),
           scaledText(
-            lessons
+            (currentlyAvailable == CurrentlyAvailable.Lessons)
                 ? WaniKani()
                     .summary
                     .data
@@ -147,10 +166,36 @@ InkWell lessonsReviews(BuildContext context, bool lessons) {
       ),
     ),
     onTap: () {
-      launch(lessons
+      launch((currentlyAvailable == CurrentlyAvailable.Lessons)
           ? 'https://wanikani.com/lesson/session'
           : 'https://wanikani.com/review/session');
     },
+  );
+}
+
+enum UpcomingReviews {
+  NextHour,
+  NextDay,
+  All,
+}
+
+InkWell upcomingReviews(BuildContext context, UpcomingReviews upcomingReviews) {
+  return InkWell(
+    child: Padding(
+      padding: EdgeInsets.all(space2x(context)),
+      child: Row(
+        children: <Widget>[
+          scaledText(
+            (upcomingReviews == UpcomingReviews.NextHour)
+                ? 'Within the next hour'
+                : (upcomingReviews == UpcomingReviews.NextDay)
+                    ? 'Within the next day'
+                    : 'All of them',
+            style: Theme.of(context).textTheme.subhead,
+          ),
+        ],
+      ),
+    ),
   );
 }
 

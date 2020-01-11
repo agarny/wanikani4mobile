@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
@@ -74,17 +73,18 @@ class HomePageState extends State<HomePage> {
                         : RefreshIndicator(
                             child: ListView(
                               children: <Widget>[
-                                Container(
-                                  padding: EdgeInsets.all(space(context)),
-                                  color: Theme.of(context).accentColor,
-                                  child: scaledText(
-                                    'Currently Available',
-                                    style: Theme.of(context).accentTextTheme.headline,
-                                  ),
-                                ),
-                                lessonsReviews(context, true),
+                                header(context, 'Currently Available'),
+                                currentlyAvailable(
+                                    context, CurrentlyAvailable.Lessons),
                                 thinDivider(),
-                                lessonsReviews(context, false),
+                                currentlyAvailable(
+                                    context, CurrentlyAvailable.Reviews),
+                                header(context, 'Upcoming Reviews'),
+                                upcomingReviews(context, UpcomingReviews.NextHour),
+                                thinDivider(),
+                                upcomingReviews(context, UpcomingReviews.NextDay),
+                                thinDivider(),
+                                upcomingReviews(context, UpcomingReviews.All),
                                 thinDivider(),
                               ],
                             ),
