@@ -19,20 +19,24 @@ class WaniKaniStudyMaterials {
 
   factory WaniKaniStudyMaterials.fromJson(Map<String, dynamic> json) =>
       WaniKaniStudyMaterials(
-        object: json["object"],
-        url: json["url"],
-        pages: WaniKaniPages.fromJson(json["pages"]),
-        totalCount: json["total_count"],
+        object: json["object"] == null ? null : json["object"],
+        url: json["url"] == null ? null : json["url"],
+        pages: json["pages"] == null
+            ? null
+            : WaniKaniPages.fromJson(json["pages"]),
+        totalCount: json["total_count"] == null ? null : json["total_count"],
         dataUpdatedAt: json["data_updated_at"],
-        data: List<dynamic>.from(json["data"].map((x) => x)),
+        data: json["data"] == null
+            ? null
+            : List<dynamic>.from(json["data"].map((x) => x)),
       );
 
   Map<String, dynamic> toJson() => {
-        "object": object,
-        "url": url,
-        "pages": pages.toJson(),
-        "total_count": totalCount,
+        "object": object == null ? null : object,
+        "url": url == null ? null : url,
+        "pages": pages == null ? null : pages.toJson(),
+        "total_count": totalCount == null ? null : totalCount,
         "data_updated_at": dataUpdatedAt,
-        "data": List<dynamic>.from(data.map((x) => x)),
+        "data": data == null ? null : List<dynamic>.from(data.map((x) => x)),
       };
 }
