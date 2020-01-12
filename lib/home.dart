@@ -80,9 +80,11 @@ class _HomePageState extends State<HomePage> {
                                 currentlyAvailable(
                                     context, CurrentlyAvailable.Reviews),
                                 header(context, 'Upcoming Reviews'),
-                                upcomingReviews(context, UpcomingReviews.NextHour),
+                                upcomingReviews(
+                                    context, UpcomingReviews.NextHour),
                                 thinDivider(),
-                                upcomingReviews(context, UpcomingReviews.NextDay),
+                                upcomingReviews(
+                                    context, UpcomingReviews.NextDay),
                                 thinDivider(),
                                 upcomingReviews(context, UpcomingReviews.All),
                                 thinDivider(),
