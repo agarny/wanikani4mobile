@@ -11,6 +11,58 @@ import 'package:wanikani4mobile/splash_screen.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
 
+const Color _primaryColor = Color(0xFF0175C2);
+const Color _secondaryColor = Color(0xFF13B9FD);
+
+final ColorScheme _colorScheme = ColorScheme.light().copyWith(
+  primary: _primaryColor,
+  secondary: _secondaryColor,
+);
+
+final ThemeData _theme = ThemeData(
+  brightness: Brightness.light,
+  accentColorBrightness: Brightness.dark,
+  colorScheme: _colorScheme,
+  primaryColor: _primaryColor,
+  buttonColor: _primaryColor,
+  indicatorColor: Colors.white,
+  toggleableActiveColor: Color(0xFF1E88E5),
+  splashColor: Colors.white24,
+  splashFactory: InkRipple.splashFactory,
+  accentColor: _secondaryColor,
+  canvasColor: Colors.white,
+  scaffoldBackgroundColor: Colors.white,
+  backgroundColor: Colors.white,
+  errorColor: Color(0xFFB00020),
+  buttonTheme: ButtonThemeData(
+    colorScheme: _colorScheme,
+    textTheme: ButtonTextTheme.primary,
+  ),
+);
+
+final ThemeData _darkTheme = ThemeData(
+  brightness: Brightness.dark,
+  accentColorBrightness: Brightness.dark,
+  primaryColor: _primaryColor,
+  primaryColorDark: Color(0xFF0050a0),
+  primaryColorLight: _secondaryColor,
+  buttonColor: _primaryColor,
+  indicatorColor: Colors.white,
+  toggleableActiveColor: Color(0xFF6997DF),
+  accentColor: _secondaryColor,
+  canvasColor: Color(0xFF202124),
+  scaffoldBackgroundColor: Color(0xFF202124),
+  backgroundColor: Color(0xFF202124),
+  errorColor: Color(0xFFB00020),
+  buttonTheme: ButtonThemeData(
+    colorScheme: ColorScheme.dark().copyWith(
+      primary: _primaryColor,
+      secondary: _secondaryColor,
+    ),
+    textTheme: ButtonTextTheme.primary,
+  ),
+);
+
 class _NoAnimationMaterialPageRoute<T> extends MaterialPageRoute<T> {
   _NoAnimationMaterialPageRoute({WidgetBuilder builder})
       : super(builder: builder);
@@ -26,23 +78,8 @@ class _Application extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: MaterialColor(0xFF294DDC, <int, Color>{
-          50: Color.fromRGBO(41, 77, 220, 0.1),
-          100: Color.fromRGBO(41, 77, 220, 0.2),
-          200: Color.fromRGBO(41, 77, 220, 0.3),
-          300: Color.fromRGBO(41, 77, 220, 0.4),
-          400: Color.fromRGBO(41, 77, 220, 0.5),
-          500: Color.fromRGBO(41, 77, 220, 0.6),
-          600: Color.fromRGBO(41, 77, 220, 0.7),
-          700: Color.fromRGBO(41, 77, 220, 0.8),
-          800: Color.fromRGBO(41, 77, 220, 0.9),
-          900: Color.fromRGBO(41, 77, 220, 1.0),
-        }),
-        iconTheme: IconThemeData(
-          color: Colors.white,
-        ),
-      ),
+      theme: _theme,
+      darkTheme: _darkTheme,
       title: 'WaniKani for Mobile',
       home: Settings().apiToken.isEmpty ? LogInPage() : HomePage(),
       navigatorKey: Navigation().navigatorKey,

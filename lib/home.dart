@@ -73,6 +73,7 @@ class _HomePageState extends State<HomePage> {
                         : RefreshIndicator(
                             child: ListView(
                               children: <Widget>[
+                                thinDivider(),
                                 header(context, 'Currently Available'),
                                 currentlyAvailable(
                                     context, CurrentlyAvailable.Lessons),

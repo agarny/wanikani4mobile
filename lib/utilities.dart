@@ -86,7 +86,7 @@ Divider thinDivider() {
 Container header(BuildContext context, String title) {
   return Container(
     padding: EdgeInsets.all(space(context)),
-    color: Theme.of(context).accentColor,
+    color: Theme.of(context).primaryColor,
     child: Text(
       title,
       style: Theme.of(context).accentTextTheme.headline,
@@ -137,7 +137,7 @@ InkWell currentlyAvailable(
           ),
           Icon(
             Icons.arrow_forward_ios,
-            color: Theme.of(context).accentColor,
+            color: Theme.of(context).primaryColor,
           ),
         ],
       ),
