@@ -77,38 +77,6 @@ double space3x(BuildContext context) {
   return 3.0 * space(context);
 }
 
-Text scaledText(
-  String data, {
-  Key key,
-  TextStyle style,
-  StrutStyle strutStyle,
-  TextAlign textAlign,
-  TextDirection textDirection,
-  Locale locale,
-  bool softWrap,
-  TextOverflow overflow,
-  double textScaleFactor,
-  int maxLines,
-  String semanticsLabel,
-  TextWidthBasis textWidthBasis,
-}) {
-  return Text(
-    data,
-    key: key,
-    style: style,
-    strutStyle: strutStyle,
-    textAlign: textAlign,
-    textDirection: textDirection,
-    locale: locale,
-    softWrap: softWrap,
-    overflow: overflow,
-    textScaleFactor: 1.25 * (textScaleFactor ?? 1.0),
-    maxLines: maxLines,
-    semanticsLabel: semanticsLabel,
-    textWidthBasis: textWidthBasis,
-  );
-}
-
 Divider thinDivider() {
   return Divider(
     height: 1.0,
@@ -119,7 +87,7 @@ Container header(BuildContext context, String title) {
   return Container(
     padding: EdgeInsets.all(space(context)),
     color: Theme.of(context).accentColor,
-    child: scaledText(
+    child: Text(
       title,
       style: Theme.of(context).accentTextTheme.headline,
     ),
@@ -138,14 +106,14 @@ InkWell currentlyAvailable(
       padding: EdgeInsets.all(space2x(context)),
       child: Row(
         children: <Widget>[
-          scaledText(
+          Text(
             (currentlyAvailable == CurrentlyAvailable.Lessons)
                 ? 'Lessons'
                 : 'Reviews',
             style: Theme.of(context).textTheme.subhead,
           ),
           Spacer(),
-          scaledText(
+          Text(
             (currentlyAvailable == CurrentlyAvailable.Lessons)
                 ? WaniKani()
                     .summary
@@ -194,7 +162,7 @@ InkWell upcomingReviews(BuildContext context, UpcomingReviews upcomingReviews) {
       padding: EdgeInsets.all(space2x(context)),
       child: Row(
         children: <Widget>[
-          scaledText(
+          Text(
             (upcomingReviews == UpcomingReviews.NextHour)
                 ? 'Within the next hour'
                 : (upcomingReviews == UpcomingReviews.NextDay)
