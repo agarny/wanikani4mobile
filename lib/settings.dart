@@ -59,9 +59,9 @@ class _SettingsPageState extends State<SettingsPage> {
         alignment: MainAxisAlignment.spaceEvenly,
         children: <Widget>[
           RaisedButton.icon(
-            icon: Icon(
-              Icons.eject,
-              size: Theme.of(context).textTheme.subhead.fontSize,
+            icon: Image.asset(
+              LogOut,
+              width: Theme.of(context).textTheme.subhead.fontSize,
             ),
             label: Text('Log out'),
             onPressed: () {

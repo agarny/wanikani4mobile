@@ -7,6 +7,7 @@ import 'package:url_launcher/url_launcher.dart';
 // Constants
 
 const Logo = 'res/logo.png';
+const LogOut = 'res/logout.png';
 
 const HomeRoute = 'Home';
 const LogInRoute = 'LogIn';
