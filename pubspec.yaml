@@ -36,8 +36,8 @@ flutter:
 flutter_icons:
   # Note #1: run the following command to update the application icon:
   #          flutter pub run flutter_launcher_icons:main
-  # Note #2: for Android, temporarily make res/logo.png 256x256 pixels big and do what is described
-  #          at https://youtu.be/hpQenyqxTmw?t=346.
+  # Note #2: for Android, temporarily enlarge res/logo.png to 256x256 pixels big and do what is
+  #          described at https://youtu.be/hpQenyqxTmw?t=394 and scale the logo to 88%.
   android: true
   ios: true
   image_path: "res/logo.png"
