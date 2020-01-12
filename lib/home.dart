@@ -53,7 +53,6 @@ InkWell _currentlyAvailable(
                     .length
                     .toString(),
             style: Theme.of(context).textTheme.subhead,
-            textAlign: TextAlign.right,
           ),
           SizedBox(
             width: space(context),
@@ -104,9 +103,15 @@ InkWell _upcomingReviews(
           ),
           Spacer(),
           (upcomingReviews == _UpcomingReviews.NextHour)
-              ? Text('0')
+              ? Text(
+                  '0',
+                  style: Theme.of(context).textTheme.subhead,
+                )
               : (upcomingReviews == _UpcomingReviews.NextDay)
-                  ? Text('0')
+                  ? Text(
+                      '0',
+                      style: Theme.of(context).textTheme.subhead,
+                    )
                   : Icon(
                       Icons.keyboard_arrow_right,
                       color: Theme.of(context).disabledColor,
