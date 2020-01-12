@@ -6,6 +6,99 @@ import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
 
+Container _header(BuildContext context, String title) {
+  return Container(
+    padding: EdgeInsets.all(space(context)),
+    color: Theme.of(context).primaryColor,
+    child: Text(
+      title,
+      style: Theme.of(context).accentTextTheme.headline,
+    ),
+  );
+}
+
+enum _CurrentlyAvailable {
+  Lessons,
+  Reviews,
+}
+
+InkWell _currentlyAvailable(
+    BuildContext context, _CurrentlyAvailable currentlyAvailable) {
+  return InkWell(
+    child: Padding(
+      padding: EdgeInsets.all(space2x(context)),
+      child: Row(
+        children: <Widget>[
+          Text(
+            (currentlyAvailable == _CurrentlyAvailable.Lessons)
+                ? 'Lessons'
+                : 'Reviews',
+            style: Theme.of(context).textTheme.subhead,
+          ),
+          Spacer(),
+          Text(
+            (currentlyAvailable == _CurrentlyAvailable.Lessons)
+                ? WaniKani()
+                .summary
+                .data
+                .lessons[0]
+                .subjectIds
+                .length
+                .toString()
+                : WaniKani()
+                .summary
+                .data
+                .reviews[0]
+                .subjectIds
+                .length
+                .toString(),
+            style: Theme.of(context).textTheme.subhead,
+            textAlign: TextAlign.right,
+          ),
+          SizedBox(
+            width: space(context),
+          ),
+          Icon(
+            Icons.arrow_forward_ios,
+            color: Theme.of(context).primaryColor,
+          ),
+        ],
+      ),
+    ),
+    onTap: () {
+      open((currentlyAvailable == _CurrentlyAvailable.Lessons)
+          ? 'https://wanikani.com/lesson/session'
+          : 'https://wanikani.com/review/session');
+    },
+  );
+}
+
+enum _UpcomingReviews {
+  NextHour,
+  NextDay,
+  All,
+}
+
+InkWell _upcomingReviews(BuildContext context, _UpcomingReviews upcomingReviews) {
+  return InkWell(
+    child: Padding(
+      padding: EdgeInsets.all(space2x(context)),
+      child: Row(
+        children: <Widget>[
+          Text(
+            (upcomingReviews == _UpcomingReviews.NextHour)
+                ? 'Within the next hour'
+                : (upcomingReviews == _UpcomingReviews.NextDay)
+                ? 'Within the next day'
+                : 'All of them',
+            style: Theme.of(context).textTheme.subhead,
+          ),
+        ],
+      ),
+    ),
+  );
+}
+
 class HomePage extends StatefulWidget {
   @override
   _HomePageState createState() => _HomePageState();
@@ -74,20 +167,20 @@ class _HomePageState extends State<HomePage> {
                             child: ListView(
                               children: <Widget>[
                                 thinDivider(),
-                                header(context, 'Currently Available'),
-                                currentlyAvailable(
-                                    context, CurrentlyAvailable.Lessons),
+                                _header(context, 'Currently Available'),
+                                _currentlyAvailable(
+                                    context, _CurrentlyAvailable.Lessons),
                                 thinDivider(),
-                                currentlyAvailable(
-                                    context, CurrentlyAvailable.Reviews),
-                                header(context, 'Upcoming Reviews'),
-                                upcomingReviews(
-                                    context, UpcomingReviews.NextHour),
+                                _currentlyAvailable(
+                                    context, _CurrentlyAvailable.Reviews),
+                                _header(context, 'Upcoming Reviews'),
+                                _upcomingReviews(
+                                    context, _UpcomingReviews.NextHour),
                                 thinDivider(),
-                                upcomingReviews(
-                                    context, UpcomingReviews.NextDay),
+                                _upcomingReviews(
+                                    context, _UpcomingReviews.NextDay),
                                 thinDivider(),
-                                upcomingReviews(context, UpcomingReviews.All),
+                                _upcomingReviews(context, _UpcomingReviews.All),
                                 thinDivider(),
                               ],
                             ),
