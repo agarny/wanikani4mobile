@@ -12,7 +12,7 @@ Container _header(BuildContext context, String title) {
     color: Theme.of(context).primaryColor,
     child: Text(
       title,
-      style: Theme.of(context).accentTextTheme.headline,
+      style: Theme.of(context).accentTextTheme.body1,
     ),
   );
 }
@@ -39,19 +39,19 @@ InkWell _currentlyAvailable(
           Text(
             (currentlyAvailable == _CurrentlyAvailable.Lessons)
                 ? WaniKani()
-                .summary
-                .data
-                .lessons[0]
-                .subjectIds
-                .length
-                .toString()
+                    .summary
+                    .data
+                    .lessons[0]
+                    .subjectIds
+                    .length
+                    .toString()
                 : WaniKani()
-                .summary
-                .data
-                .reviews[0]
-                .subjectIds
-                .length
-                .toString(),
+                    .summary
+                    .data
+                    .reviews[0]
+                    .subjectIds
+                    .length
+                    .toString(),
             style: Theme.of(context).textTheme.subhead,
             textAlign: TextAlign.right,
           ),
@@ -59,8 +59,8 @@ InkWell _currentlyAvailable(
             width: space(context),
           ),
           Icon(
-            Icons.arrow_forward_ios,
-            color: Theme.of(context).primaryColor,
+            Icons.keyboard_arrow_right,
+            color: Theme.of(context).disabledColor,
           ),
         ],
       ),
@@ -79,20 +79,38 @@ enum _UpcomingReviews {
   All,
 }
 
-InkWell _upcomingReviews(BuildContext context, _UpcomingReviews upcomingReviews) {
+InkWell _upcomingReviews(
+    BuildContext context, _UpcomingReviews upcomingReviews) {
   return InkWell(
     child: Padding(
-      padding: EdgeInsets.all(space2x(context)),
+      padding: EdgeInsets.only(
+        top: space2x(context),
+        left: space2x(context),
+        bottom: space2x(context),
+        right: ((upcomingReviews == _UpcomingReviews.NextHour) ||
+                (upcomingReviews == _UpcomingReviews.NextDay))
+            ? space3x(context)
+            : space2x(context),
+      ),
       child: Row(
         children: <Widget>[
           Text(
             (upcomingReviews == _UpcomingReviews.NextHour)
                 ? 'Within the next hour'
                 : (upcomingReviews == _UpcomingReviews.NextDay)
-                ? 'Within the next day'
-                : 'All of them',
+                    ? 'Within the next day'
+                    : 'All of them',
             style: Theme.of(context).textTheme.subhead,
           ),
+          Spacer(),
+          (upcomingReviews == _UpcomingReviews.NextHour)
+              ? Text('0')
+              : (upcomingReviews == _UpcomingReviews.NextDay)
+                  ? Text('0')
+                  : Icon(
+                      Icons.keyboard_arrow_right,
+                      color: Theme.of(context).disabledColor,
+                    ),
         ],
       ),
     ),
@@ -167,13 +185,13 @@ class _HomePageState extends State<HomePage> {
                             child: ListView(
                               children: <Widget>[
                                 thinDivider(),
-                                _header(context, 'Currently Available'),
+                                _header(context, 'CURRENTLY AVAILABLE'),
                                 _currentlyAvailable(
                                     context, _CurrentlyAvailable.Lessons),
                                 thinDivider(),
                                 _currentlyAvailable(
                                     context, _CurrentlyAvailable.Reviews),
-                                _header(context, 'Upcoming Reviews'),
+                                _header(context, 'UPCOMING REVIEWS'),
                                 _upcomingReviews(
                                     context, _UpcomingReviews.NextHour),
                                 thinDivider(),
