@@ -138,12 +138,16 @@ class Application extends StatefulWidget {
     }
   }
 
-  static void reset() {
+  static void reset({bool resetAll = false}) {
     WaniKani().reset();
 
     FlutterAppBadger.removeBadge();
 
     FlutterLocalNotificationsPlugin().cancelAll();
+
+    if (resetAll) {
+      Settings().reset();
+    }
   }
 }
 

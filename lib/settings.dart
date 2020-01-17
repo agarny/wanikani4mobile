@@ -36,10 +36,8 @@ class Settings extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<bool> reset() {
-    Application.reset();
-
-    return _prefs.clear();
+  Future<void> reset() async {
+    _prefs.clear().then((_) {});
   }
 }
 
@@ -65,9 +63,9 @@ class _SettingsPageState extends State<SettingsPage> {
             ),
             label: Text('Log out'),
             onPressed: () {
-              Settings().reset().then((_) {
-                Navigation().navigateTo(LogInRoute);
-              });
+              Application.reset(resetAll: true);
+
+              Navigation().navigateTo(LogInRoute);
             },
           ),
         ],
