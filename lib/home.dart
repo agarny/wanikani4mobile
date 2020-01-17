@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:wanikani4mobile/settings.dart';
@@ -136,7 +137,7 @@ class _HomePageState extends State<HomePage> {
                   : Row(
                       children: <Widget>[
                         CircleAvatar(
-                          backgroundImage: NetworkImage(
+                          backgroundImage: CachedNetworkImageProvider(
                               'https://www.gravatar.com/avatar/$hash.jpg?d=$_defaultGravatar'),
                         ),
                         SizedBox(width: space3x(context)),
