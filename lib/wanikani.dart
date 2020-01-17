@@ -122,7 +122,10 @@ class WaniKani extends BaseCacheManager {
       _instance.subjects = WaniKaniSubjects.fromJson(
           jsonDecode(await _fetchEndpoint('subjects')));
       _instance.summary =
-          WaniKaniSummary.fromJson(jsonDecode(await _fetchEndpoint('summary')));
+          WaniKaniSummary.fromJson(jsonDecode(await _fetchEndpoint(
+        'summary',
+        force: true,
+      )));
       _instance.user =
           WaniKaniUser.fromJson(jsonDecode(await _fetchEndpoint('user')));
 
