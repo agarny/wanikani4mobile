@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wanikani4mobile/cache.dart';
 import 'package:wanikani4mobile/home.dart';
 import 'package:wanikani4mobile/log_in.dart';
 import 'package:wanikani4mobile/settings.dart';
@@ -147,6 +148,7 @@ class Application extends StatefulWidget {
 
     if (resetAll) {
       Settings().reset();
+      Cache().reset();
     }
   }
 }
@@ -174,6 +176,7 @@ class _ApplicationState extends State<Application> {
           (BuildContext context, AsyncSnapshot<SharedPreferences> snapshot) {
         if (snapshot.hasData) {
           Settings.init(snapshot.data);
+          Cache.init(snapshot.data);
 
           return _Application();
         }

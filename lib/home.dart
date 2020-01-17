@@ -38,24 +38,8 @@ InkWell _currentlyAvailable(
           Spacer(),
           Text(
             (currentlyAvailable == _CurrentlyAvailable.Lessons)
-                ? WaniKani().initialized
-                    ? WaniKani()
-                        .summary
-                        .data
-                        .lessons[0]
-                        .subjectIds
-                        .length
-                        .toString()
-                    : '0'
-                : WaniKani().initialized
-                    ? WaniKani()
-                        .summary
-                        .data
-                        .reviews[0]
-                        .subjectIds
-                        .length
-                        .toString()
-                    : '0',
+                ? WaniKani().lessonsAvailable()
+                : WaniKani().reviewsAvailable(),
             style: Theme.of(context).textTheme.subhead,
           ),
           SizedBox(

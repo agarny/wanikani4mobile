@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:path/path.dart' as path;
 import 'package:path_provider/path_provider.dart';
 import 'package:wanikani4mobile/application.dart';
+import 'package:wanikani4mobile/cache.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/wanikani/assignments.dart';
 import 'package:wanikani4mobile/wanikani/level_progressions.dart';
@@ -171,9 +172,26 @@ class WaniKani extends BaseCacheManager {
     if (hasError) {
       Application.reset();
     } else {
+      Cache().lessonsAvailable =
+          WaniKani().summary.data.lessons[0].subjectIds.length.toString();
+      Cache().reviewsAvailable =
+          WaniKani().summary.data.reviews[0].subjectIds.length.toString();
+
       Application.updateBadge(summary.data.reviews[0].subjectIds.length);
     }
 
     return _instance;
+  }
+
+  String lessonsAvailable() {
+    return WaniKani().initialized
+        ? WaniKani().summary.data.lessons[0].subjectIds.length.toString()
+        : Cache().lessonsAvailable;
+  }
+
+  String reviewsAvailable() {
+    return WaniKani().initialized
+        ? WaniKani().summary.data.reviews[0].subjectIds.length.toString()
+        : Cache().reviewsAvailable;
   }
 }
