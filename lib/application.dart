@@ -11,7 +11,7 @@ import 'package:wanikani4mobile/splash_screen.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
 
-const Color _primaryColor = Color(0xFF0175C2);
+const Color _primaryColor = Color(0xFF1975BF);
 const Color _secondaryColor = Color(0xFF13B9FD);
 
 final ColorScheme _colorScheme = ColorScheme.light().copyWith(
