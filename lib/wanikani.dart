@@ -34,7 +34,7 @@ class WaniKani extends BaseCacheManager {
   WaniKaniSubjects subjects;
   WaniKaniSummary summary;
   WaniKaniUser user;
-  bool hasError;
+  bool hasError = false;
   String errorMessage;
 
   factory WaniKani() {

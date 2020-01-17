@@ -38,20 +38,24 @@ InkWell _currentlyAvailable(
           Spacer(),
           Text(
             (currentlyAvailable == _CurrentlyAvailable.Lessons)
-                ? WaniKani()
-                    .summary
-                    .data
-                    .lessons[0]
-                    .subjectIds
-                    .length
-                    .toString()
-                : WaniKani()
-                    .summary
-                    .data
-                    .reviews[0]
-                    .subjectIds
-                    .length
-                    .toString(),
+                ? WaniKani().initialized
+                    ? WaniKani()
+                        .summary
+                        .data
+                        .lessons[0]
+                        .subjectIds
+                        .length
+                        .toString()
+                    : '0'
+                : WaniKani().initialized
+                    ? WaniKani()
+                        .summary
+                        .data
+                        .reviews[0]
+                        .subjectIds
+                        .length
+                        .toString()
+                    : '0',
             style: Theme.of(context).textTheme.subhead,
           ),
           SizedBox(
@@ -178,43 +182,36 @@ class _HomePageState extends State<HomePage> {
             ),
             drawer: drawer(context),
             body: Container(
-                child: (!WaniKani().initialized)
-                    ? Padding(
-                        padding: EdgeInsets.all(space(context)),
-                        child: Text(
-                            'Please wait while we are retrieving your data...'),
-                      )
-                    : (WaniKani().hasError)
-                        ? Text(WaniKani().errorMessage)
-                        : RefreshIndicator(
-                            child: ListView(
-                              children: <Widget>[
-                                thinDivider(),
-                                _header(context, 'CURRENTLY AVAILABLE'),
-                                _currentlyAvailable(
-                                    context, _CurrentlyAvailable.Lessons),
-                                thinDivider(),
-                                _currentlyAvailable(
-                                    context, _CurrentlyAvailable.Reviews),
-                                _header(context, 'UPCOMING REVIEWS'),
-                                _upcomingReviews(
-                                    context, _UpcomingReviews.NextHour),
-                                thinDivider(),
-                                _upcomingReviews(
-                                    context, _UpcomingReviews.NextDay),
-                                thinDivider(),
-                                _upcomingReviews(context, _UpcomingReviews.All),
-                                thinDivider(),
-                              ],
-                            ),
-                            onRefresh: () async {
-                              await WaniKani().fetch();
+                child: (WaniKani().hasError)
+                    ? Text(WaniKani().errorMessage)
+                    : RefreshIndicator(
+                        child: ListView(
+                          children: <Widget>[
+                            thinDivider(),
+                            _header(context, 'CURRENTLY AVAILABLE'),
+                            _currentlyAvailable(
+                                context, _CurrentlyAvailable.Lessons),
+                            thinDivider(),
+                            _currentlyAvailable(
+                                context, _CurrentlyAvailable.Reviews),
+                            _header(context, 'UPCOMING REVIEWS'),
+                            _upcomingReviews(
+                                context, _UpcomingReviews.NextHour),
+                            thinDivider(),
+                            _upcomingReviews(context, _UpcomingReviews.NextDay),
+                            thinDivider(),
+                            _upcomingReviews(context, _UpcomingReviews.All),
+                            thinDivider(),
+                          ],
+                        ),
+                        onRefresh: () async {
+                          await WaniKani().fetch();
 
-                              setState(() {});
+                          setState(() {});
 
-                              return;
-                            },
-                          )),
+                          return;
+                        },
+                      )),
           );
         });
   }
