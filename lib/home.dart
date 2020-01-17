@@ -131,7 +131,7 @@ class _HomePageState extends State<HomePage> {
             appBar: AppBar(
               automaticallyImplyLeading: false,
               titleSpacing: space(context),
-              title: (!WaniKani().initialized || WaniKani().hasError)
+              title: WaniKani().hasError
                   ? Text('WaniKani for Mobile')
                   : Row(
                       children: <Widget>[
@@ -144,11 +144,11 @@ class _HomePageState extends State<HomePage> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              WaniKani().user.data.username,
+                              WaniKani().userName(),
                               style: Theme.of(context).accentTextTheme.headline,
                             ),
                             Text(
-                              'Level ${WaniKani().user.data.level}',
+                              WaniKani().level(),
                               style: Theme.of(context).accentTextTheme.caption,
                             ),
                           ],

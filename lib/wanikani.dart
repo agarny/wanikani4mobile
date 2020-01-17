@@ -172,6 +172,8 @@ class WaniKani extends BaseCacheManager {
     if (hasError) {
       Application.reset();
     } else {
+      Cache().userName = WaniKani().user.data.username;
+      Cache().level = 'Level ${WaniKani().user.data.level}';
       Cache().lessonsAvailable =
           WaniKani().summary.data.lessons[0].subjectIds.length.toString();
       Cache().reviewsAvailable =
@@ -181,6 +183,18 @@ class WaniKani extends BaseCacheManager {
     }
 
     return _instance;
+  }
+
+  String userName() {
+    return WaniKani().initialized
+        ? WaniKani().user.data.username
+        : Cache().userName;
+  }
+
+  String level() {
+    return WaniKani().initialized
+        ? 'Level ${WaniKani().user.data.level}'
+        : Cache().level;
   }
 
   String lessonsAvailable() {
