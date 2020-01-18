@@ -92,7 +92,7 @@ class WaniKaniLevelProgressionsDataData {
   DateTime unlockedAt;
   DateTime startedAt;
   DateTime passedAt;
-  dynamic completedAt;
+  DateTime completedAt;
   DateTime abandonedAt;
 
   WaniKaniLevelProgressionsDataData({
@@ -121,7 +121,9 @@ class WaniKaniLevelProgressionsDataData {
         passedAt: json["passed_at"] == null
             ? null
             : DateTime.parse(json["passed_at"]),
-        completedAt: json["completed_at"],
+        completedAt: json["completed_at"] == null
+            ? null
+            : DateTime.parse(json["completed_at"]),
         abandonedAt: json["abandoned_at"] == null
             ? null
             : DateTime.parse(json["abandoned_at"]),
@@ -133,7 +135,8 @@ class WaniKaniLevelProgressionsDataData {
         "unlocked_at": unlockedAt == null ? null : unlockedAt.toIso8601String(),
         "started_at": startedAt == null ? null : startedAt.toIso8601String(),
         "passed_at": passedAt == null ? null : passedAt.toIso8601String(),
-        "completed_at": completedAt,
+        "completed_at":
+            completedAt == null ? null : completedAt.toIso8601String(),
         "abandoned_at":
             abandonedAt == null ? null : abandonedAt.toIso8601String(),
       };

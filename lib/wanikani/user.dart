@@ -140,7 +140,7 @@ class WaniKaniUserDataSubscription {
   bool active;
   String type;
   int maxLevelGranted;
-  dynamic periodEndsAt;
+  DateTime periodEndsAt;
 
   WaniKaniUserDataSubscription({
     this.active,
@@ -156,13 +156,16 @@ class WaniKaniUserDataSubscription {
         maxLevelGranted: json["max_level_granted"] == null
             ? null
             : json["max_level_granted"],
-        periodEndsAt: json["period_ends_at"],
+        periodEndsAt: json["period_ends_at"] == null
+            ? null
+            : DateTime.parse(json["period_ends_at"]),
       );
 
   Map<String, dynamic> toJson() => {
         "active": active == null ? null : active,
         "type": type == null ? null : type,
         "max_level_granted": maxLevelGranted == null ? null : maxLevelGranted,
-        "period_ends_at": periodEndsAt,
+        "period_ends_at":
+            periodEndsAt == null ? null : periodEndsAt.toIso8601String(),
       };
 }

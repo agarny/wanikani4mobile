@@ -14,7 +14,6 @@ import 'package:wanikani4mobile/wanikani/resets.dart';
 import 'package:wanikani4mobile/wanikani/review_statistics.dart';
 import 'package:wanikani4mobile/wanikani/reviews.dart';
 import 'package:wanikani4mobile/wanikani/srs_stages.dart';
-import 'package:wanikani4mobile/wanikani/study_materials.dart';
 import 'package:wanikani4mobile/wanikani/subjects.dart';
 import 'package:wanikani4mobile/wanikani/summary.dart';
 import 'package:wanikani4mobile/wanikani/user.dart';
@@ -31,7 +30,6 @@ class WaniKani extends BaseCacheManager {
   WaniKaniReviewStatistics reviewStatistics;
   WaniKaniReviews reviews;
   WaniKaniSrsStages srsStages;
-  WaniKaniStudyMaterials studyMaterials;
   WaniKaniSubjects subjects;
   WaniKaniSummary summary;
   WaniKaniUser user;
@@ -53,7 +51,6 @@ class WaniKani extends BaseCacheManager {
     reviewStatistics = WaniKaniReviewStatistics();
     reviews = WaniKaniReviews();
     srsStages = WaniKaniSrsStages();
-    studyMaterials = WaniKaniStudyMaterials();
     subjects = WaniKaniSubjects();
     summary = WaniKaniSummary();
     user = WaniKaniUser();
@@ -118,8 +115,6 @@ class WaniKani extends BaseCacheManager {
           WaniKaniReviews.fromJson(jsonDecode(await _fetchEndpoint('reviews')));
       _instance.srsStages = WaniKaniSrsStages.fromJson(
           jsonDecode(await _fetchEndpoint('srs_stages')));
-      _instance.studyMaterials = WaniKaniStudyMaterials.fromJson(
-          jsonDecode(await _fetchEndpoint('study_materials')));
       _instance.subjects = WaniKaniSubjects.fromJson(
           jsonDecode(await _fetchEndpoint('subjects')));
       _instance.summary =

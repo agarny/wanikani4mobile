@@ -97,7 +97,7 @@ class WaniKaniAssignmentsDataData {
   DateTime passedAt;
   DateTime burnedAt;
   DateTime availableAt;
-  dynamic resurrectedAt;
+  DateTime resurrectedAt;
   bool passed;
   bool hidden;
 
@@ -145,7 +145,9 @@ class WaniKaniAssignmentsDataData {
         availableAt: json["available_at"] == null
             ? null
             : DateTime.parse(json["available_at"]),
-        resurrectedAt: json["resurrected_at"],
+        resurrectedAt: json["resurrected_at"] == null
+            ? null
+            : DateTime.parse(json["resurrected_at"]),
         passed: json["passed"] == null ? null : json["passed"],
         hidden: json["hidden"] == null ? null : json["hidden"],
       );
@@ -165,7 +167,8 @@ class WaniKaniAssignmentsDataData {
         "burned_at": burnedAt == null ? null : burnedAt.toIso8601String(),
         "available_at":
             availableAt == null ? null : availableAt.toIso8601String(),
-        "resurrected_at": resurrectedAt,
+        "resurrected_at":
+            resurrectedAt == null ? null : resurrectedAt.toIso8601String(),
         "passed": passed == null ? null : passed,
         "hidden": hidden == null ? null : hidden,
       };

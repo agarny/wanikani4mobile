@@ -196,7 +196,7 @@ final objectValues =
 class WaniKaniPages {
   int perPage;
   String nextUrl;
-  dynamic previousUrl;
+  String previousUrl;
 
   WaniKaniPages({
     this.perPage,
@@ -207,13 +207,13 @@ class WaniKaniPages {
   factory WaniKaniPages.fromJson(Map<String, dynamic> json) => WaniKaniPages(
         perPage: json["per_page"] == null ? null : json["per_page"],
         nextUrl: json["next_url"] == null ? null : json["next_url"],
-        previousUrl: json["previous_url"],
+        previousUrl: json["previous_url"] == null ? null : json["previous_url"],
       );
 
   Map<String, dynamic> toJson() => {
         "per_page": perPage == null ? null : perPage,
         "next_url": nextUrl == null ? null : nextUrl,
-        "previous_url": previousUrl,
+        "previous_url": previousUrl == null ? null : previousUrl,
       };
 }
 
