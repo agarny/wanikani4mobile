@@ -38,8 +38,6 @@ class WaniKaniUserData {
   String profileUrl;
   DateTime startedAt;
   WaniKaniUserDataSubscription subscription;
-  bool subscribed;
-  int maxLevelGrantedBySubscription;
   DateTime currentVacationStartedAt;
   WaniKaniUserDataPreferences preferences;
 
@@ -50,8 +48,6 @@ class WaniKaniUserData {
     this.profileUrl,
     this.startedAt,
     this.subscription,
-    this.subscribed,
-    this.maxLevelGrantedBySubscription,
     this.currentVacationStartedAt,
     this.preferences,
   });
@@ -68,11 +64,6 @@ class WaniKaniUserData {
         subscription: json["subscription"] == null
             ? null
             : WaniKaniUserDataSubscription.fromJson(json["subscription"]),
-        subscribed: json["subscribed"] == null ? null : json["subscribed"],
-        maxLevelGrantedBySubscription:
-            json["max_level_granted_by_subscription"] == null
-                ? null
-                : json["max_level_granted_by_subscription"],
         currentVacationStartedAt: json["current_vacation_started_at"] == null
             ? null
             : DateTime.parse(json["current_vacation_started_at"]),
@@ -88,11 +79,6 @@ class WaniKaniUserData {
         "profile_url": profileUrl == null ? null : profileUrl,
         "started_at": startedAt == null ? null : startedAt.toIso8601String(),
         "subscription": subscription == null ? null : subscription.toJson(),
-        "subscribed": subscribed == null ? null : subscribed,
-        "max_level_granted_by_subscription":
-            maxLevelGrantedBySubscription == null
-                ? null
-                : maxLevelGrantedBySubscription,
         "current_vacation_started_at": currentVacationStartedAt == null
             ? null
             : currentVacationStartedAt.toIso8601String(),
