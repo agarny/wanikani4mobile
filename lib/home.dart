@@ -122,12 +122,11 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    var hash = md5.convert(utf8.encode(Settings().emailAddress)).toString();
+
     return FutureBuilder<WaniKani>(
         future: WaniKani().fetch(),
         builder: (context, snapshot) {
-          var hash =
-              md5.convert(utf8.encode(Settings().emailAddress)).toString();
-
           return Scaffold(
             appBar: AppBar(
               automaticallyImplyLeading: false,
