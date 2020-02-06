@@ -93,7 +93,9 @@ Widget drawer(BuildContext context) {
             color: Theme.of(context).primaryColor,
           ),
           Padding(
-            padding: EdgeInsets.only(left: space(context)),
+            padding: EdgeInsets.only(
+              left: space(context),
+            ),
             child: Text(text),
           ),
         ],
