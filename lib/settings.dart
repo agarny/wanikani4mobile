@@ -7,8 +7,8 @@ class Settings extends ChangeNotifier {
   static final Settings _instance = Settings._();
 
   SharedPreferences _prefs;
-  static const String _emailAddressPref = 'E-mail address';
-  static const String _apiTokenPref = 'API token';
+  static const _emailAddressPref = 'E-mail address';
+  static const _apiTokenPref = 'API token';
 
   factory Settings() {
     return _instance;

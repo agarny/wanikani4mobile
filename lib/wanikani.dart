@@ -18,6 +18,14 @@ import 'package:wanikani4mobile/wanikani/subjects.dart';
 import 'package:wanikani4mobile/wanikani/summary.dart';
 import 'package:wanikani4mobile/wanikani/user.dart';
 
+const WaniKaniApiTokenDescription = 'WaniKani for Mobile (read-only)';
+const WaniKaniSettingsUrl = 'https://www.wanikani.com/settings';
+const WaniKaniAccountUrl = WaniKaniSettingsUrl + '/account';
+const WaniKaniPersonalAccessTokensUrl =
+    WaniKaniSettingsUrl + '/personal_access_tokens';
+const WaniKaniNewPersonalAccessTokensUrl =
+    WaniKaniPersonalAccessTokensUrl + '/new';
+
 class WaniKani extends BaseCacheManager {
   static final WaniKani _instance = WaniKani._();
   static const _key = "WaniKaniCache";

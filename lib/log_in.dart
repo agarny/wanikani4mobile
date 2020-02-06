@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
+import 'package:wanikani4mobile/wanikani.dart';
 import 'package:webview_flutter/webview_flutter.dart';
 
 class LogInPage extends StatefulWidget {
@@ -9,13 +10,6 @@ class LogInPage extends StatefulWidget {
 }
 
 class _LogInPageState extends State<LogInPage> {
-  static const _waniKaniApiTokenDescription = 'WaniKani for Mobile (read-only)';
-  static const _waniKaniSettingsUrl = 'https://www.wanikani.com/settings';
-  static const _waniKaniAccountUrl = _waniKaniSettingsUrl + '/account';
-  static const _waniKaniPersonalAccessTokensUrl =
-      _waniKaniSettingsUrl + '/personal_access_tokens';
-  static const _waniKaniNewPersonalAccessTokensUrl =
-      _waniKaniPersonalAccessTokensUrl + '/new';
   WebViewController _controller;
 
   @override
@@ -36,7 +30,7 @@ class _LogInPageState extends State<LogInPage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 child: WebView(
-                  initialUrl: _waniKaniAccountUrl,
+                  initialUrl: WaniKaniAccountUrl,
                   javascriptMode: JavascriptMode.unrestricted,
                   onWebViewCreated: (WebViewController controller) {
                     _controller = controller;
@@ -44,19 +38,19 @@ class _LogInPageState extends State<LogInPage> {
                     _controller.clearCache();
                   },
                   onPageFinished: (String url) {
-                    if (url == _waniKaniAccountUrl) {
+                    if (url == WaniKaniAccountUrl) {
                       _controller
                           .evaluateJavascript(
                               'document.getElementById("user_email").value;')
                           .then((emailAddress) {
                         Settings().emailAddress = emailAddress;
 
-                        _controller.loadUrl(_waniKaniPersonalAccessTokensUrl);
+                        _controller.loadUrl(WaniKaniPersonalAccessTokensUrl);
                       });
-                    } else if (url == _waniKaniPersonalAccessTokensUrl) {
+                    } else if (url == WaniKaniPersonalAccessTokensUrl) {
                       _controller
                           .evaluateJavascript(
-                              '\$(".personal-access-token-description:contains(\'$_waniKaniApiTokenDescription\') ~ .personal-access-token-token > code:eq(0)").text().trim()'
+                              '\$(".personal-access-token-description:contains(\'$WaniKaniApiTokenDescription\') ~ .personal-access-token-token > code:eq(0)").text().trim()'
                               '|| \$(".personal-access-token-token > code:eq(0)").text().trim();')
                           .then((apiToken) {
                         if (apiToken.isEmpty) {
@@ -83,7 +77,7 @@ class _LogInPageState extends State<LogInPage> {
                           ).then((returnVal) {
                             if (returnVal == 'Yes') {
                               _controller
-                                  .loadUrl(_waniKaniNewPersonalAccessTokensUrl);
+                                  .loadUrl(WaniKaniNewPersonalAccessTokensUrl);
                             } else {
                               Navigation().navigateTo(LogInRoute);
                             }
@@ -94,7 +88,7 @@ class _LogInPageState extends State<LogInPage> {
                           Navigation().navigateTo(HomeRoute);
                         }
                       });
-                    } else if (url == _waniKaniNewPersonalAccessTokensUrl) {
+                    } else if (url == WaniKaniNewPersonalAccessTokensUrl) {
                       _controller
                           .evaluateJavascript(
                               'function parseHiddenInputs(index, element) {'
@@ -110,13 +104,13 @@ class _LogInPageState extends State<LogInPage> {
                               ''
                               '\$("input[type=\'hidden\']").each(parseHiddenInputs);'
                               'form.find("input[type=\'checkbox\']").each(parseCheckboxes);'
-                              'data["personal_access_token[description]"] = "$_waniKaniApiTokenDescription";'
+                              'data["personal_access_token[description]"] = "$WaniKaniApiTokenDescription";'
                               ''
                               '\$.post(form.attr("action"), data);'
                               ''
                               '"Return a string to make WebViewController.evaluateJavascript() happy."')
                           .then((_) {
-                        _controller.loadUrl(_waniKaniPersonalAccessTokensUrl);
+                        _controller.loadUrl(WaniKaniPersonalAccessTokensUrl);
                       });
                     }
                   },
