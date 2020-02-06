@@ -109,6 +109,26 @@ class WaniKani extends BaseCacheManager {
     }
   }
 
+  Future<WaniKani> _fetch() async {
+    try {
+      _instance.summary =
+          WaniKaniSummary.fromJson(jsonDecode(await _fetchEndpoint(
+        'summary',
+        force: true,
+      )));
+      _instance.user = WaniKaniUser.fromJson(jsonDecode(await _fetchEndpoint(
+        'user',
+        force: true,
+      )));
+
+      _instance.hasError = false;
+    } catch (e) {
+      _handleError(e);
+    }
+
+    return _instance;
+  }
+
   Future<WaniKani> _fetchAll() async {
     try {
       _instance.assignments = WaniKaniAssignments.fromJson(
@@ -130,22 +150,8 @@ class WaniKani extends BaseCacheManager {
         'summary',
         force: true,
       )));
-      _instance.user =
-          WaniKaniUser.fromJson(jsonDecode(await _fetchEndpoint('user')));
-
-      _instance.hasError = false;
-    } catch (e) {
-      _handleError(e);
-    }
-
-    return _instance;
-  }
-
-  Future<WaniKani> _fetchSummary() async {
-    try {
-      _instance.summary =
-          WaniKaniSummary.fromJson(jsonDecode(await _fetchEndpoint(
-        'summary',
+      _instance.user = WaniKaniUser.fromJson(jsonDecode(await _fetchEndpoint(
+        'user',
         force: true,
       )));
 
@@ -159,9 +165,9 @@ class WaniKani extends BaseCacheManager {
 
   Future<WaniKani> fetch() async {
     if (_initialized && !hasError) {
-      log('Retrieving only the summary data.');
+      log('Retrieving the user, and summary if needed, data.');
 
-      await _fetchSummary();
+      await _fetch();
     } else {
       log('Retrieving all the data.');
 

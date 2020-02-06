@@ -7,13 +7,16 @@ import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
 
-Container _header(BuildContext context, String title) {
+Container _header(BuildContext context, String title,
+    {Color color = null, TextAlign textAlign = TextAlign.start}) {
   return Container(
     padding: EdgeInsets.all(space(context)),
-    color: Theme.of(context).primaryColor,
+    width: double.infinity,
+    color: (color == null) ? Theme.of(context).primaryColor : color,
     child: Text(
       title,
       style: Theme.of(context).accentTextTheme.body1,
+      textAlign: textAlign,
     ),
   );
 }
@@ -179,7 +182,20 @@ class _HomePageState extends State<HomePage> {
                 key: _refreshIndicatorState,
                 child: ListView(
                   children: <Widget>[
-                    thinDivider(),
+                    (WaniKani().user.data.currentVacationStartedAt == null)
+                        ? thinDivider()
+                        : Column(
+                            children: <Widget>[
+                              thinDivider(),
+                              _header(
+                                context,
+                                'VACATION MODE ACTIVATED',
+                                color: Theme.of(context).errorColor,
+                                textAlign: TextAlign.center,
+                              ),
+                              thinDivider(),
+                            ],
+                          ),
                     _header(context, 'CURRENTLY AVAILABLE'),
                     _currentlyAvailable(context, _CurrentlyAvailable.Lessons),
                     thinDivider(),
