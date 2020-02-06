@@ -173,34 +173,35 @@ class _HomePageState extends State<HomePage> {
       ),
       drawer: drawer(context),
       body: Container(
-          child: (WaniKani().hasError)
-              ? Text(WaniKani().errorMessage)
-              : RefreshIndicator(
-                  key: _refreshIndicatorState,
-                  child: ListView(
-                    children: <Widget>[
-                      thinDivider(),
-                      _header(context, 'CURRENTLY AVAILABLE'),
-                      _currentlyAvailable(context, _CurrentlyAvailable.Lessons),
-                      thinDivider(),
-                      _currentlyAvailable(context, _CurrentlyAvailable.Reviews),
-                      _header(context, 'UPCOMING REVIEWS'),
-                      _upcomingReviews(context, _UpcomingReviews.NextHour),
-                      thinDivider(),
-                      _upcomingReviews(context, _UpcomingReviews.NextDay),
-                      thinDivider(),
-                      _upcomingReviews(context, _UpcomingReviews.All),
-                      thinDivider(),
-                    ],
-                  ),
-                  onRefresh: () async {
-                    await WaniKani().fetch();
+        child: (WaniKani().hasError)
+            ? Text(WaniKani().errorMessage)
+            : RefreshIndicator(
+                key: _refreshIndicatorState,
+                child: ListView(
+                  children: <Widget>[
+                    thinDivider(),
+                    _header(context, 'CURRENTLY AVAILABLE'),
+                    _currentlyAvailable(context, _CurrentlyAvailable.Lessons),
+                    thinDivider(),
+                    _currentlyAvailable(context, _CurrentlyAvailable.Reviews),
+                    _header(context, 'UPCOMING REVIEWS'),
+                    _upcomingReviews(context, _UpcomingReviews.NextHour),
+                    thinDivider(),
+                    _upcomingReviews(context, _UpcomingReviews.NextDay),
+                    thinDivider(),
+                    _upcomingReviews(context, _UpcomingReviews.All),
+                    thinDivider(),
+                  ],
+                ),
+                onRefresh: () async {
+                  await WaniKani().fetch();
 
-                    setState(() {});
+                  setState(() {});
 
-                    return;
-                  },
-                )),
+                  return;
+                },
+              ),
+      ),
     );
   }
 }
