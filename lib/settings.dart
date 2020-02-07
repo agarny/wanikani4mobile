@@ -53,9 +53,6 @@ class _SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    var activeMode = ((WaniKani().user == null) ||
-        (WaniKani().user.data.currentVacationStartedAt == null));
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Settings'),
@@ -67,10 +64,10 @@ class _SettingsPageState extends State<SettingsPage> {
             children: <Widget>[
               RaisedButton.icon(
                 icon: Icon(
-                  activeMode ? Icons.stop : Icons.play_arrow,
+                  WaniKani().active() ? Icons.stop : Icons.play_arrow,
                   size: Theme.of(context).textTheme.subhead.fontSize,
                 ),
-                label: Text(activeMode
+                label: Text(WaniKani().active()
                     ? 'Activate vacation mode'
                     : 'Deactivate vacation mode'),
                 onPressed: () {

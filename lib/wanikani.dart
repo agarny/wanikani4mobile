@@ -194,6 +194,12 @@ class WaniKani extends BaseCacheManager {
     return _instance;
   }
 
+  bool active() {
+    return (WaniKani().user == null) ||
+        (WaniKani().user.data == null) ||
+        (WaniKani().user.data.currentVacationStartedAt == null);
+  }
+
   String userName() {
     return WaniKani().initialized
         ? WaniKani().user.data.username
