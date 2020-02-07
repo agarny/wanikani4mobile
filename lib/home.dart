@@ -146,6 +146,7 @@ class _HomePageState extends State<HomePage> {
             : Row(
                 children: <Widget>[
                   CircleAvatar(
+                    backgroundColor: Theme.of(context).primaryColor,
                     backgroundImage: CachedNetworkImageProvider(
                         'https://www.gravatar.com/avatar/$hash.jpg?d=$_defaultGravatar'),
                   ),
