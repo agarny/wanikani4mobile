@@ -136,6 +136,8 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     var hash = md5.convert(utf8.encode(Settings().emailAddress)).toString();
+    var activeMode = ((WaniKani().user == null) ||
+        (WaniKani().user.data.currentVacationStartedAt == null));
 
     return Scaffold(
       appBar: AppBar(
@@ -182,7 +184,7 @@ class _HomePageState extends State<HomePage> {
                 key: _refreshIndicatorState,
                 child: ListView(
                   children: <Widget>[
-                    (WaniKani().user.data.currentVacationStartedAt == null)
+                    activeMode
                         ? thinDivider()
                         : Column(
                             children: <Widget>[
