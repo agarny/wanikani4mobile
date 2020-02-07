@@ -7,12 +7,8 @@ import 'package:wanikani4mobile/settings.dart';
 import 'package:wanikani4mobile/utilities.dart';
 import 'package:wanikani4mobile/wanikani.dart';
 
-Container _header(
-  BuildContext context,
-  String title, {
-  Color color = null,
-  TextAlign textAlign = TextAlign.start,
-}) {
+Container _header(BuildContext context, String title,
+    {Color color = null, TextAlign textAlign = TextAlign.start}) {
   return Container(
     padding: EdgeInsets.all(space(context)),
     width: double.infinity,
@@ -32,7 +28,7 @@ enum _CurrentlyAvailable {
 
 InkWell _currentlyAvailable(
   BuildContext context,
-  _CurrentlyAvailable currentlyAvailable,
+  _CurrentlyAvailable currentlyAvailable
 ) {
   return InkWell(
     child: Padding(
