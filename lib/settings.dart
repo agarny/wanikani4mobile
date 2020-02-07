@@ -73,13 +73,15 @@ class _SettingsPageState extends State<SettingsPage> {
                 label: Text(activeMode
                     ? 'Activate vacation mode'
                     : 'Deactivate vacation mode'),
-                onPressed: () async {
-                  _controller.evaluateJavascript(
-                      'document.getElementById("vacation-btn").click();');
-
-                  await WaniKani().fetch();
-
-                  setState(() {});
+                onPressed: () {
+                  _controller
+                      .evaluateJavascript(
+                          'document.getElementById("vacation-btn").click();')
+                      .then((_) {
+                    WaniKani().fetch().then((_) {
+                      setState(() {});
+                    });
+                  });
                 },
               ),
             ],
