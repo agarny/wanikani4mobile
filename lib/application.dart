@@ -4,6 +4,7 @@ import 'package:flutter/services.dart';
 import 'package:flutter_app_badger/flutter_app_badger.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:wanikani4mobile/browser.dart';
 import 'package:wanikani4mobile/cache.dart';
 import 'package:wanikani4mobile/home.dart';
 import 'package:wanikani4mobile/log_in.dart';
@@ -96,6 +97,14 @@ class _Application extends StatelessWidget {
           case LogInRoute:
             widget = LogInPage();
             animation = false;
+            break;
+          case LessonsRoute:
+            widget =
+                BrowserPage('Lessons', 'https://wanikani.com/lesson/session');
+            break;
+          case ReviewsRoute:
+            widget =
+                BrowserPage('Reviews', 'https://wanikani.com/review/session');
             break;
           case SettingsRoute:
             widget = SettingsPage();

@@ -11,6 +11,8 @@ const LogOut = 'res/logout.png';
 
 const HomeRoute = 'Home';
 const LogInRoute = 'LogIn';
+const LessonsRoute = 'Lessons';
+const ReviewsRoute = 'Reviews';
 const SettingsRoute = 'Settings';
 
 // Debug

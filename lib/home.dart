@@ -63,9 +63,10 @@ InkWell _currentlyAvailable(
       ),
     ),
     onTap: () {
-      open((currentlyAvailable == _CurrentlyAvailable.Lessons)
-          ? 'https://wanikani.com/lesson/session'
-          : 'https://wanikani.com/review/session');
+      Navigation().navigateTo(
+          (currentlyAvailable == _CurrentlyAvailable.Lessons)
+              ? LessonsRoute
+              : ReviewsRoute);
     },
   );
 }
