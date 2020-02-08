@@ -38,8 +38,8 @@ class Settings extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> reset() async {
-    _prefs.clear().then((_) {});
+  void reset() {
+    _prefs.clear();
   }
 }
 
