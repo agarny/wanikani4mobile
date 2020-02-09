@@ -9,6 +9,7 @@ class Settings extends ChangeNotifier {
   static final Settings _instance = Settings._();
 
   SharedPreferences _prefs;
+  static const _WebBrowserZoomPref = 'Web browser zoom';
   static const _emailAddressPref = 'E-mail address';
   static const _apiTokenPref = 'API token';
 
@@ -20,6 +21,14 @@ class Settings extends ChangeNotifier {
 
   Settings.init(SharedPreferences prefs) {
     _instance._prefs = prefs;
+  }
+
+  int get webBrowserZoom => _prefs?.getInt(_WebBrowserZoomPref) ?? 0;
+
+  set webBrowserZoom(int value) {
+    _prefs?.setInt(_WebBrowserZoomPref, value);
+
+    notifyListeners();
   }
 
   String get emailAddress => _prefs?.getString(_emailAddressPref) ?? '';
