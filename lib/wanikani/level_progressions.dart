@@ -1,13 +1,6 @@
 import 'package:wanikani4mobile/wanikani/common.dart';
 
 class WaniKaniLevelProgressions {
-  String object;
-  String url;
-  WaniKaniPages pages;
-  int totalCount;
-  DateTime dataUpdatedAt;
-  List<WaniKaniLevelProgressionsData> data;
-
   WaniKaniLevelProgressions({
     this.object,
     this.url,
@@ -16,6 +9,13 @@ class WaniKaniLevelProgressions {
     this.dataUpdatedAt,
     this.data,
   });
+
+  String object;
+  String url;
+  WaniKaniPages pages;
+  int totalCount;
+  DateTime dataUpdatedAt;
+  List<WaniKaniLevelProgressionsData> data;
 
   factory WaniKaniLevelProgressions.fromJson(Map<String, dynamic> json) =>
       WaniKaniLevelProgressions(
@@ -48,12 +48,6 @@ class WaniKaniLevelProgressions {
 }
 
 class WaniKaniLevelProgressionsData {
-  int id;
-  Object object;
-  String url;
-  DateTime dataUpdatedAt;
-  WaniKaniLevelProgressionsDataData data;
-
   WaniKaniLevelProgressionsData({
     this.id,
     this.object,
@@ -61,6 +55,12 @@ class WaniKaniLevelProgressionsData {
     this.dataUpdatedAt,
     this.data,
   });
+
+  int id;
+  Object object;
+  String url;
+  DateTime dataUpdatedAt;
+  WaniKaniLevelProgressionsDataData data;
 
   factory WaniKaniLevelProgressionsData.fromJson(Map<String, dynamic> json) =>
       WaniKaniLevelProgressionsData(
@@ -87,14 +87,6 @@ class WaniKaniLevelProgressionsData {
 }
 
 class WaniKaniLevelProgressionsDataData {
-  DateTime createdAt;
-  int level;
-  DateTime unlockedAt;
-  DateTime startedAt;
-  DateTime passedAt;
-  DateTime completedAt;
-  DateTime abandonedAt;
-
   WaniKaniLevelProgressionsDataData({
     this.createdAt,
     this.level,
@@ -104,6 +96,14 @@ class WaniKaniLevelProgressionsDataData {
     this.completedAt,
     this.abandonedAt,
   });
+
+  DateTime createdAt;
+  int level;
+  DateTime unlockedAt;
+  DateTime startedAt;
+  DateTime passedAt;
+  DateTime completedAt;
+  DateTime abandonedAt;
 
   factory WaniKaniLevelProgressionsDataData.fromJson(
           Map<String, dynamic> json) =>

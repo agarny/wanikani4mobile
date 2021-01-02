@@ -1,15 +1,15 @@
 class WaniKaniUser {
-  String object;
-  String url;
-  DateTime dataUpdatedAt;
-  WaniKaniUserData data;
-
   WaniKaniUser({
     this.object,
     this.url,
     this.dataUpdatedAt,
     this.data,
   });
+
+  String object;
+  String url;
+  DateTime dataUpdatedAt;
+  WaniKaniUserData data;
 
   factory WaniKaniUser.fromJson(Map<String, dynamic> json) => WaniKaniUser(
         object: json["object"] == null ? null : json["object"],
@@ -32,15 +32,6 @@ class WaniKaniUser {
 }
 
 class WaniKaniUserData {
-  String id;
-  String username;
-  int level;
-  String profileUrl;
-  DateTime startedAt;
-  WaniKaniUserDataSubscription subscription;
-  DateTime currentVacationStartedAt;
-  WaniKaniUserDataPreferences preferences;
-
   WaniKaniUserData({
     this.id,
     this.username,
@@ -51,6 +42,15 @@ class WaniKaniUserData {
     this.currentVacationStartedAt,
     this.preferences,
   });
+
+  String id;
+  String username;
+  int level;
+  String profileUrl;
+  DateTime startedAt;
+  WaniKaniUserDataSubscription subscription;
+  DateTime currentVacationStartedAt;
+  WaniKaniUserDataPreferences preferences;
 
   factory WaniKaniUserData.fromJson(Map<String, dynamic> json) =>
       WaniKaniUserData(
@@ -87,25 +87,30 @@ class WaniKaniUserData {
 }
 
 class WaniKaniUserDataPreferences {
-  int lessonsBatchSize;
-  bool lessonsAutoplayAudio;
-  bool reviewsAutoplayAudio;
-  String lessonsPresentationOrder;
-  bool reviewsDisplaySrsIndicator;
-
   WaniKaniUserDataPreferences({
     this.lessonsBatchSize,
+    this.defaultVoiceActorId,
     this.lessonsAutoplayAudio,
     this.reviewsAutoplayAudio,
     this.lessonsPresentationOrder,
     this.reviewsDisplaySrsIndicator,
   });
 
+  int lessonsBatchSize;
+  int defaultVoiceActorId;
+  bool lessonsAutoplayAudio;
+  bool reviewsAutoplayAudio;
+  String lessonsPresentationOrder;
+  bool reviewsDisplaySrsIndicator;
+
   factory WaniKaniUserDataPreferences.fromJson(Map<String, dynamic> json) =>
       WaniKaniUserDataPreferences(
         lessonsBatchSize: json["lessons_batch_size"] == null
             ? null
             : json["lessons_batch_size"],
+        defaultVoiceActorId: json["default_voice_actor_id"] == null
+            ? null
+            : json["default_voice_actor_id"],
         lessonsAutoplayAudio: json["lessons_autoplay_audio"] == null
             ? null
             : json["lessons_autoplay_audio"],
@@ -124,6 +129,8 @@ class WaniKaniUserDataPreferences {
   Map<String, dynamic> toJson() => {
         "lessons_batch_size":
             lessonsBatchSize == null ? null : lessonsBatchSize,
+        "default_voice_actor_id":
+            defaultVoiceActorId == null ? null : defaultVoiceActorId,
         "lessons_autoplay_audio":
             lessonsAutoplayAudio == null ? null : lessonsAutoplayAudio,
         "reviews_autoplay_audio":
@@ -137,17 +144,17 @@ class WaniKaniUserDataPreferences {
 }
 
 class WaniKaniUserDataSubscription {
-  bool active;
-  String type;
-  int maxLevelGranted;
-  DateTime periodEndsAt;
-
   WaniKaniUserDataSubscription({
     this.active,
     this.type,
     this.maxLevelGranted,
     this.periodEndsAt,
   });
+
+  bool active;
+  String type;
+  int maxLevelGranted;
+  DateTime periodEndsAt;
 
   factory WaniKaniUserDataSubscription.fromJson(Map<String, dynamic> json) =>
       WaniKaniUserDataSubscription(

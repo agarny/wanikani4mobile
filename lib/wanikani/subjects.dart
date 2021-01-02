@@ -1,13 +1,6 @@
 import 'package:wanikani4mobile/wanikani/common.dart';
 
 class WaniKaniSubjects {
-  String object;
-  String url;
-  WaniKaniPages pages;
-  int totalCount;
-  DateTime dataUpdatedAt;
-  List<WaniKaniSubjectsData> data;
-
   WaniKaniSubjects({
     this.object,
     this.url,
@@ -16,6 +9,13 @@ class WaniKaniSubjects {
     this.dataUpdatedAt,
     this.data,
   });
+
+  String object;
+  String url;
+  WaniKaniPages pages;
+  int totalCount;
+  DateTime dataUpdatedAt;
+  List<WaniKaniSubjectsData> data;
 
   factory WaniKaniSubjects.fromJson(Map<String, dynamic> json) =>
       WaniKaniSubjects(
@@ -48,12 +48,6 @@ class WaniKaniSubjects {
 }
 
 class WaniKaniSubjectsData {
-  int id;
-  Object object;
-  String url;
-  DateTime dataUpdatedAt;
-  WaniKaniSubjectsDataData data;
-
   WaniKaniSubjectsData({
     this.id,
     this.object,
@@ -62,11 +56,18 @@ class WaniKaniSubjectsData {
     this.data,
   });
 
+  int id;
+  WaniKaniSubjectsDataObject object;
+  String url;
+  DateTime dataUpdatedAt;
+  WaniKaniSubjectsDataData data;
+
   factory WaniKaniSubjectsData.fromJson(Map<String, dynamic> json) =>
       WaniKaniSubjectsData(
         id: json["id"] == null ? null : json["id"],
-        object:
-            json["object"] == null ? null : objectValues.map[json["object"]],
+        object: json["object"] == null
+            ? null
+            : waniKaniSubjectsDataObjectValues.map[json["object"]],
         url: json["url"] == null ? null : json["url"],
         dataUpdatedAt: json["data_updated_at"] == null
             ? null
@@ -78,7 +79,9 @@ class WaniKaniSubjectsData {
 
   Map<String, dynamic> toJson() => {
         "id": id == null ? null : id,
-        "object": object == null ? null : objectValues.reverse[object],
+        "object": object == null
+            ? null
+            : waniKaniSubjectsDataObjectValues.reverse[object],
         "url": url == null ? null : url,
         "data_updated_at":
             dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
@@ -87,25 +90,6 @@ class WaniKaniSubjectsData {
 }
 
 class WaniKaniSubjectsDataData {
-  DateTime createdAt;
-  int level;
-  String slug;
-  DateTime hiddenAt;
-  String documentUrl;
-  String characters;
-  List<WaniKaniSubjectsDataDataCharacterImage> characterImages;
-  List<WaniKaniSubjectsDataDataMeaning> meanings;
-  List<WaniKaniSubjectsDataDataAuxiliaryMeaning> auxiliaryMeanings;
-  List<int> amalgamationSubjectIds;
-  String meaningMnemonic;
-  int lessonPosition;
-  List<WaniKaniSubjectsDataDataReading> readings;
-  List<int> componentSubjectIds;
-  List<int> visuallySimilarSubjectIds;
-  String meaningHint;
-  String readingMnemonic;
-  String readingHint;
-
   WaniKaniSubjectsDataData({
     this.createdAt,
     this.level,
@@ -119,6 +103,7 @@ class WaniKaniSubjectsDataData {
     this.amalgamationSubjectIds,
     this.meaningMnemonic,
     this.lessonPosition,
+    this.spacedRepetitionSystemId,
     this.readings,
     this.componentSubjectIds,
     this.visuallySimilarSubjectIds,
@@ -126,6 +111,26 @@ class WaniKaniSubjectsDataData {
     this.readingMnemonic,
     this.readingHint,
   });
+
+  DateTime createdAt;
+  int level;
+  String slug;
+  DateTime hiddenAt;
+  String documentUrl;
+  String characters;
+  List<WaniKaniSubjectsDataDataCharacterImage> characterImages;
+  List<WaniKaniSubjectsDataDataMeaning> meanings;
+  List<WaniKaniSubjectsDataDataAuxiliaryMeaning> auxiliaryMeanings;
+  List<int> amalgamationSubjectIds;
+  String meaningMnemonic;
+  int lessonPosition;
+  int spacedRepetitionSystemId;
+  List<WaniKaniSubjectsDataDataReading> readings;
+  List<int> componentSubjectIds;
+  List<int> visuallySimilarSubjectIds;
+  String meaningHint;
+  String readingMnemonic;
+  String readingHint;
 
   factory WaniKaniSubjectsDataData.fromJson(Map<String, dynamic> json) =>
       WaniKaniSubjectsDataData(
@@ -160,6 +165,9 @@ class WaniKaniSubjectsDataData {
             json["meaning_mnemonic"] == null ? null : json["meaning_mnemonic"],
         lessonPosition:
             json["lesson_position"] == null ? null : json["lesson_position"],
+        spacedRepetitionSystemId: json["spaced_repetition_system_id"] == null
+            ? null
+            : json["spaced_repetition_system_id"],
         readings: json["readings"] == null
             ? null
             : List<WaniKaniSubjectsDataDataReading>.from(json["readings"]
@@ -198,6 +206,8 @@ class WaniKaniSubjectsDataData {
             : List<dynamic>.from(amalgamationSubjectIds.map((x) => x)),
         "meaning_mnemonic": meaningMnemonic == null ? null : meaningMnemonic,
         "lesson_position": lessonPosition == null ? null : lessonPosition,
+        "spaced_repetition_system_id":
+            spacedRepetitionSystemId == null ? null : spacedRepetitionSystemId,
         "readings": readings == null
             ? null
             : List<dynamic>.from(readings.map((x) => x.toJson())),
@@ -214,46 +224,49 @@ class WaniKaniSubjectsDataData {
 }
 
 class WaniKaniSubjectsDataDataAuxiliaryMeaning {
-  AuxiliaryMeaningType type;
-  String meaning;
-
   WaniKaniSubjectsDataDataAuxiliaryMeaning({
     this.type,
     this.meaning,
   });
+
+  WaniKaniSubjectsDataDataAuxiliaryMeaningType type;
+  String meaning;
 
   factory WaniKaniSubjectsDataDataAuxiliaryMeaning.fromJson(
           Map<String, dynamic> json) =>
       WaniKaniSubjectsDataDataAuxiliaryMeaning(
         type: json["type"] == null
             ? null
-            : auxiliaryMeaningTypeValues.map[json["type"]],
+            : waniKaniSubjectsDataDataAuxiliaryMeaningTypeValues
+                .map[json["type"]],
         meaning: json["meaning"] == null ? null : json["meaning"],
       );
 
   Map<String, dynamic> toJson() => {
-        "type": type == null ? null : auxiliaryMeaningTypeValues.reverse[type],
+        "type": type == null
+            ? null
+            : waniKaniSubjectsDataDataAuxiliaryMeaningTypeValues.reverse[type],
         "meaning": meaning == null ? null : meaning,
       };
 }
 
-enum AuxiliaryMeaningType { WHITELIST, BLACKLIST }
+enum WaniKaniSubjectsDataDataAuxiliaryMeaningType { WHITELIST, BLACKLIST }
 
-final auxiliaryMeaningTypeValues = WaniKaniEnumValues({
-  "blacklist": AuxiliaryMeaningType.BLACKLIST,
-  "whitelist": AuxiliaryMeaningType.WHITELIST
+final waniKaniSubjectsDataDataAuxiliaryMeaningTypeValues = WaniKaniEnumValues({
+  "blacklist": WaniKaniSubjectsDataDataAuxiliaryMeaningType.BLACKLIST,
+  "whitelist": WaniKaniSubjectsDataDataAuxiliaryMeaningType.WHITELIST
 });
 
 class WaniKaniSubjectsDataDataCharacterImage {
-  String url;
-  WaniKaniSubjectsDataDataCharacterImageMetadata metadata;
-  ContentType contentType;
-
   WaniKaniSubjectsDataDataCharacterImage({
     this.url,
     this.metadata,
     this.contentType,
   });
+
+  String url;
+  WaniKaniSubjectsDataDataCharacterImageMetadata metadata;
+  WaniKaniSubjectsDataDataCharacterImageContentType contentType;
 
   factory WaniKaniSubjectsDataDataCharacterImage.fromJson(
           Map<String, dynamic> json) =>
@@ -265,30 +278,33 @@ class WaniKaniSubjectsDataDataCharacterImage {
                 json["metadata"]),
         contentType: json["content_type"] == null
             ? null
-            : contentTypeValues.map[json["content_type"]],
+            : waniKaniSubjectsDataDataCharacterImageContentTypeValues
+                .map[json["content_type"]],
       );
 
   Map<String, dynamic> toJson() => {
         "url": url == null ? null : url,
         "metadata": metadata == null ? null : metadata.toJson(),
-        "content_type":
-            contentType == null ? null : contentTypeValues.reverse[contentType],
+        "content_type": contentType == null
+            ? null
+            : waniKaniSubjectsDataDataCharacterImageContentTypeValues
+                .reverse[contentType],
       };
 }
 
-enum ContentType { IMAGE_SVG_XML, IMAGE_PNG }
+enum WaniKaniSubjectsDataDataCharacterImageContentType {
+  IMAGE_SVG_XML,
+  IMAGE_PNG
+}
 
-final contentTypeValues = WaniKaniEnumValues({
-  "image/png": ContentType.IMAGE_PNG,
-  "image/svg+xml": ContentType.IMAGE_SVG_XML
+final waniKaniSubjectsDataDataCharacterImageContentTypeValues =
+    WaniKaniEnumValues({
+  "image/png": WaniKaniSubjectsDataDataCharacterImageContentType.IMAGE_PNG,
+  "image/svg+xml":
+      WaniKaniSubjectsDataDataCharacterImageContentType.IMAGE_SVG_XML
 });
 
 class WaniKaniSubjectsDataDataCharacterImageMetadata {
-  bool inlineStyles;
-  Color color;
-  Dimensions dimensions;
-  StyleName styleName;
-
   WaniKaniSubjectsDataDataCharacterImageMetadata({
     this.inlineStyles,
     this.color,
@@ -296,35 +312,55 @@ class WaniKaniSubjectsDataDataCharacterImageMetadata {
     this.styleName,
   });
 
+  bool inlineStyles;
+  WaniKaniSubjectsDataDataCharacterImageMetadataColor color;
+  WaniKaniSubjectsDataDataCharacterImageMetadataDimensions dimensions;
+  WaniKaniSubjectsDataDataCharacterImageMetadataStyleName styleName;
+
   factory WaniKaniSubjectsDataDataCharacterImageMetadata.fromJson(
           Map<String, dynamic> json) =>
       WaniKaniSubjectsDataDataCharacterImageMetadata(
         inlineStyles:
             json["inline_styles"] == null ? null : json["inline_styles"],
-        color: json["color"] == null ? null : colorValues.map[json["color"]],
+        color: json["color"] == null
+            ? null
+            : waniKaniSubjectsDataDataCharacterImageMetadataColorValues
+                .map[json["color"]],
         dimensions: json["dimensions"] == null
             ? null
-            : dimensionsValues.map[json["dimensions"]],
+            : waniKaniSubjectsDataDataCharacterImageMetadataDimensionsValues
+                .map[json["dimensions"]],
         styleName: json["style_name"] == null
             ? null
-            : styleNameValues.map[json["style_name"]],
+            : waniKaniSubjectsDataDataCharacterImageMetadataStyleNameValues
+                .map[json["style_name"]],
       );
 
   Map<String, dynamic> toJson() => {
         "inline_styles": inlineStyles == null ? null : inlineStyles,
-        "color": color == null ? null : colorValues.reverse[color],
-        "dimensions":
-            dimensions == null ? null : dimensionsValues.reverse[dimensions],
-        "style_name":
-            styleName == null ? null : styleNameValues.reverse[styleName],
+        "color": color == null
+            ? null
+            : waniKaniSubjectsDataDataCharacterImageMetadataColorValues
+                .reverse[color],
+        "dimensions": dimensions == null
+            ? null
+            : waniKaniSubjectsDataDataCharacterImageMetadataDimensionsValues
+                .reverse[dimensions],
+        "style_name": styleName == null
+            ? null
+            : waniKaniSubjectsDataDataCharacterImageMetadataStyleNameValues
+                .reverse[styleName],
       };
 }
 
-enum Color { THE_000000 }
+enum WaniKaniSubjectsDataDataCharacterImageMetadataColor { THE_000000 }
 
-final colorValues = WaniKaniEnumValues({"#000000": Color.THE_000000});
+final waniKaniSubjectsDataDataCharacterImageMetadataColorValues =
+    WaniKaniEnumValues({
+  "#000000": WaniKaniSubjectsDataDataCharacterImageMetadataColor.THE_000000
+});
 
-enum Dimensions {
+enum WaniKaniSubjectsDataDataCharacterImageMetadataDimensions {
   THE_1024_X1024,
   THE_512_X512,
   THE_256_X256,
@@ -333,16 +369,21 @@ enum Dimensions {
   THE_32_X32
 }
 
-final dimensionsValues = WaniKaniEnumValues({
-  "1024x1024": Dimensions.THE_1024_X1024,
-  "128x128": Dimensions.THE_128_X128,
-  "256x256": Dimensions.THE_256_X256,
-  "32x32": Dimensions.THE_32_X32,
-  "512x512": Dimensions.THE_512_X512,
-  "64x64": Dimensions.THE_64_X64
+final waniKaniSubjectsDataDataCharacterImageMetadataDimensionsValues =
+    WaniKaniEnumValues({
+  "1024x1024":
+      WaniKaniSubjectsDataDataCharacterImageMetadataDimensions.THE_1024_X1024,
+  "128x128":
+      WaniKaniSubjectsDataDataCharacterImageMetadataDimensions.THE_128_X128,
+  "256x256":
+      WaniKaniSubjectsDataDataCharacterImageMetadataDimensions.THE_256_X256,
+  "32x32": WaniKaniSubjectsDataDataCharacterImageMetadataDimensions.THE_32_X32,
+  "512x512":
+      WaniKaniSubjectsDataDataCharacterImageMetadataDimensions.THE_512_X512,
+  "64x64": WaniKaniSubjectsDataDataCharacterImageMetadataDimensions.THE_64_X64
 });
 
-enum StyleName {
+enum WaniKaniSubjectsDataDataCharacterImageMetadataStyleName {
   ORIGINAL,
   THE_1024_PX,
   THE_512_PX,
@@ -352,26 +393,27 @@ enum StyleName {
   THE_32_PX
 }
 
-final styleNameValues = WaniKaniEnumValues({
-  "original": StyleName.ORIGINAL,
-  "1024px": StyleName.THE_1024_PX,
-  "128px": StyleName.THE_128_PX,
-  "256px": StyleName.THE_256_PX,
-  "32px": StyleName.THE_32_PX,
-  "512px": StyleName.THE_512_PX,
-  "64px": StyleName.THE_64_PX
+final waniKaniSubjectsDataDataCharacterImageMetadataStyleNameValues =
+    WaniKaniEnumValues({
+  "original": WaniKaniSubjectsDataDataCharacterImageMetadataStyleName.ORIGINAL,
+  "1024px": WaniKaniSubjectsDataDataCharacterImageMetadataStyleName.THE_1024_PX,
+  "128px": WaniKaniSubjectsDataDataCharacterImageMetadataStyleName.THE_128_PX,
+  "256px": WaniKaniSubjectsDataDataCharacterImageMetadataStyleName.THE_256_PX,
+  "32px": WaniKaniSubjectsDataDataCharacterImageMetadataStyleName.THE_32_PX,
+  "512px": WaniKaniSubjectsDataDataCharacterImageMetadataStyleName.THE_512_PX,
+  "64px": WaniKaniSubjectsDataDataCharacterImageMetadataStyleName.THE_64_PX
 });
 
 class WaniKaniSubjectsDataDataMeaning {
-  String meaning;
-  bool primary;
-  bool acceptedAnswer;
-
   WaniKaniSubjectsDataDataMeaning({
     this.meaning,
     this.primary,
     this.acceptedAnswer,
   });
+
+  String meaning;
+  bool primary;
+  bool acceptedAnswer;
 
   factory WaniKaniSubjectsDataDataMeaning.fromJson(Map<String, dynamic> json) =>
       WaniKaniSubjectsDataDataMeaning(
@@ -389,11 +431,6 @@ class WaniKaniSubjectsDataDataMeaning {
 }
 
 class WaniKaniSubjectsDataDataReading {
-  ReadingType type;
-  bool primary;
-  String reading;
-  bool acceptedAnswer;
-
   WaniKaniSubjectsDataDataReading({
     this.type,
     this.primary,
@@ -401,9 +438,17 @@ class WaniKaniSubjectsDataDataReading {
     this.acceptedAnswer,
   });
 
+  WaniKaniSubjectsDataDataReadingReadingType type;
+  bool primary;
+  String reading;
+  bool acceptedAnswer;
+
   factory WaniKaniSubjectsDataDataReading.fromJson(Map<String, dynamic> json) =>
       WaniKaniSubjectsDataDataReading(
-        type: json["type"] == null ? null : readingTypeValues.map[json["type"]],
+        type: json["type"] == null
+            ? null
+            : waniKaniSubjectsDataDataReadingReadingTypeValues
+                .map[json["type"]],
         primary: json["primary"] == null ? null : json["primary"],
         reading: json["reading"] == null ? null : json["reading"],
         acceptedAnswer:
@@ -411,22 +456,26 @@ class WaniKaniSubjectsDataDataReading {
       );
 
   Map<String, dynamic> toJson() => {
-        "type": type == null ? null : readingTypeValues.reverse[type],
+        "type": type == null
+            ? null
+            : waniKaniSubjectsDataDataReadingReadingTypeValues.reverse[type],
         "primary": primary == null ? null : primary,
         "reading": reading == null ? null : reading,
         "accepted_answer": acceptedAnswer == null ? null : acceptedAnswer,
       };
 }
 
-enum ReadingType { ONYOMI, KUNYOMI, NANORI }
+enum WaniKaniSubjectsDataDataReadingReadingType { ONYOMI, KUNYOMI, NANORI }
 
-final readingTypeValues = WaniKaniEnumValues({
-  "kunyomi": ReadingType.KUNYOMI,
-  "nanori": ReadingType.NANORI,
-  "onyomi": ReadingType.ONYOMI
+final waniKaniSubjectsDataDataReadingReadingTypeValues = WaniKaniEnumValues({
+  "kunyomi": WaniKaniSubjectsDataDataReadingReadingType.KUNYOMI,
+  "nanori": WaniKaniSubjectsDataDataReadingReadingType.NANORI,
+  "onyomi": WaniKaniSubjectsDataDataReadingReadingType.ONYOMI
 });
 
-enum Object { RADICAL, KANJI }
+enum WaniKaniSubjectsDataObject { RADICAL, KANJI }
 
-final objectValues =
-    WaniKaniEnumValues({"kanji": Object.KANJI, "radical": Object.RADICAL});
+final waniKaniSubjectsDataObjectValues = WaniKaniEnumValues({
+  "kanji": WaniKaniSubjectsDataObject.KANJI,
+  "radical": WaniKaniSubjectsDataObject.RADICAL
+});

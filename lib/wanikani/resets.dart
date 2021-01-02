@@ -1,13 +1,6 @@
 import 'package:wanikani4mobile/wanikani/common.dart';
 
 class WaniKaniResets {
-  String object;
-  String url;
-  WaniKaniPages pages;
-  int totalCount;
-  DateTime dataUpdatedAt;
-  List<WaniKaniResetsData> data;
-
   WaniKaniResets({
     this.object,
     this.url,
@@ -16,6 +9,13 @@ class WaniKaniResets {
     this.dataUpdatedAt,
     this.data,
   });
+
+  String object;
+  String url;
+  WaniKaniPages pages;
+  int totalCount;
+  DateTime dataUpdatedAt;
+  List<WaniKaniResetsData> data;
 
   factory WaniKaniResets.fromJson(Map<String, dynamic> json) => WaniKaniResets(
         object: json["object"] == null ? null : json["object"],
@@ -47,12 +47,6 @@ class WaniKaniResets {
 }
 
 class WaniKaniResetsData {
-  int id;
-  String object;
-  String url;
-  DateTime dataUpdatedAt;
-  WaniKaniResetsDataData data;
-
   WaniKaniResetsData({
     this.id,
     this.object,
@@ -60,6 +54,12 @@ class WaniKaniResetsData {
     this.dataUpdatedAt,
     this.data,
   });
+
+  int id;
+  String object;
+  String url;
+  DateTime dataUpdatedAt;
+  WaniKaniResetsDataData data;
 
   factory WaniKaniResetsData.fromJson(Map<String, dynamic> json) =>
       WaniKaniResetsData(
@@ -85,17 +85,17 @@ class WaniKaniResetsData {
 }
 
 class WaniKaniResetsDataData {
-  DateTime createdAt;
-  int originalLevel;
-  int targetLevel;
-  DateTime confirmedAt;
-
   WaniKaniResetsDataData({
     this.createdAt,
     this.originalLevel,
     this.targetLevel,
     this.confirmedAt,
   });
+
+  DateTime createdAt;
+  int originalLevel;
+  int targetLevel;
+  DateTime confirmedAt;
 
   factory WaniKaniResetsDataData.fromJson(Map<String, dynamic> json) =>
       WaniKaniResetsDataData(

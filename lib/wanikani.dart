@@ -13,7 +13,7 @@ import 'package:wanikani4mobile/wanikani/level_progressions.dart';
 import 'package:wanikani4mobile/wanikani/resets.dart';
 import 'package:wanikani4mobile/wanikani/review_statistics.dart';
 import 'package:wanikani4mobile/wanikani/reviews.dart';
-import 'package:wanikani4mobile/wanikani/srs_stages.dart';
+import 'package:wanikani4mobile/wanikani/spaced_repetition_systems.dart';
 import 'package:wanikani4mobile/wanikani/subjects.dart';
 import 'package:wanikani4mobile/wanikani/summary.dart';
 import 'package:wanikani4mobile/wanikani/user.dart';
@@ -37,7 +37,7 @@ class WaniKani extends BaseCacheManager {
   WaniKaniResets resets;
   WaniKaniReviewStatistics reviewStatistics;
   WaniKaniReviews reviews;
-  WaniKaniSrsStages srsStages;
+  WaniKaniSpacedRepetitionSystems spacedRepetitionSystems;
   WaniKaniSubjects subjects;
   WaniKaniSummary summary;
   WaniKaniUser user;
@@ -58,7 +58,7 @@ class WaniKani extends BaseCacheManager {
     resets = WaniKaniResets();
     reviewStatistics = WaniKaniReviewStatistics();
     reviews = WaniKaniReviews();
-    srsStages = WaniKaniSrsStages();
+    spacedRepetitionSystems = WaniKaniSpacedRepetitionSystems();
     subjects = WaniKaniSubjects();
     summary = WaniKaniSummary();
     user = WaniKaniUser();
@@ -141,8 +141,8 @@ class WaniKani extends BaseCacheManager {
           jsonDecode(await _fetchEndpoint('review_statistics')));
       _instance.reviews =
           WaniKaniReviews.fromJson(jsonDecode(await _fetchEndpoint('reviews')));
-      _instance.srsStages = WaniKaniSrsStages.fromJson(
-          jsonDecode(await _fetchEndpoint('srs_stages')));
+      _instance.spacedRepetitionSystems = WaniKaniSpacedRepetitionSystems.fromJson(
+          jsonDecode(await _fetchEndpoint('spaced_repetition_systems')));
       _instance.subjects = WaniKaniSubjects.fromJson(
           jsonDecode(await _fetchEndpoint('subjects')));
       _instance.summary =

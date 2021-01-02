@@ -16,51 +16,33 @@ class WaniKaniEnumValues<T> {
 }
 
 class WaniKaniPages {
-  int perPage;
-  String nextUrl;
-  String previousUrl;
-
   WaniKaniPages({
     this.perPage,
     this.nextUrl,
     this.previousUrl,
   });
 
+  int perPage;
+  String nextUrl;
+  String previousUrl;
+
   factory WaniKaniPages.fromJson(Map<String, dynamic> json) => WaniKaniPages(
-        perPage: json["per_page"],
-        nextUrl: json["next_url"],
-        previousUrl: json["previous_url"],
+        perPage: json["per_page"] == null ? null : json["per_page"],
+        nextUrl: json["next_url"] == null ? null : json["next_url"],
+        previousUrl: json["previous_url"] == null ? null : json["previous_url"],
       );
 
   Map<String, dynamic> toJson() => {
-        "per_page": perPage,
-        "next_url": nextUrl,
-        "previous_url": previousUrl,
+        "per_page": perPage == null ? null : perPage,
+        "next_url": nextUrl == null ? null : nextUrl,
+        "previous_url": previousUrl == null ? null : previousUrl,
       };
 }
 
-enum WaniKaniSrsStageName {
-  INITIATE,
-  APPRENTICE_I,
-  APPRENTICE_II,
-  APPRENTICE_III,
-  APPRENTICE_IV,
-  GURU_I,
-  GURU_II,
-  MASTER,
-  ENLIGHTENED,
-  BURNED,
-}
+enum WaniKaniSubjectType { VOCABULARY, KANJI, RADICAL }
 
-final waniKaniSrsStageNameValues = WaniKaniEnumValues({
-  "Initiate": WaniKaniSrsStageName.INITIATE,
-  "Apprentice I": WaniKaniSrsStageName.APPRENTICE_I,
-  "Apprentice II": WaniKaniSrsStageName.APPRENTICE_II,
-  "Apprentice III": WaniKaniSrsStageName.APPRENTICE_III,
-  "Apprentice IV": WaniKaniSrsStageName.APPRENTICE_IV,
-  "Guru I": WaniKaniSrsStageName.GURU_I,
-  "Guru II": WaniKaniSrsStageName.GURU_II,
-  "Master": WaniKaniSrsStageName.MASTER,
-  "Enlightened": WaniKaniSrsStageName.ENLIGHTENED,
-  "Burned": WaniKaniSrsStageName.BURNED,
+final waniKaniSubjectTypeValues = WaniKaniEnumValues({
+  "kanji": WaniKaniSubjectType.KANJI,
+  "radical": WaniKaniSubjectType.RADICAL,
+  "vocabulary": WaniKaniSubjectType.VOCABULARY
 });

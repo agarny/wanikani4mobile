@@ -1,11 +1,6 @@
-class WaniKaniReviewStatistics {
-  String object;
-  String url;
-  WaniKaniPages pages;
-  int totalCount;
-  DateTime dataUpdatedAt;
-  List<WaniKaniReviewStatisticsData> data;
+import 'package:wanikani4mobile/wanikani/common.dart';
 
+class WaniKaniReviewStatistics {
   WaniKaniReviewStatistics({
     this.object,
     this.url,
@@ -14,6 +9,13 @@ class WaniKaniReviewStatistics {
     this.dataUpdatedAt,
     this.data,
   });
+
+  String object;
+  String url;
+  WaniKaniPages pages;
+  int totalCount;
+  DateTime dataUpdatedAt;
+  List<WaniKaniReviewStatisticsData> data;
 
   factory WaniKaniReviewStatistics.fromJson(Map<String, dynamic> json) =>
       WaniKaniReviewStatistics(
@@ -46,12 +48,6 @@ class WaniKaniReviewStatistics {
 }
 
 class WaniKaniReviewStatisticsData {
-  int id;
-  Object object;
-  String url;
-  DateTime dataUpdatedAt;
-  WaniKaniReviewStatisticsDataData data;
-
   WaniKaniReviewStatisticsData({
     this.id,
     this.object,
@@ -60,11 +56,18 @@ class WaniKaniReviewStatisticsData {
     this.data,
   });
 
+  int id;
+  WaniKaniReviewStatisticsDataObject object;
+  String url;
+  DateTime dataUpdatedAt;
+  WaniKaniReviewStatisticsDataData data;
+
   factory WaniKaniReviewStatisticsData.fromJson(Map<String, dynamic> json) =>
       WaniKaniReviewStatisticsData(
         id: json["id"] == null ? null : json["id"],
-        object:
-            json["object"] == null ? null : objectValues.map[json["object"]],
+        object: json["object"] == null
+            ? null
+            : waniKaniReviewStatisticsDataObjectValues.map[json["object"]],
         url: json["url"] == null ? null : json["url"],
         dataUpdatedAt: json["data_updated_at"] == null
             ? null
@@ -76,7 +79,9 @@ class WaniKaniReviewStatisticsData {
 
   Map<String, dynamic> toJson() => {
         "id": id == null ? null : id,
-        "object": object == null ? null : objectValues.reverse[object],
+        "object": object == null
+            ? null
+            : waniKaniReviewStatisticsDataObjectValues.reverse[object],
         "url": url == null ? null : url,
         "data_updated_at":
             dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
@@ -85,20 +90,6 @@ class WaniKaniReviewStatisticsData {
 }
 
 class WaniKaniReviewStatisticsDataData {
-  DateTime createdAt;
-  int subjectId;
-  SubjectType subjectType;
-  int meaningCorrect;
-  int meaningIncorrect;
-  int meaningMaxStreak;
-  int meaningCurrentStreak;
-  int readingCorrect;
-  int readingIncorrect;
-  int readingMaxStreak;
-  int readingCurrentStreak;
-  int percentageCorrect;
-  bool hidden;
-
   WaniKaniReviewStatisticsDataData({
     this.createdAt,
     this.subjectId,
@@ -115,6 +106,20 @@ class WaniKaniReviewStatisticsDataData {
     this.hidden,
   });
 
+  DateTime createdAt;
+  int subjectId;
+  WaniKaniSubjectType subjectType;
+  int meaningCorrect;
+  int meaningIncorrect;
+  int meaningMaxStreak;
+  int meaningCurrentStreak;
+  int readingCorrect;
+  int readingIncorrect;
+  int readingMaxStreak;
+  int readingCurrentStreak;
+  int percentageCorrect;
+  bool hidden;
+
   factory WaniKaniReviewStatisticsDataData.fromJson(
           Map<String, dynamic> json) =>
       WaniKaniReviewStatisticsDataData(
@@ -124,7 +129,7 @@ class WaniKaniReviewStatisticsDataData {
         subjectId: json["subject_id"] == null ? null : json["subject_id"],
         subjectType: json["subject_type"] == null
             ? null
-            : subjectTypeValues.map[json["subject_type"]],
+            : waniKaniSubjectTypeValues.map[json["subject_type"]],
         meaningCorrect:
             json["meaning_correct"] == null ? null : json["meaning_correct"],
         meaningIncorrect: json["meaning_incorrect"] == null
@@ -156,8 +161,9 @@ class WaniKaniReviewStatisticsDataData {
   Map<String, dynamic> toJson() => {
         "created_at": createdAt == null ? null : createdAt.toIso8601String(),
         "subject_id": subjectId == null ? null : subjectId,
-        "subject_type":
-            subjectType == null ? null : subjectTypeValues.reverse[subjectType],
+        "subject_type": subjectType == null
+            ? null
+            : waniKaniSubjectTypeValues.reverse[subjectType],
         "meaning_correct": meaningCorrect == null ? null : meaningCorrect,
         "meaning_incorrect": meaningIncorrect == null ? null : meaningIncorrect,
         "meaning_max_streak":
@@ -176,57 +182,7 @@ class WaniKaniReviewStatisticsDataData {
       };
 }
 
-enum SubjectType {
-  RADICAL,
-  KANJI,
-  VOCABULARY,
-}
+enum WaniKaniReviewStatisticsDataObject { REVIEW_STATISTIC }
 
-final subjectTypeValues = WaniKaniEnumValues({
-  "radical": SubjectType.RADICAL,
-  "kanji": SubjectType.KANJI,
-  "vocabulary": SubjectType.VOCABULARY,
-});
-
-enum Object { REVIEW_STATISTIC }
-
-final objectValues =
-    WaniKaniEnumValues({"review_statistic": Object.REVIEW_STATISTIC});
-
-class WaniKaniPages {
-  int perPage;
-  String nextUrl;
-  String previousUrl;
-
-  WaniKaniPages({
-    this.perPage,
-    this.nextUrl,
-    this.previousUrl,
-  });
-
-  factory WaniKaniPages.fromJson(Map<String, dynamic> json) => WaniKaniPages(
-        perPage: json["per_page"] == null ? null : json["per_page"],
-        nextUrl: json["next_url"] == null ? null : json["next_url"],
-        previousUrl: json["previous_url"] == null ? null : json["previous_url"],
-      );
-
-  Map<String, dynamic> toJson() => {
-        "per_page": perPage == null ? null : perPage,
-        "next_url": nextUrl == null ? null : nextUrl,
-        "previous_url": previousUrl == null ? null : previousUrl,
-      };
-}
-
-class WaniKaniEnumValues<T> {
-  Map<String, T> map;
-  Map<T, String> reverseMap;
-
-  WaniKaniEnumValues(this.map);
-
-  Map<T, String> get reverse {
-    if (reverseMap == null) {
-      reverseMap = map.map((k, v) => new MapEntry(v, k));
-    }
-    return reverseMap;
-  }
-}
+final waniKaniReviewStatisticsDataObjectValues = WaniKaniEnumValues(
+    {"review_statistic": WaniKaniReviewStatisticsDataObject.REVIEW_STATISTIC});

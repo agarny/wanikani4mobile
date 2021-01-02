@@ -1,15 +1,15 @@
 class WaniKaniSummary {
-  String object;
-  String url;
-  DateTime dataUpdatedAt;
-  WaniKaniSummaryData data;
-
   WaniKaniSummary({
     this.object,
     this.url,
     this.dataUpdatedAt,
     this.data,
   });
+
+  String object;
+  String url;
+  DateTime dataUpdatedAt;
+  WaniKaniSummaryData data;
 
   factory WaniKaniSummary.fromJson(Map<String, dynamic> json) =>
       WaniKaniSummary(
@@ -33,15 +33,15 @@ class WaniKaniSummary {
 }
 
 class WaniKaniSummaryData {
-  List<WaniKaniSummaryDataLesson> lessons;
-  DateTime nextReviewsAt;
-  List<WaniKaniSummaryDataLesson> reviews;
-
   WaniKaniSummaryData({
     this.lessons,
     this.nextReviewsAt,
     this.reviews,
   });
+
+  List<WaniKaniSummaryDataLesson> lessons;
+  DateTime nextReviewsAt;
+  List<WaniKaniSummaryDataLesson> reviews;
 
   factory WaniKaniSummaryData.fromJson(Map<String, dynamic> json) =>
       WaniKaniSummaryData(
@@ -71,13 +71,13 @@ class WaniKaniSummaryData {
 }
 
 class WaniKaniSummaryDataLesson {
-  DateTime availableAt;
-  List<int> subjectIds;
-
   WaniKaniSummaryDataLesson({
     this.availableAt,
     this.subjectIds,
   });
+
+  DateTime availableAt;
+  List<int> subjectIds;
 
   factory WaniKaniSummaryDataLesson.fromJson(Map<String, dynamic> json) =>
       WaniKaniSummaryDataLesson(
@@ -94,6 +94,6 @@ class WaniKaniSummaryDataLesson {
             availableAt == null ? null : availableAt.toIso8601String(),
         "subject_ids": subjectIds == null
             ? null
-            : List<int>.from(subjectIds.map((x) => x)),
+            : List<dynamic>.from(subjectIds.map((x) => x)),
       };
 }

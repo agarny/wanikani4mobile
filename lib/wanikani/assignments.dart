@@ -1,13 +1,6 @@
 import 'package:wanikani4mobile/wanikani/common.dart';
 
 class WaniKaniAssignments {
-  String object;
-  String url;
-  WaniKaniPages pages;
-  int totalCount;
-  DateTime dataUpdatedAt;
-  List<WaniKaniAssignmentsData> data;
-
   WaniKaniAssignments({
     this.object,
     this.url,
@@ -16,6 +9,13 @@ class WaniKaniAssignments {
     this.dataUpdatedAt,
     this.data,
   });
+
+  String object;
+  String url;
+  WaniKaniPages pages;
+  int totalCount;
+  DateTime dataUpdatedAt;
+  List<WaniKaniAssignmentsData> data;
 
   factory WaniKaniAssignments.fromJson(Map<String, dynamic> json) =>
       WaniKaniAssignments(
@@ -43,17 +43,11 @@ class WaniKaniAssignments {
             dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
         "data": data == null
             ? null
-            : List<WaniKaniAssignmentsData>.from(data.map((x) => x.toJson())),
+            : List<dynamic>.from(data.map((x) => x.toJson())),
       };
 }
 
 class WaniKaniAssignmentsData {
-  int id;
-  Object object;
-  String url;
-  DateTime dataUpdatedAt;
-  WaniKaniAssignmentsDataData data;
-
   WaniKaniAssignmentsData({
     this.id,
     this.object,
@@ -62,11 +56,18 @@ class WaniKaniAssignmentsData {
     this.data,
   });
 
+  int id;
+  WaniKaniAssignmentsDataObject object;
+  String url;
+  DateTime dataUpdatedAt;
+  WaniKaniAssignmentsDataData data;
+
   factory WaniKaniAssignmentsData.fromJson(Map<String, dynamic> json) =>
       WaniKaniAssignmentsData(
         id: json["id"] == null ? null : json["id"],
-        object:
-            json["object"] == null ? null : objectValues.map[json["object"]],
+        object: json["object"] == null
+            ? null
+            : waniKaniAssignmentsDataObjectValues.map[json["object"]],
         url: json["url"] == null ? null : json["url"],
         dataUpdatedAt: json["data_updated_at"] == null
             ? null
@@ -78,7 +79,9 @@ class WaniKaniAssignmentsData {
 
   Map<String, dynamic> toJson() => {
         "id": id == null ? null : id,
-        "object": object == null ? null : objectValues.reverse[object],
+        "object": object == null
+            ? null
+            : waniKaniAssignmentsDataObjectValues.reverse[object],
         "url": url == null ? null : url,
         "data_updated_at":
             dataUpdatedAt == null ? null : dataUpdatedAt.toIso8601String(),
@@ -87,35 +90,31 @@ class WaniKaniAssignmentsData {
 }
 
 class WaniKaniAssignmentsDataData {
-  DateTime createdAt;
-  int subjectId;
-  SubjectType subjectType;
-  int srsStage;
-  WaniKaniSrsStageName srsStageName;
-  DateTime unlockedAt;
-  DateTime startedAt;
-  DateTime passedAt;
-  DateTime burnedAt;
-  DateTime availableAt;
-  DateTime resurrectedAt;
-  bool passed;
-  bool hidden;
-
   WaniKaniAssignmentsDataData({
     this.createdAt,
     this.subjectId,
     this.subjectType,
     this.srsStage,
-    this.srsStageName,
     this.unlockedAt,
     this.startedAt,
     this.passedAt,
     this.burnedAt,
     this.availableAt,
     this.resurrectedAt,
-    this.passed,
     this.hidden,
   });
+
+  DateTime createdAt;
+  int subjectId;
+  WaniKaniSubjectType subjectType;
+  int srsStage;
+  DateTime unlockedAt;
+  DateTime startedAt;
+  DateTime passedAt;
+  DateTime burnedAt;
+  DateTime availableAt;
+  DateTime resurrectedAt;
+  bool hidden;
 
   factory WaniKaniAssignmentsDataData.fromJson(Map<String, dynamic> json) =>
       WaniKaniAssignmentsDataData(
@@ -125,11 +124,8 @@ class WaniKaniAssignmentsDataData {
         subjectId: json["subject_id"] == null ? null : json["subject_id"],
         subjectType: json["subject_type"] == null
             ? null
-            : subjectTypeValues.map[json["subject_type"]],
+            : waniKaniSubjectTypeValues.map[json["subject_type"]],
         srsStage: json["srs_stage"] == null ? null : json["srs_stage"],
-        srsStageName: json["srs_stage_name"] == null
-            ? null
-            : waniKaniSrsStageNameValues.map[json["srs_stage_name"]],
         unlockedAt: json["unlocked_at"] == null
             ? null
             : DateTime.parse(json["unlocked_at"]),
@@ -148,19 +144,16 @@ class WaniKaniAssignmentsDataData {
         resurrectedAt: json["resurrected_at"] == null
             ? null
             : DateTime.parse(json["resurrected_at"]),
-        passed: json["passed"] == null ? null : json["passed"],
         hidden: json["hidden"] == null ? null : json["hidden"],
       );
 
   Map<String, dynamic> toJson() => {
         "created_at": createdAt == null ? null : createdAt.toIso8601String(),
         "subject_id": subjectId == null ? null : subjectId,
-        "subject_type":
-            subjectType == null ? null : subjectTypeValues.reverse[subjectType],
-        "srs_stage": srsStage == null ? null : srsStage,
-        "srs_stage_name": srsStageName == null
+        "subject_type": subjectType == null
             ? null
-            : waniKaniSrsStageNameValues.reverse[srsStageName],
+            : waniKaniSubjectTypeValues.reverse[subjectType],
+        "srs_stage": srsStage == null ? null : srsStage,
         "unlocked_at": unlockedAt == null ? null : unlockedAt.toIso8601String(),
         "started_at": startedAt == null ? null : startedAt.toIso8601String(),
         "passed_at": passedAt == null ? null : passedAt.toIso8601String(),
@@ -169,19 +162,11 @@ class WaniKaniAssignmentsDataData {
             availableAt == null ? null : availableAt.toIso8601String(),
         "resurrected_at":
             resurrectedAt == null ? null : resurrectedAt.toIso8601String(),
-        "passed": passed == null ? null : passed,
         "hidden": hidden == null ? null : hidden,
       };
 }
 
-enum SubjectType { VOCABULARY, KANJI, RADICAL }
+enum WaniKaniAssignmentsDataObject { ASSIGNMENT }
 
-final subjectTypeValues = WaniKaniEnumValues({
-  "kanji": SubjectType.KANJI,
-  "radical": SubjectType.RADICAL,
-  "vocabulary": SubjectType.VOCABULARY
-});
-
-enum Object { ASSIGNMENT }
-
-final objectValues = WaniKaniEnumValues({"assignment": Object.ASSIGNMENT});
+final waniKaniAssignmentsDataObjectValues = WaniKaniEnumValues(
+    {"assignment": WaniKaniAssignmentsDataObject.ASSIGNMENT});
