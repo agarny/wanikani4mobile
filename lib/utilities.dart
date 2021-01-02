@@ -115,7 +115,7 @@ Widget drawer(BuildContext context) {
           ),
           accountName: Text(
             'WaniKani for Mobile',
-            style: Theme.of(context).accentTextTheme.title,
+            style: Theme.of(context).accentTextTheme.headline6,
           ),
           accountEmail: Text(
             'by Alan Garny',

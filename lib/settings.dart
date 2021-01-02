@@ -74,7 +74,7 @@ class _SettingsPageState extends State<SettingsPage> {
               RaisedButton.icon(
                 icon: Icon(
                   WaniKani().active() ? Icons.stop : Icons.play_arrow,
-                  size: Theme.of(context).textTheme.subhead.fontSize,
+                  size: Theme.of(context).textTheme.subtitle1.fontSize,
                 ),
                 label: Text(WaniKani().active()
                     ? 'Activate vacation mode'
@@ -99,7 +99,7 @@ class _SettingsPageState extends State<SettingsPage> {
               RaisedButton.icon(
                 icon: Image.asset(
                   LogOut,
-                  width: Theme.of(context).textTheme.subhead.fontSize,
+                  width: Theme.of(context).textTheme.subtitle1.fontSize,
                 ),
                 label: Text('Log out'),
                 onPressed: () {

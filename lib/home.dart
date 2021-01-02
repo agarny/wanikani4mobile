@@ -15,7 +15,7 @@ Container _header(BuildContext context, String title,
     color: (color == null) ? Theme.of(context).primaryColor : color,
     child: Text(
       title,
-      style: Theme.of(context).accentTextTheme.body1,
+      style: Theme.of(context).accentTextTheme.bodyText2,
       textAlign: textAlign,
     ),
   );
@@ -37,14 +37,14 @@ InkWell _currentlyAvailable(
             (currentlyAvailable == _CurrentlyAvailable.Lessons)
                 ? 'Lessons'
                 : 'Reviews',
-            style: Theme.of(context).textTheme.subhead,
+            style: Theme.of(context).textTheme.subtitle1,
           ),
           Spacer(),
           Text(
             (currentlyAvailable == _CurrentlyAvailable.Lessons)
                 ? WaniKani().lessonsAvailable()
                 : WaniKani().reviewsAvailable(),
-            style: Theme.of(context).textTheme.subhead,
+            style: Theme.of(context).textTheme.subtitle1,
           ),
           SizedBox(
             width: space(context),
@@ -92,18 +92,18 @@ InkWell _upcomingReviews(
                 : (upcomingReviews == _UpcomingReviews.NextDay)
                     ? 'Within the next day'
                     : 'All of them',
-            style: Theme.of(context).textTheme.subhead,
+            style: Theme.of(context).textTheme.subtitle1,
           ),
           Spacer(),
           (upcomingReviews == _UpcomingReviews.NextHour)
               ? Text(
                   '0',
-                  style: Theme.of(context).textTheme.subhead,
+                  style: Theme.of(context).textTheme.subtitle1,
                 )
               : (upcomingReviews == _UpcomingReviews.NextDay)
                   ? Text(
                       '0',
-                      style: Theme.of(context).textTheme.subhead,
+                      style: Theme.of(context).textTheme.subtitle1,
                     )
                   : Icon(
                       Icons.keyboard_arrow_right,
@@ -157,7 +157,7 @@ class _HomePageState extends State<HomePage> {
                     children: <Widget>[
                       Text(
                         WaniKani().userName(),
-                        style: Theme.of(context).accentTextTheme.headline,
+                        style: Theme.of(context).accentTextTheme.headline5,
                       ),
                       Text(
                         WaniKani().level(),
