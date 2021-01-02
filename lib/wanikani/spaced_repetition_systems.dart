@@ -30,8 +30,8 @@ class WaniKaniSpacedRepetitionSystems {
             : DateTime.parse(json["data_updated_at"]),
         data: json["data"] == null
             ? null
-            : List<WaniKaniSpacedRepetitionSystemsData>.from(
-                json["data"].map((x) => WaniKaniSpacedRepetitionSystemsData.fromJson(x))),
+            : List<WaniKaniSpacedRepetitionSystemsData>.from(json["data"]
+                .map((x) => WaniKaniSpacedRepetitionSystemsData.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -62,7 +62,8 @@ class WaniKaniSpacedRepetitionSystemsData {
   DateTime dataUpdatedAt;
   WaniKaniSpacedRepetitionSystemsDataData data;
 
-  factory WaniKaniSpacedRepetitionSystemsData.fromJson(Map<String, dynamic> json) =>
+  factory WaniKaniSpacedRepetitionSystemsData.fromJson(
+          Map<String, dynamic> json) =>
       WaniKaniSpacedRepetitionSystemsData(
         id: json["id"] == null ? null : json["id"],
         object: json["object"] == null ? null : json["object"],
@@ -106,7 +107,8 @@ class WaniKaniSpacedRepetitionSystemsDataData {
   int burningStagePosition;
   List<WaniKaniSpacedRepetitionSystemsDataDataStage> stages;
 
-  factory WaniKaniSpacedRepetitionSystemsDataData.fromJson(Map<String, dynamic> json) =>
+  factory WaniKaniSpacedRepetitionSystemsDataData.fromJson(
+          Map<String, dynamic> json) =>
       WaniKaniSpacedRepetitionSystemsDataData(
         createdAt: json["created_at"] == null
             ? null
@@ -127,8 +129,9 @@ class WaniKaniSpacedRepetitionSystemsDataData {
             : json["burning_stage_position"],
         stages: json["stages"] == null
             ? null
-            : List<WaniKaniSpacedRepetitionSystemsDataDataStage>.from(json["stages"]
-                .map((x) => WaniKaniSpacedRepetitionSystemsDataDataStage.fromJson(x))),
+            : List<WaniKaniSpacedRepetitionSystemsDataDataStage>.from(
+                json["stages"].map((x) =>
+                    WaniKaniSpacedRepetitionSystemsDataDataStage.fromJson(x))),
       );
 
   Map<String, dynamic> toJson() => {
@@ -160,7 +163,8 @@ class WaniKaniSpacedRepetitionSystemsDataDataStage {
   int position;
   WaniKaniSpacedRepetitionSystemsDataDataStageIntervalUnit intervalUnit;
 
-  factory WaniKaniSpacedRepetitionSystemsDataDataStage.fromJson(Map<String, dynamic> json) =>
+  factory WaniKaniSpacedRepetitionSystemsDataDataStage.fromJson(
+          Map<String, dynamic> json) =>
       WaniKaniSpacedRepetitionSystemsDataDataStage(
         interval: json["interval"] == null ? null : json["interval"],
         position: json["position"] == null ? null : json["position"],
@@ -182,5 +186,7 @@ class WaniKaniSpacedRepetitionSystemsDataDataStage {
 
 enum WaniKaniSpacedRepetitionSystemsDataDataStageIntervalUnit { SECONDS }
 
-final waniKaniSpacedRepetitionSystemsDataDataStageIntervalUnitValues = WaniKaniEnumValues(
-    {"seconds": WaniKaniSpacedRepetitionSystemsDataDataStageIntervalUnit.SECONDS});
+final waniKaniSpacedRepetitionSystemsDataDataStageIntervalUnitValues =
+    WaniKaniEnumValues({
+  "seconds": WaniKaniSpacedRepetitionSystemsDataDataStageIntervalUnit.SECONDS
+});

@@ -141,8 +141,9 @@ class WaniKani extends BaseCacheManager {
           jsonDecode(await _fetchEndpoint('review_statistics')));
       _instance.reviews =
           WaniKaniReviews.fromJson(jsonDecode(await _fetchEndpoint('reviews')));
-      _instance.spacedRepetitionSystems = WaniKaniSpacedRepetitionSystems.fromJson(
-          jsonDecode(await _fetchEndpoint('spaced_repetition_systems')));
+      _instance.spacedRepetitionSystems =
+          WaniKaniSpacedRepetitionSystems.fromJson(
+              jsonDecode(await _fetchEndpoint('spaced_repetition_systems')));
       _instance.subjects = WaniKaniSubjects.fromJson(
           jsonDecode(await _fetchEndpoint('subjects')));
       _instance.summary =
